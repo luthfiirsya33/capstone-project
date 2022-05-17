@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.capstone_project_kwi">
+    package="com.example.capstone_project_sib_kwi">
    <application
-        android:label="capstone_project_kwi"
+        android:label="capstone_project_sib_kwi"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
