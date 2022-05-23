@@ -6,17 +6,18 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class DrawerScreen extends StatefulWidget{
+class DrawerScreen extends StatefulWidget {
   const DrawerScreen({Key? key}) : super(key: key);
-  @override 
+  @override
   // ignore: library_private_types_in_public_api
   _DrawwerScreenState createState() => _DrawwerScreenState();
 }
-Future<void> _signOut() async{
-   await FirebaseAuth.instance.signOut();
+
+Future<void> _signOut() async {
+  await FirebaseAuth.instance.signOut();
 }
 
-class _DrawwerScreenState extends State<DrawerScreen>{
+class _DrawwerScreenState extends State<DrawerScreen> {
   User? user = FirebaseAuth.instance.currentUser;
   UserModel loggedInUser = UserModel();
 
@@ -25,7 +26,7 @@ class _DrawwerScreenState extends State<DrawerScreen>{
     super.initState();
     FirebaseFirestore.instance
         .collection("users")
-        .doc(user!.uid)
+        .doc(user?.uid)
         .get()
         .then((value) {
       // ignore: unnecessary_this
@@ -33,55 +34,61 @@ class _DrawwerScreenState extends State<DrawerScreen>{
       setState(() {});
     });
   }
-  @override 
-  Widget build(BuildContext context){
-    return Drawer(child: ListView(
+
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+        child: ListView(
       children: <Widget>[
         UserAccountsDrawerHeader(
-          accountName: Text("${loggedInUser.nickname}"),
           currentAccountPicture: const CircleAvatar(
             backgroundColor: Colors.white,
             foregroundColor: primaryColor,
             child: Text('KWI'),
-            ),
-            accountEmail: Text("${loggedInUser.email}"),
-            ),
-            DrawerListTile(
-              iconData: Icons.person,
-              title: 'About',
-              onTilePressed: (){
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => AboutPage(),));
-              },
-            ),
-            DrawerListTile(
-              iconData: Icons.logout,
-              title: "Logout",
-              onTilePressed: (){
-                _signOut().then((value)=> Navigator.of(context)
-                      .pushReplacement(MaterialPageRoute(
-                        builder: (context)=> LoginScreen())));
-              },
-            ),
+          ),
+          accountName: Text("${loggedInUser.nickname}"),
+          accountEmail: Text("${loggedInUser.email}"),
+        ),
+        DrawerListTile(
+          iconData: Icons.person,
+          title: 'About',
+          onTilePressed: () {
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => AboutPage(),
+            ));
+          },
+        ),
+        DrawerListTile(
+          iconData: Icons.logout,
+          title: "Logout",
+          onTilePressed: () {
+            _signOut().then((value) => Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => LoginScreen())));
+          },
+        ),
       ],
-      )
-      );
+    ));
   }
 }
 
-class DrawerListTile extends StatelessWidget{
+class DrawerListTile extends StatelessWidget {
   final IconData? iconData;
   final String? title;
   final VoidCallback? onTilePressed;
 
-  const DrawerListTile({Key? key, this.iconData, this.title, this.onTilePressed})
-  :super(key:key);
-  @override 
-  Widget build(BuildContext context){
+  const DrawerListTile(
+      {Key? key, this.iconData, this.title, this.onTilePressed})
+      : super(key: key);
+  @override
+  Widget build(BuildContext context) {
     return ListTile(
       onTap: onTilePressed,
       dense: true,
       leading: Icon(iconData),
-      title: Text(title!, style: const TextStyle(fontSize: 16),),
+      title: Text(
+        title!,
+        style: const TextStyle(fontSize: 16),
+      ),
     );
   }
 }

@@ -10,26 +10,29 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
-  @override 
+  @override
   // ignore: library_private_types_in_public_api
   _RegisterScreenState createState() => _RegisterScreenState();
 }
-class _RegisterScreenState extends State<RegisterScreen>{
+
+class _RegisterScreenState extends State<RegisterScreen> {
   bool isHiddenPassword = true;
   final _auth = FirebaseAuth.instance;
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _nicknameController = TextEditingController();
-  final TextEditingController _emailController =  TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
 
-  registerSubmit() async{
+  registerSubmit() async {
     try {
-      await _auth.createUserWithEmailAndPassword(
-        email: _emailController.text.toString().trim(),
-        password: _passwordController.text)
-        .then((value) => {postDetailsToFirestore()});
-    }catch (e){
+      await _auth
+          .createUserWithEmailAndPassword(
+              email: _emailController.text.toString().trim(),
+              password: _passwordController.text)
+          .then((value) => {postDetailsToFirestore()});
+    } catch (e) {
       // ignore: avoid_print
       print(e);
       SnackBar(content: Text(e.toString()));
@@ -47,141 +50,152 @@ class _RegisterScreenState extends State<RegisterScreen>{
             Container(
               alignment: Alignment.center,
               padding: const EdgeInsets.all(10),
-              margin:  const EdgeInsets.only(top: 40),
+              margin: const EdgeInsets.only(top: 40),
               child: const Text(
                 "KWI App",
                 style: TextStyle(
-                  color: primaryColor,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 30),
+                    color: primaryColor,
+                    fontWeight: FontWeight.w500,
+                    fontSize: 30),
               ),
             ),
             const Padding(
               padding: EdgeInsets.all(8.0),
-              child: const Image(image: const AssetImage("assets/img/logo-capstone.png"),
+              child: const Image(
+                image: const AssetImage("assets/img/logo-capstone.png"),
                 height: 200,
                 width: 200,
               ),
             ),
             Container(
-              padding: const EdgeInsets.all(10),
-              child: TextFormField(
-                controller: _nicknameController,
-                keyboardType: TextInputType.name,
-                validator: (value) {
-                  RegExp regex = RegExp(r'^.{3,}$');
-                  if (value!.isEmpty) {
-                    return ("First Name cannot be Empty");
-                  }
-                  if (!regex.hasMatch(value)) {
-                    return ("Enter Valid name(Min. 3 Character)");
-                  }
-                  return null;
-                },
-                onSaved: (value) {
-                  _nicknameController.text = value!;
-                },
-                textInputAction: TextInputAction.next,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(), labelText: "Nickname",
-                  prefixIcon: Icon(Icons.person),),
+                padding: const EdgeInsets.all(10),
+                child: TextFormField(
+                  controller: _nicknameController,
+                  keyboardType: TextInputType.name,
+                  validator: (value) {
+                    RegExp regex = RegExp(r'^.{3,}$');
+                    if (value!.isEmpty) {
+                      return ("First Name cannot be Empty");
+                    }
+                    if (!regex.hasMatch(value)) {
+                      return ("Enter Valid name(Min. 3 Character)");
+                    }
+                    return null;
+                  },
+                  onSaved: (value) {
+                    _nicknameController.text = value!;
+                  },
+                  textInputAction: TextInputAction.next,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: "Nickname",
+                    prefixIcon: Icon(Icons.person),
+                  ),
                 )),
             Container(
-              padding: const EdgeInsets.all(10),
-              child: TextFormField(
-                controller: _emailController,
-                keyboardType: TextInputType.emailAddress,
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return ("Please Enter Your Email");
-                  }
-                  // reg expression for email validation
-                  if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
-                      .hasMatch(value)) {
-                    return ("Please Enter a valid email");
-                  }
-                  return null;
-                },
-                onSaved: (value) {
-                  _emailController.text = value!;
-                },
-                textInputAction: TextInputAction.next,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(), labelText: "Email",
-                  prefixIcon: Icon(Icons.email),),
+                padding: const EdgeInsets.all(10),
+                child: TextFormField(
+                  controller: _emailController,
+                  keyboardType: TextInputType.emailAddress,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return ("Please Enter Your Email");
+                    }
+                    // reg expression for email validation
+                    if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
+                        .hasMatch(value)) {
+                      return ("Please Enter a valid email");
+                    }
+                    return null;
+                  },
+                  onSaved: (value) {
+                    _emailController.text = value!;
+                  },
+                  textInputAction: TextInputAction.next,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: "Email",
+                    prefixIcon: Icon(Icons.email),
+                  ),
                 )),
             Container(
-              padding: const EdgeInsets.all(10),
-              child: TextFormField(
-                obscureText: isHiddenPassword,
-                controller: _passwordController,
-                        validator: (value) {
-                  // ignore: unnecessary_new
-                  RegExp regex = new RegExp(r'^.{6,}$');
-                  if (value!.isEmpty) {
-                    return ("Password is required for login");
-                  }
-                  if (!regex.hasMatch(value)) {
-                    return ("Enter Valid Password(Min. 6 Character)");
-                  }
-                },
-                onSaved: (value) {
-                  _passwordController.text = value!;
-                },
-                textInputAction: TextInputAction.next,
-                decoration: InputDecoration(
-                  border: const OutlineInputBorder(), labelText: "Password",
-                  prefixIcon: const Icon(Icons.security),
-                  suffixIcon: InkWell(
-                    onTap: _togglePasswordView,
-                  child: const Icon(
-                    Icons.visibility,
-                  ))),
+                padding: const EdgeInsets.all(10),
+                child: TextFormField(
+                  obscureText: isHiddenPassword,
+                  controller: _passwordController,
+                  validator: (value) {
+                    // ignore: unnecessary_new
+                    RegExp regex = new RegExp(r'^.{6,}$');
+                    if (value!.isEmpty) {
+                      return ("Password is required for login");
+                    }
+                    if (!regex.hasMatch(value)) {
+                      return ("Enter Valid Password(Min. 6 Character)");
+                    }
+                  },
+                  onSaved: (value) {
+                    _passwordController.text = value!;
+                  },
+                  textInputAction: TextInputAction.next,
+                  decoration: InputDecoration(
+                      border: const OutlineInputBorder(),
+                      labelText: "Password",
+                      prefixIcon: const Icon(Icons.security),
+                      suffixIcon: InkWell(
+                          onTap: _togglePasswordView,
+                          child: const Icon(
+                            Icons.visibility,
+                          ))),
                 )),
-                Container(
-              padding: const EdgeInsets.all(10),
-              child: TextFormField(
-                obscureText: isHiddenPassword,
-                controller: _confirmPasswordController,
-                validator: (value) {
-                  if (_confirmPasswordController.text !=_passwordController.text) {
+            Container(
+                padding: const EdgeInsets.all(10),
+                child: TextFormField(
+                  obscureText: isHiddenPassword,
+                  controller: _confirmPasswordController,
+                  validator: (value) {
+                    if (_confirmPasswordController.text !=
+                        _passwordController.text) {
                       return "Password don't match";
-                }
-                return null;
-              },
-                onSaved: (value) {
-                  _confirmPasswordController.text = value!;
-                },
-                decoration: InputDecoration(
-                  border: const OutlineInputBorder(), labelText: "Confirm Password",
-                  prefixIcon: const Icon(Icons.security),
-                  suffixIcon: InkWell(
-                    onTap: _togglePasswordView,
-                  child: const Icon(
-                    Icons.visibility,
-                  ))),
+                    }
+                    return null;
+                  },
+                  onSaved: (value) {
+                    _confirmPasswordController.text = value!;
+                  },
+                  decoration: InputDecoration(
+                      border: const OutlineInputBorder(),
+                      labelText: "Confirm Password",
+                      prefixIcon: const Icon(Icons.security),
+                      suffixIcon: InkWell(
+                          onTap: _togglePasswordView,
+                          child: const Icon(
+                            Icons.visibility,
+                          ))),
                 )),
-                const SizedBox(height:10),
-                  Container(
-                    height: 50,
-                    padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                    child: ElevatedButton(
-                      style: raisedButtonStyle,
-                      child: const Text("Register"),
-                      onPressed: (){
-                        registerSubmit();;
-                      })),
-            ],
+            const SizedBox(height: 10),
+            Container(
+                height: 50,
+                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                child: ElevatedButton(
+                    style: raisedButtonStyle,
+                    child: const Text("Register"),
+                    onPressed: () {
+                      registerSubmit();
+                      ;
+                    })),
+          ],
         ),
-        ),
-        );
-        }
-        void _togglePasswordView(){
-          setState((){
-            isHiddenPassword = !isHiddenPassword;
-          });
-        }
-        postDetailsToFirestore() async {
+      ),
+    );
+  }
+
+  void _togglePasswordView() {
+    setState(() {
+      isHiddenPassword = !isHiddenPassword;
+    });
+  }
+
+  postDetailsToFirestore() async {
     // memanggil firestore
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
     User? user = _auth.currentUser;
@@ -200,10 +214,8 @@ class _RegisterScreenState extends State<RegisterScreen>{
         .set(userModel.toMap());
     Fluttertoast.showToast(msg: "Account created successfully ");
 
-    Navigator.pushAndRemoveUntil(
-        (context),
-        MaterialPageRoute(builder: (context) => BottomBar()),
-        (route) => false);
+    Navigator.pushAndRemoveUntil((context),
+        MaterialPageRoute(builder: (context) => BottomBar()), (route) => false);
   }
 
   @override
@@ -216,14 +228,11 @@ class _RegisterScreenState extends State<RegisterScreen>{
   }
 }
 
-
 final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(
   onPrimary: Colors.white,
   primary: primaryColor,
   minimumSize: const Size(88, 36),
   padding: const EdgeInsets.symmetric(horizontal: 16),
   shape: const RoundedRectangleBorder(
-    borderRadius: BorderRadius.all(Radius.circular(6))
-  ),
+      borderRadius: BorderRadius.all(Radius.circular(6))),
 );
-
