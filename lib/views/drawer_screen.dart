@@ -54,7 +54,7 @@ class _DrawwerScreenState extends State<DrawerScreen> {
           title: 'About',
           onTilePressed: () {
             Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => AboutPage(),
+              builder: (context) => const AboutPage(),
             ));
           },
         ),
@@ -63,7 +63,7 @@ class _DrawwerScreenState extends State<DrawerScreen> {
           title: "Logout",
           onTilePressed: () {
             _signOut().then((value) => Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => LoginScreen())));
+                MaterialPageRoute(builder: (context) => const LoginScreen())));
           },
         ),
       ],

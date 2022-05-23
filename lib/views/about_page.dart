@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print
+
 import 'package:capstone_project_sib_kwi/common/constants.dart';
 import 'package:capstone_project_sib_kwi/data/models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -19,18 +21,62 @@ class _AboutPageState extends State<AboutPage> {
   UserModel loggedUser = UserModel();
 
   String _nickname = "";
+  String _telegram = "";
+  String _instagram = "";
+  String _gitlab = "";
+  String _linkedIn = "";
 
-  void updateNickname() {
+  void updateProfile() {
     DocumentReference documentReference =
         FirebaseFirestore.instance.collection('users').doc(user?.uid);
 
-    Map<String, String> toUser = {
+    Map<String, String> toNickname = {
       'nickname': _nickname,
     };
 
+    Map<String, String> toTelegram = {
+      'telegram': _telegram,
+    };
+
+    Map<String, String> toInstagram = {
+      'instagram': _instagram,
+    };
+
+    Map<String, String> toGitlab = {
+      'gitlab': _gitlab,
+    };
+
+    Map<String, String> toLinkedIn = {
+      'linkedIn': _linkedIn,
+    };
+
     if (_nickname.isNotEmpty) {
-      documentReference.update(toUser).whenComplete(
-            () => Fluttertoast.showToast(msg: "Update Successful"),
+      documentReference.update(toNickname).whenComplete(
+            () => print("Update Successful"),
+          );
+    }
+
+    if (_telegram.isNotEmpty) {
+      documentReference.update(toTelegram).whenComplete(
+            () => print("Update Successful"),
+          );
+    }
+
+    if (_instagram.isNotEmpty) {
+      documentReference.update(toInstagram).whenComplete(
+            () => print("Update Successful"),
+          );
+    }
+
+    if (_gitlab.isNotEmpty) {
+      documentReference.update(toGitlab).whenComplete(
+            () => print("Update Successful"),
+          );
+    }
+
+    if (_linkedIn.isNotEmpty) {
+      documentReference.update(toLinkedIn).whenComplete(
+            () => print("Update Successful"),
           );
     }
   }
@@ -77,31 +123,120 @@ class _AboutPageState extends State<AboutPage> {
                                       return AlertDialog(
                                         title: const Text('Edit Profile'),
                                         content: Container(
-                                          width: 400,
-                                          height: 250,
-                                          child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            children: [
-                                              const Text('Nickname'),
-                                              TextField(
-                                                maxLines: 1,
-                                                onChanged: (value) {
-                                                  _nickname = value;
-                                                },
+                                            width: 400,
+                                            height: 400,
+                                            child: SingleChildScrollView(
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  const Text('Nickname'),
+                                                  const SizedBox(
+                                                    height: 8,
+                                                  ),
+                                                  TextField(
+                                                    maxLines: 1,
+                                                    onChanged: (value) {
+                                                      _nickname = value;
+                                                    },
+                                                    decoration: InputDecoration(
+                                                        border:
+                                                            const OutlineInputBorder(),
+                                                        hintText:
+                                                            '${loggedUser.nickname}'),
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 8,
+                                                  ),
+                                                  const Text('Telegram'),
+                                                  const SizedBox(
+                                                    height: 8,
+                                                  ),
+                                                  TextField(
+                                                    maxLines: 1,
+                                                    onChanged: (value) {
+                                                      _telegram = value;
+                                                    },
+                                                    decoration: InputDecoration(
+                                                        border:
+                                                            const OutlineInputBorder(),
+                                                        hintText:
+                                                            '${loggedUser.telegram}'),
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 8,
+                                                  ),
+                                                  const Text('Instagram'),
+                                                  const SizedBox(
+                                                    height: 8,
+                                                  ),
+                                                  TextField(
+                                                    maxLines: 1,
+                                                    onChanged: (value) {
+                                                      _instagram = value;
+                                                    },
+                                                    decoration: InputDecoration(
+                                                        border:
+                                                            const OutlineInputBorder(),
+                                                        hintText:
+                                                            '${loggedUser.instagram}'),
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 8,
+                                                  ),
+                                                  const Text('Gitlab'),
+                                                  const SizedBox(
+                                                    height: 8,
+                                                  ),
+                                                  TextField(
+                                                    maxLines: 1,
+                                                    onChanged: (value) {
+                                                      _gitlab = value;
+                                                    },
+                                                    decoration: InputDecoration(
+                                                        border:
+                                                            const OutlineInputBorder(),
+                                                        hintText:
+                                                            '${loggedUser.gitlab}'),
+                                                  ),
+                                                  const SizedBox(
+                                                    height: 8,
+                                                  ),
+                                                  const Text('LinkedIn'),
+                                                  const SizedBox(
+                                                    height: 8,
+                                                  ),
+                                                  TextField(
+                                                    maxLines: 1,
+                                                    onChanged: (value) {
+                                                      _linkedIn = value;
+                                                    },
+                                                    decoration: InputDecoration(
+                                                        border:
+                                                            const OutlineInputBorder(),
+                                                        hintText:
+                                                            '${loggedUser.linkedIn}'),
+                                                  ),
+                                                ],
                                               ),
-                                            ],
-                                          ),
-                                        ),
+                                            )),
                                         actions: [
                                           TextButton(
                                               onPressed: () {
                                                 setState(() {
-                                                  updateNickname();
+                                                  updateProfile();
                                                 });
+                                                if (_nickname.isNotEmpty ||
+                                                    _telegram.isNotEmpty ||
+                                                    _instagram.isNotEmpty ||
+                                                    _gitlab.isNotEmpty ||
+                                                    _linkedIn.isNotEmpty) {
+                                                  Fluttertoast.showToast(
+                                                      msg: 'Update Successful');
+                                                }
                                                 Navigator.of(context).pop();
                                               },
-                                              child: const Text('OK'))
+                                              child: const Text('Update'))
                                         ],
                                       );
                                     });
@@ -150,7 +285,7 @@ class _AboutPageState extends State<AboutPage> {
                                       height: 10,
                                     ),
                                     Text(
-                                      "@Zbviel",
+                                      "${loggedUser.telegram}",
                                       style: TextStyle(
                                         fontSize: 12,
                                         color: Colors.red[700],
@@ -171,7 +306,7 @@ class _AboutPageState extends State<AboutPage> {
                                       height: 10,
                                     ),
                                     Text(
-                                      "luthfiirsyad30",
+                                      "${loggedUser.instagram}",
                                       style: TextStyle(
                                         fontSize: 12,
                                         color: Colors.red[700],
@@ -192,7 +327,7 @@ class _AboutPageState extends State<AboutPage> {
                                       height: 10,
                                     ),
                                     Text(
-                                      "@upiirsya33",
+                                      "${loggedUser.gitlab}",
                                       style: TextStyle(
                                         fontSize: 12,
                                         color: Colors.red[700],
@@ -213,7 +348,7 @@ class _AboutPageState extends State<AboutPage> {
                                       height: 10,
                                     ),
                                     Text(
-                                      "Luthfi Irsyad",
+                                      "${loggedUser.linkedIn}",
                                       style: TextStyle(
                                         fontSize: 12,
                                         color: Colors.red[700],
