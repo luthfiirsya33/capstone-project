@@ -124,6 +124,13 @@ class _LoginScreenState extends State<LoginScreen>{
             isHiddenPassword = !isHiddenPassword;
           });
         }
+
+        @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
 }
 
 final ButtonStyle raisedButtonStyle = ElevatedButton.styleFrom(

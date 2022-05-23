@@ -205,6 +205,15 @@ class _RegisterScreenState extends State<RegisterScreen>{
         MaterialPageRoute(builder: (context) => BottomBar()),
         (route) => false);
   }
+
+  @override
+  void dispose() {
+    _nicknameController.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+    _confirmPasswordController.dispose();
+    super.dispose();
+  }
 }
 
 
