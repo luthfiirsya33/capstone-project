@@ -1,12 +1,16 @@
 // ignore_for_file: avoid_print
 
+import 'dart:io';
+
 import 'package:capstone_project_sib_kwi/common/constants.dart';
 import 'package:capstone_project_sib_kwi/data/models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:image_picker/image_picker.dart';
 
 class AboutPage extends StatefulWidget {
   const AboutPage({Key? key}) : super(key: key);
@@ -18,13 +22,44 @@ class AboutPage extends StatefulWidget {
 
 class _AboutPageState extends State<AboutPage> {
   User? user = FirebaseAuth.instance.currentUser;
+  FirebaseStorage storage = FirebaseStorage.instance;
   UserModel loggedUser = UserModel();
-
   String _nickname = "";
   String _telegram = "";
   String _instagram = "";
   String _gitlab = "";
   String _linkedIn = "";
+
+  Future<void> getImage() async {
+    DocumentReference documentReference =
+        FirebaseFirestore.instance.collection('users').doc(user?.uid);
+
+    String getPhotoUrl;
+
+    final img = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (img == null) return;
+
+    final imageTemporary = File(img.path);
+
+    try {
+      await storage
+          .ref("photo-users/${loggedUser.uid}/")
+          .putFile(imageTemporary);
+    } on FirebaseException catch (e) {
+      print(e);
+    }
+
+    getPhotoUrl =
+        await storage.ref("photo-users/${loggedUser.uid}/").getDownloadURL();
+
+    Map<String, String> toImageUrl = {
+      'imageUrl': getPhotoUrl,
+    };
+
+    if (getPhotoUrl.isNotEmpty) {
+      documentReference.update(toImageUrl);
+    }
+  }
 
   void updateProfile() {
     DocumentReference documentReference =
@@ -244,11 +279,31 @@ class _AboutPageState extends State<AboutPage> {
                               icon: const Icon(Icons.edit)),
                         ],
                       ),
-                      const CircleAvatar(
-                        backgroundImage:
-                            AssetImage("assets/img/logo-capstone.png"),
-                        radius: 50.0,
+                      Stack(
+                        alignment: const Alignment(1.4, 1.4),
+                        children: [
+                          CircleAvatar(
+                            backgroundImage: (loggedUser.imageUrl != null
+                                    ? NetworkImage(loggedUser.imageUrl!)
+                                    : AssetImage(
+                                        "assets/img/logo-capstone.png"))
+                                as ImageProvider,
+                            radius: 50.0,
+                          ),
+                          IconButton(
+                              onPressed: () {
+                                getImage();
+                              },
+                              icon: const Icon(
+                                Icons.camera_alt,
+                              )),
+                        ],
                       ),
+                      // const CircleAvatar(
+                      //   backgroundImage:
+                      //       AssetImage("assets/img/logo-capstone.png"),
+                      //   radius: 50.0,
+                      // ),
                       const SizedBox(
                         height: 10.0,
                       ),

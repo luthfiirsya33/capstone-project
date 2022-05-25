@@ -41,10 +41,13 @@ class _DrawwerScreenState extends State<DrawerScreen> {
         child: ListView(
       children: <Widget>[
         UserAccountsDrawerHeader(
-          currentAccountPicture: const CircleAvatar(
+          currentAccountPicture: CircleAvatar(
             backgroundColor: Colors.white,
             foregroundColor: primaryColor,
-            child: Text('KWI'),
+            radius: 50,
+            backgroundImage: (loggedInUser.imageUrl != null
+                ? NetworkImage(loggedInUser.imageUrl!)
+                : AssetImage("assets/img/logo-capstone.png")) as ImageProvider,
           ),
           accountName: Text("${loggedInUser.nickname}"),
           accountEmail: Text("${loggedInUser.email}"),

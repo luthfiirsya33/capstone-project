@@ -6,6 +6,7 @@ class UserModel {
   String? instagram;
   String? gitlab;
   String? linkedIn;
+  String? imageUrl;
 
   UserModel(
       {this.uid,
@@ -14,19 +15,20 @@ class UserModel {
       this.telegram,
       this.instagram,
       this.gitlab,
-      this.linkedIn});
+      this.linkedIn,
+      this.imageUrl});
 
   // Menerima data dari server firebase
   factory UserModel.fromMap(map) {
     return UserModel(
-      uid: map['uid'],
-      email: map['email'],
-      nickname: map['nickname'],
-      telegram: map['telegram'],
-      instagram: map['instagram'],
-      gitlab: map['gitlab'],
-      linkedIn: map['linkedIn'],
-    );
+        uid: map['uid'],
+        email: map['email'],
+        nickname: map['nickname'],
+        telegram: map['telegram'],
+        instagram: map['instagram'],
+        gitlab: map['gitlab'],
+        linkedIn: map['linkedIn'],
+        imageUrl: map['imageUrl']);
   }
 
   // Mengirim data ke server firebase
