@@ -157,7 +157,8 @@ class _AboutPageState extends State<AboutPage> {
                                     context: context,
                                     builder: (BuildContext context) {
                                       return AlertDialog(
-                                        title: const Text('Edit Profile'),
+                                        title: Text('Edit Profile',
+                                        style: blackTextStyle),
                                         content: Container(
                                             width: 400,
                                             height: 400,
@@ -166,7 +167,8 @@ class _AboutPageState extends State<AboutPage> {
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 children: [
-                                                  const Text('Nickname'),
+                                                  Text('Nickname',
+                                                  style: blackTextStyle),
                                                   const SizedBox(
                                                     height: 8,
                                                   ),
@@ -184,7 +186,8 @@ class _AboutPageState extends State<AboutPage> {
                                                   const SizedBox(
                                                     height: 8,
                                                   ),
-                                                  const Text('Telegram'),
+                                                  Text('Telegram',
+                                                  style: blackTextStyle),
                                                   const SizedBox(
                                                     height: 8,
                                                   ),
@@ -202,7 +205,8 @@ class _AboutPageState extends State<AboutPage> {
                                                   const SizedBox(
                                                     height: 8,
                                                   ),
-                                                  const Text('Instagram'),
+                                                  Text('Instagram',
+                                                  style: blackTextStyle),
                                                   const SizedBox(
                                                     height: 8,
                                                   ),
@@ -220,7 +224,8 @@ class _AboutPageState extends State<AboutPage> {
                                                   const SizedBox(
                                                     height: 8,
                                                   ),
-                                                  const Text('Gitlab'),
+                                                  Text('Gitlab',
+                                                  style: blackTextStyle),
                                                   const SizedBox(
                                                     height: 8,
                                                   ),
@@ -238,7 +243,8 @@ class _AboutPageState extends State<AboutPage> {
                                                   const SizedBox(
                                                     height: 8,
                                                   ),
-                                                  const Text('LinkedIn'),
+                                                  Text('LinkedIn',
+                                                  style: blackTextStyle),
                                                   const SizedBox(
                                                     height: 8,
                                                   ),
@@ -272,7 +278,8 @@ class _AboutPageState extends State<AboutPage> {
                                                 }
                                                 Navigator.of(context).pop();
                                               },
-                                              child: const Text('Update'))
+                                              child: Text('Update',
+                                              style: blackTextStyle))
                                         ],
                                       );
                                     });
@@ -311,9 +318,9 @@ class _AboutPageState extends State<AboutPage> {
                       ),
                       Text(
                         "${loggedUser.nickname}",
-                        style: const TextStyle(
+                        style: blackTextStyle.copyWith(
                           fontSize: 22.0,
-                          color: Colors.white,
+                          color: whiteColor,
                         ),
                       ),
                       const SizedBox(
@@ -323,7 +330,7 @@ class _AboutPageState extends State<AboutPage> {
                         margin: const EdgeInsets.symmetric(
                             horizontal: 20.0, vertical: 5.0),
                         clipBehavior: Clip.antiAlias,
-                        color: Colors.white,
+                        color: whiteColor,
                         elevation: 5.0,
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
@@ -343,7 +350,7 @@ class _AboutPageState extends State<AboutPage> {
                                     ),
                                     Text(
                                       "${loggedUser.telegram}",
-                                      style: const TextStyle(
+                                      style: blackTextStyle.copyWith(
                                         fontSize: 12,
                                         color: primaryColor,
                                       ),
@@ -364,7 +371,7 @@ class _AboutPageState extends State<AboutPage> {
                                     ),
                                     Text(
                                       "${loggedUser.instagram}",
-                                      style: const TextStyle(
+                                      style: blackTextStyle.copyWith(
                                         fontSize: 12,
                                         color: primaryColor,
                                       ),
@@ -385,7 +392,7 @@ class _AboutPageState extends State<AboutPage> {
                                     ),
                                     Text(
                                       "${loggedUser.gitlab}",
-                                      style: const TextStyle(
+                                      style: blackTextStyle.copyWith(
                                         fontSize: 12,
                                         color: primaryColor,
                                       ),
@@ -406,7 +413,7 @@ class _AboutPageState extends State<AboutPage> {
                                     ),
                                     Text(
                                       "${loggedUser.linkedIn}",
-                                      style: const TextStyle(
+                                      style: blackTextStyle.copyWith(
                                         fontSize: 12,
                                         color: primaryColor,
                                       ),

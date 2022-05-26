@@ -24,8 +24,8 @@ class _BottomBarState extends State<BottomBar> {
         bottomNavigationBar: BottomNavigationBar(
             type: BottomNavigationBarType.fixed,
             backgroundColor: primaryColor,
-            selectedItemColor: Colors.white,
-            unselectedItemColor: Colors.white70,
+            selectedItemColor: whiteColor,
+            unselectedItemColor: whiteColor70,
             iconSize: 40,
             currentIndex: currentIndex,
             onTap: (index) => setState(() => currentIndex = index),

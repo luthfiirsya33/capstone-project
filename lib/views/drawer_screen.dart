@@ -49,12 +49,14 @@ class _DrawwerScreenState extends State<DrawerScreen> {
                 ? NetworkImage(loggedInUser.imageUrl!)
                 : AssetImage("assets/img/logo-capstone.png")) as ImageProvider,
           ),
-          accountName: Text("${loggedInUser.nickname}"),
-          accountEmail: Text("${loggedInUser.email}"),
+          accountName: Text("${loggedInUser.nickname}",
+          style: whiteTextStyle,),
+          accountEmail: Text("${loggedInUser.email}",
+          style: whiteTextStyle),
         ),
         DrawerListTile(
           iconData: Icons.person,
-          title: 'About',
+          title: 'Profile',
           onTilePressed: () {
             Navigator.of(context).push(MaterialPageRoute(
               builder: (context) => const AboutPage(),
