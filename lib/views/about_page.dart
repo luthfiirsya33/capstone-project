@@ -151,6 +151,7 @@ class _AboutPageState extends State<AboutPage> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           IconButton(
+                            color: whiteColor70,
                               onPressed: () {
                                 showDialog(
                                     context: context,
@@ -285,7 +286,7 @@ class _AboutPageState extends State<AboutPage> {
                           CircleAvatar(
                             backgroundImage: (loggedUser.imageUrl != null
                                     ? NetworkImage(loggedUser.imageUrl!)
-                                    : AssetImage(
+                                    : const AssetImage(
                                         "assets/img/logo-capstone.png"))
                                 as ImageProvider,
                             radius: 50.0,
@@ -296,6 +297,7 @@ class _AboutPageState extends State<AboutPage> {
                               },
                               icon: const Icon(
                                 Icons.camera_alt,
+                                color: whiteColor70,
                               )),
                         ],
                       ),
@@ -331,19 +333,19 @@ class _AboutPageState extends State<AboutPage> {
                               Expanded(
                                 child: Column(
                                   children: <Widget>[
-                                    Icon(
+                                    const Icon(
                                       FontAwesomeIcons.telegram,
                                       size: 40,
-                                      color: Colors.red[700],
+                                      color: primaryColor,
                                     ),
                                     const SizedBox(
                                       height: 10,
                                     ),
                                     Text(
                                       "${loggedUser.telegram}",
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontSize: 12,
-                                        color: Colors.red[700],
+                                        color: primaryColor,
                                       ),
                                     )
                                   ],
@@ -352,19 +354,19 @@ class _AboutPageState extends State<AboutPage> {
                               Expanded(
                                 child: Column(
                                   children: <Widget>[
-                                    Icon(
+                                    const Icon(
                                       FontAwesomeIcons.instagram,
                                       size: 40,
-                                      color: Colors.red[700],
+                                      color: primaryColor,
                                     ),
                                     const SizedBox(
                                       height: 10,
                                     ),
                                     Text(
                                       "${loggedUser.instagram}",
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontSize: 12,
-                                        color: Colors.red[700],
+                                        color: primaryColor,
                                       ),
                                     )
                                   ],
@@ -373,19 +375,19 @@ class _AboutPageState extends State<AboutPage> {
                               Expanded(
                                 child: Column(
                                   children: <Widget>[
-                                    Icon(
+                                    const Icon(
                                       FontAwesomeIcons.gitlab,
                                       size: 40,
-                                      color: Colors.red[700],
+                                      color: primaryColor,
                                     ),
                                     const SizedBox(
                                       height: 10,
                                     ),
                                     Text(
                                       "${loggedUser.gitlab}",
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontSize: 12,
-                                        color: Colors.red[700],
+                                        color: primaryColor,
                                       ),
                                     )
                                   ],
@@ -394,19 +396,19 @@ class _AboutPageState extends State<AboutPage> {
                               Expanded(
                                 child: Column(
                                   children: <Widget>[
-                                    Icon(
+                                    const Icon(
                                       FontAwesomeIcons.linkedin,
                                       size: 40,
-                                      color: Colors.red[700],
+                                      color: primaryColor,
                                     ),
                                     const SizedBox(
                                       height: 10,
                                     ),
                                     Text(
                                       "${loggedUser.linkedIn}",
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontSize: 12,
-                                        color: Colors.red[700],
+                                        color: primaryColor,
                                       ),
                                     )
                                   ],
