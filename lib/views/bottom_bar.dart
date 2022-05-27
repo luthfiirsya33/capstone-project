@@ -2,6 +2,7 @@ import 'package:capstone_project_sib_kwi/common/constants.dart';
 import 'package:flutter/material.dart';
 import 'about_page.dart';
 import 'home_page.dart';
+import 'detail_page.dart';
 
 class BottomBar extends StatefulWidget {
   const BottomBar({Key? key}) : super(key: key);
@@ -15,6 +16,7 @@ class _BottomBarState extends State<BottomBar> {
   int currentIndex = 0;
   final List<Widget> screens = [
     const HomePage(),
+    const DetailPage(),
     const AboutPage(),
   ];
   @override
@@ -33,6 +35,11 @@ class _BottomBarState extends State<BottomBar> {
               BottomNavigationBarItem(
                 icon: Icon(Icons.home),
                 label: 'Home',
+                backgroundColor: primaryColor,
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.details),
+                label: 'Detail',
                 backgroundColor: primaryColor,
               ),
               BottomNavigationBarItem(

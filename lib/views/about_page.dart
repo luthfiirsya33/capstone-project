@@ -104,7 +104,7 @@ class _AboutPageState extends State<AboutPage> {
               decoration: const BoxDecoration(
                 color: primaryColor,
               ),
-              child: Container(
+              child: SizedBox(
                 width: double.infinity,
                 height: 350.0,
                 child: Center(
@@ -122,7 +122,7 @@ class _AboutPageState extends State<AboutPage> {
                                     builder: (BuildContext context) {
                                       return AlertDialog(
                                         title: const Text('Edit Profile'),
-                                        content: Container(
+                                        content: SizedBox(
                                             width: 400,
                                             height: 400,
                                             child: SingleChildScrollView(
