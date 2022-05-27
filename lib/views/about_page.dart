@@ -157,14 +157,9 @@ class _AboutPageState extends State<AboutPage> {
                                     context: context,
                                     builder: (BuildContext context) {
                                       return AlertDialog(
-<<<<<<< HEAD
-                                        title: const Text('Edit Profile'),
-                                        content: SizedBox(
-=======
                                         title: Text('Edit Profile',
                                         style: blackTextStyle),
                                         content: Container(
->>>>>>> b0c0e0dfe2f00cdc5a3e196c8fc8a8d347081945
                                             width: 400,
                                             height: 400,
                                             child: SingleChildScrollView(
