@@ -1,12 +1,16 @@
 // ignore_for_file: avoid_print
 
+import 'dart:io';
+
 import 'package:capstone_project_sib_kwi/common/constants.dart';
 import 'package:capstone_project_sib_kwi/data/models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:image_picker/image_picker.dart';
 
 class AboutPage extends StatefulWidget {
   const AboutPage({Key? key}) : super(key: key);
@@ -18,13 +22,44 @@ class AboutPage extends StatefulWidget {
 
 class _AboutPageState extends State<AboutPage> {
   User? user = FirebaseAuth.instance.currentUser;
+  FirebaseStorage storage = FirebaseStorage.instance;
   UserModel loggedUser = UserModel();
-
   String _nickname = "";
   String _telegram = "";
   String _instagram = "";
   String _gitlab = "";
   String _linkedIn = "";
+
+  Future<void> getImage() async {
+    DocumentReference documentReference =
+        FirebaseFirestore.instance.collection('users').doc(user?.uid);
+
+    String getPhotoUrl;
+
+    final img = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (img == null) return;
+
+    final imageTemporary = File(img.path);
+
+    try {
+      await storage
+          .ref("photo-users/${loggedUser.uid}/")
+          .putFile(imageTemporary);
+    } on FirebaseException catch (e) {
+      print(e);
+    }
+
+    getPhotoUrl =
+        await storage.ref("photo-users/${loggedUser.uid}/").getDownloadURL();
+
+    Map<String, String> toImageUrl = {
+      'imageUrl': getPhotoUrl,
+    };
+
+    if (getPhotoUrl.isNotEmpty) {
+      documentReference.update(toImageUrl);
+    }
+  }
 
   void updateProfile() {
     DocumentReference documentReference =
@@ -116,13 +151,15 @@ class _AboutPageState extends State<AboutPage> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           IconButton(
+                            color: whiteColor70,
                               onPressed: () {
                                 showDialog(
                                     context: context,
                                     builder: (BuildContext context) {
                                       return AlertDialog(
-                                        title: const Text('Edit Profile'),
-                                        content: SizedBox(
+                                        title: Text('Edit Profile',
+                                        style: blackTextStyle),
+                                        content: Container(
                                             width: 400,
                                             height: 400,
                                             child: SingleChildScrollView(
@@ -130,7 +167,8 @@ class _AboutPageState extends State<AboutPage> {
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 children: [
-                                                  const Text('Nickname'),
+                                                  Text('Nickname',
+                                                  style: blackTextStyle),
                                                   const SizedBox(
                                                     height: 8,
                                                   ),
@@ -148,7 +186,8 @@ class _AboutPageState extends State<AboutPage> {
                                                   const SizedBox(
                                                     height: 8,
                                                   ),
-                                                  const Text('Telegram'),
+                                                  Text('Telegram',
+                                                  style: blackTextStyle),
                                                   const SizedBox(
                                                     height: 8,
                                                   ),
@@ -166,7 +205,8 @@ class _AboutPageState extends State<AboutPage> {
                                                   const SizedBox(
                                                     height: 8,
                                                   ),
-                                                  const Text('Instagram'),
+                                                  Text('Instagram',
+                                                  style: blackTextStyle),
                                                   const SizedBox(
                                                     height: 8,
                                                   ),
@@ -184,7 +224,8 @@ class _AboutPageState extends State<AboutPage> {
                                                   const SizedBox(
                                                     height: 8,
                                                   ),
-                                                  const Text('Gitlab'),
+                                                  Text('Gitlab',
+                                                  style: blackTextStyle),
                                                   const SizedBox(
                                                     height: 8,
                                                   ),
@@ -202,7 +243,8 @@ class _AboutPageState extends State<AboutPage> {
                                                   const SizedBox(
                                                     height: 8,
                                                   ),
-                                                  const Text('LinkedIn'),
+                                                  Text('LinkedIn',
+                                                  style: blackTextStyle),
                                                   const SizedBox(
                                                     height: 8,
                                                   ),
@@ -236,7 +278,8 @@ class _AboutPageState extends State<AboutPage> {
                                                 }
                                                 Navigator.of(context).pop();
                                               },
-                                              child: const Text('Update'))
+                                              child: Text('Update',
+                                              style: blackTextStyle))
                                         ],
                                       );
                                     });
@@ -244,19 +287,40 @@ class _AboutPageState extends State<AboutPage> {
                               icon: const Icon(Icons.edit)),
                         ],
                       ),
-                      const CircleAvatar(
-                        backgroundImage:
-                            AssetImage("assets/img/logo-capstone.png"),
-                        radius: 50.0,
+                      Stack(
+                        alignment: const Alignment(1.4, 1.4),
+                        children: [
+                          CircleAvatar(
+                            backgroundImage: (loggedUser.imageUrl != null
+                                    ? NetworkImage(loggedUser.imageUrl!)
+                                    : const AssetImage(
+                                        "assets/img/logo-capstone.png"))
+                                as ImageProvider,
+                            radius: 50.0,
+                          ),
+                          IconButton(
+                              onPressed: () {
+                                getImage();
+                              },
+                              icon: const Icon(
+                                Icons.camera_alt,
+                                color: whiteColor70,
+                              )),
+                        ],
                       ),
+                      // const CircleAvatar(
+                      //   backgroundImage:
+                      //       AssetImage("assets/img/logo-capstone.png"),
+                      //   radius: 50.0,
+                      // ),
                       const SizedBox(
                         height: 10.0,
                       ),
                       Text(
                         "${loggedUser.nickname}",
-                        style: const TextStyle(
+                        style: blackTextStyle.copyWith(
                           fontSize: 22.0,
-                          color: Colors.white,
+                          color: whiteColor,
                         ),
                       ),
                       const SizedBox(
@@ -266,7 +330,7 @@ class _AboutPageState extends State<AboutPage> {
                         margin: const EdgeInsets.symmetric(
                             horizontal: 20.0, vertical: 5.0),
                         clipBehavior: Clip.antiAlias,
-                        color: Colors.white,
+                        color: whiteColor,
                         elevation: 5.0,
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
@@ -276,19 +340,19 @@ class _AboutPageState extends State<AboutPage> {
                               Expanded(
                                 child: Column(
                                   children: <Widget>[
-                                    Icon(
+                                    const Icon(
                                       FontAwesomeIcons.telegram,
                                       size: 40,
-                                      color: Colors.red[700],
+                                      color: primaryColor,
                                     ),
                                     const SizedBox(
                                       height: 10,
                                     ),
                                     Text(
                                       "${loggedUser.telegram}",
-                                      style: TextStyle(
+                                      style: blackTextStyle.copyWith(
                                         fontSize: 12,
-                                        color: Colors.red[700],
+                                        color: primaryColor,
                                       ),
                                     )
                                   ],
@@ -297,19 +361,19 @@ class _AboutPageState extends State<AboutPage> {
                               Expanded(
                                 child: Column(
                                   children: <Widget>[
-                                    Icon(
+                                    const Icon(
                                       FontAwesomeIcons.instagram,
                                       size: 40,
-                                      color: Colors.red[700],
+                                      color: primaryColor,
                                     ),
                                     const SizedBox(
                                       height: 10,
                                     ),
                                     Text(
                                       "${loggedUser.instagram}",
-                                      style: TextStyle(
+                                      style: blackTextStyle.copyWith(
                                         fontSize: 12,
-                                        color: Colors.red[700],
+                                        color: primaryColor,
                                       ),
                                     )
                                   ],
@@ -318,19 +382,19 @@ class _AboutPageState extends State<AboutPage> {
                               Expanded(
                                 child: Column(
                                   children: <Widget>[
-                                    Icon(
+                                    const Icon(
                                       FontAwesomeIcons.gitlab,
                                       size: 40,
-                                      color: Colors.red[700],
+                                      color: primaryColor,
                                     ),
                                     const SizedBox(
                                       height: 10,
                                     ),
                                     Text(
                                       "${loggedUser.gitlab}",
-                                      style: TextStyle(
+                                      style: blackTextStyle.copyWith(
                                         fontSize: 12,
-                                        color: Colors.red[700],
+                                        color: primaryColor,
                                       ),
                                     )
                                   ],
@@ -339,19 +403,19 @@ class _AboutPageState extends State<AboutPage> {
                               Expanded(
                                 child: Column(
                                   children: <Widget>[
-                                    Icon(
+                                    const Icon(
                                       FontAwesomeIcons.linkedin,
                                       size: 40,
-                                      color: Colors.red[700],
+                                      color: primaryColor,
                                     ),
                                     const SizedBox(
                                       height: 10,
                                     ),
                                     Text(
                                       "${loggedUser.linkedIn}",
-                                      style: TextStyle(
+                                      style: blackTextStyle.copyWith(
                                         fontSize: 12,
-                                        color: Colors.red[700],
+                                        color: primaryColor,
                                       ),
                                     )
                                   ],
