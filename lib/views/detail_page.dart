@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:capstone_project_sib_kwi/common/constants.dart';
 // import 'package:provider/provider.dart';
 // import 'package:restaurant_app/common/style.dart';
 // import 'package:restaurant_app/data/model/detail_resto.dart';
@@ -118,7 +119,7 @@ class DetailPage extends StatelessWidget {
                   children: const [
                     Icon(
                       Icons.location_pin,
-                      //color: locationColor,
+                      color: primaryColor,
                     ),
                     SizedBox(
                       width: 8,
@@ -129,7 +130,7 @@ class DetailPage extends StatelessWidget {
                     ),
                     Icon(
                       Icons.star_rate,
-                      //color: starColor,
+                      color: lightGreenColor,
                     ),
                     SizedBox(
                       width: 8,
@@ -153,14 +154,14 @@ class DetailPage extends StatelessWidget {
                 Container(
                   margin: const EdgeInsets.fromLTRB(4, 16, 0, 0),
                   child: const Text(
-                    "Menu",
+                    "Fasilitas",
                     //style: kTitle,
                   ),
                 ),
                 Container(
                   margin: const EdgeInsets.fromLTRB(4, 16, 0, 0),
                   child: const Text(
-                    "Food",
+                    "Restaurant",
                     // style: ktitle.copyWith(
                     //   color: kColorFour,
                     ),
@@ -170,7 +171,7 @@ class DetailPage extends StatelessWidget {
                 Container(
                   margin: const EdgeInsets.fromLTRB(4, 16, 0, 0),
                   child: const Text(
-                    "Drink",
+                    "Wisata",
                     // style: ktitle.copyWith(
                     //   color: kColorFour,
                     // ),
@@ -180,7 +181,10 @@ class DetailPage extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.all(16.0),
                   child: ElevatedButton(
-                    child: const Text('Pesan Sekarang',
+                      style: ElevatedButton.styleFrom(
+                      primary: greenColor, // background // foreground
+                    ),
+                    child: const Text('Jelajah Sekarang',
                         style: TextStyle(color: Colors.white)),
                     onPressed: () async {
                       // Navigator.push(
