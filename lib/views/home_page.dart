@@ -30,7 +30,8 @@ class _HomePageState extends State<HomePage> {
     }
     return Scaffold(
         appBar: AppBar(
-          title: const Text("KWI App"),
+          title: Text("KWI App",
+          style: whiteTextStyle),
           backgroundColor: primaryColor,
           actions: <Widget>[
             Row(
@@ -48,9 +49,10 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
         drawer: const DrawerScreen(),
-        body: const Text(
+        body: Text(
           'Hello KWI!',
           textAlign: TextAlign.center,
+          style: blackTextStyle,
         ));
   }
 }
