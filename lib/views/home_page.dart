@@ -29,8 +29,9 @@ class _HomePageState extends State<HomePage> {
 
   final CollectionReference _destinations =
       FirebaseFirestore.instance.collection('destinations');
-  
-  Future<void> _createUpdateDestination([DocumentSnapshot? documentSnapshot]) async {
+
+  Future<void> _createUpdateDestination(
+      [DocumentSnapshot? documentSnapshot]) async {
     String action = 'create';
     if (documentSnapshot != null) {
       action = 'update';
@@ -57,7 +58,8 @@ class _HomePageState extends State<HomePage> {
               children: [
                 TextField(
                   controller: _nameController,
-                  decoration: const InputDecoration(labelText: 'Nama Destinasi'),
+                  decoration:
+                      const InputDecoration(labelText: 'Nama Destinasi'),
                 ),
                 TextField(
                   keyboardType:
@@ -96,15 +98,29 @@ class _HomePageState extends State<HomePage> {
                     final String? description = _descriptionController.text;
                     final double? price =
                         double.tryParse(_priceController.text);
-                    if (name != null && rating != null && location != null && description != null && price != null) {
+                    if (name != null &&
+                        rating != null &&
+                        location != null &&
+                        description != null &&
+                        price != null) {
                       if (action == 'create') {
-                        await _destinations.add({"name": name, "rating": rating, "location": location, "description": description, "price":price});
+                        await _destinations.add({
+                          "name": name,
+                          "rating": rating,
+                          "location": location,
+                          "description": description,
+                          "price": price
+                        });
                       }
 
                       if (action == 'update') {
-                        await _destinations
-                            .doc(documentSnapshot!.id)
-                            .update({"name": name, "rating": rating, "location": location, "description": description, "price":price});
+                        await _destinations.doc(documentSnapshot!.id).update({
+                          "name": name,
+                          "rating": rating,
+                          "location": location,
+                          "description": description,
+                          "price": price
+                        });
                       }
 
                       _nameController.text = '';
@@ -140,153 +156,216 @@ class _HomePageState extends State<HomePage> {
       print(auth.currentUser!.email);
     }
     return Scaffold(
-        appBar: AppBar(
-          title: Text("KWI App",
-          style: whiteTextStyle),
-          backgroundColor: primaryColor,
-          actions: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                IconButton(
-                    icon: const Icon(Icons.search), onPressed: () {},),
-              ],
-            ),
-          ],
-        ),
-        drawer: const DrawerScreen(),
-        body: Container(
-        child : SingleChildScrollView(
-          child: Column(
+      appBar: AppBar(
+        title: Text("KWI App", style: whiteTextStyle),
+        backgroundColor: primaryColor,
+        actions: <Widget>[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              IconButton(
+                icon: const Icon(Icons.search),
+                onPressed: () {},
+              ),
+            ],
+          ),
+        ],
+      ),
+      drawer: const DrawerScreen(),
+      body: Container(
+          child: SingleChildScrollView(
+        child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-            SizedBox(
-              height: 200,
-              child: StreamBuilder(
-        stream: _destinations.snapshots(),
-        builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
-          if (streamSnapshot.hasData) {
-            return ListView.builder(
-              itemCount: streamSnapshot.data!.docs.length,
-              scrollDirection: Axis.horizontal,
-              itemBuilder: (context, index) {
-                final DocumentSnapshot documentSnapshot =
-                    streamSnapshot.data!.docs[index];
-                    return Container(
-                      height: 100,
-                      width: 120,
-                      margin: const EdgeInsets.all(10),
-                        color: primaryColor,
-                      child: Center(
-                        child: Text(documentSnapshot['name'],
-                        style: blackTextStyle,)
-                        ,),
-                    );
-              }
-              );}
-              return const Center(
-            child: CircularProgressIndicator(),
-          );})     
-            ),   
-        Text(
-          "  Popular Destinations",
-          style: blackTextStyle.copyWith(
-            fontSize: 18,
-            fontWeight: bold,
-          )
-        ),
-            Flexible(
-              child: StreamBuilder(
-        stream: _destinations.snapshots(),
-        builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
-          if (streamSnapshot.hasData) {
-            return ListView.builder(
-              itemCount: streamSnapshot.data!.docs.length,
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              itemBuilder: (context, index) {
-                final DocumentSnapshot documentSnapshot =
-                    streamSnapshot.data!.docs[index];
-                return Card(
-                  margin: const EdgeInsets.all(10),
-                  child: ListTile(
-                    leading: ConstrainedBox(
-  constraints: const BoxConstraints(
-    minWidth: 48,
-    minHeight: 48,
-    maxWidth: 64,
-    maxHeight: 64,
-  ),
-  child: Image.asset("assets/img/logo-capstone.png", fit: BoxFit.cover),
-),
-                    title: Text(documentSnapshot['name'],
-                    style: blackTextStyle,),
-                    subtitle: Column(
-            children: [
-              const SizedBox(height: 8),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  const Icon(
-                    Icons.location_on,
-                    color: greyColor,
-                    size: 17,
-                  ),
-                  const SizedBox(width: 5),
-                  Text(documentSnapshot['location'],
-                  style: greyTextStyle,),
-                ],
-              ),
-              const SizedBox(height: 8),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  const Icon(
-                    Icons.star,
-                    color: Colors.orange,
-                    size: 17,
-                  ),
-                  const SizedBox(width: 5),
-                  Text(documentSnapshot['rating'].toString(),
-                  style: greyTextStyle,)
-                ],
-              ),
-            ],
-          ), 
-                    trailing: SizedBox(
-                      width: 100,
-                      child: Row(
-                        children: [
-                          IconButton(
-                              icon: const Icon(Icons.edit),
-                              onPressed: () =>
-                                  _createUpdateDestination(documentSnapshot)),
-                          IconButton(
-                              icon: const Icon(Icons.delete),
-                              onPressed: () =>
-                                  _deleteDestination(documentSnapshot.id)),
-                        ],
-                      ),
-                    ),
-                  ),
-                );
-              },
-            );
-          }
+              SizedBox(
+                  height: 200,
+                  child: StreamBuilder(
+                      stream: _destinations.snapshots(),
+                      builder: (context,
+                          AsyncSnapshot<QuerySnapshot> streamSnapshot) {
+                        if (streamSnapshot.hasData) {
+                          return ListView.builder(
+                              itemCount: streamSnapshot.data!.docs.length,
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (context, index) {
+                                final DocumentSnapshot documentSnapshot =
+                                    streamSnapshot.data!.docs[index];
+                                return Container(
+                                  margin: const EdgeInsets.all(10.0),
+                                  width: 150,
+                                  child: Stack(
+                                    children: [
+                                      Positioned(
+                                        bottom: 10.0,
+                                        child: Container(
+                                          height: 70,
+                                          width: 150,
+                                          decoration: BoxDecoration(
+                                            color: whiteColor,
+                                            borderRadius:
+                                                BorderRadius.circular(15.0),
+                                          ),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(10.0),
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.end,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Text(
+                                                  documentSnapshot['name'],
+                                                  style: blackTextStyle,
+                                                ),
+                                                Text(
+                                                  documentSnapshot['location'],
+                                                  style: greenTextStyle,
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      Container(
+                                        decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(20.0),
+                                            boxShadow: const [
+                                              BoxShadow(
+                                                  color: Colors.black12,
+                                                  offset: Offset(0.0, 2.0),
+                                                  blurRadius: 6.0),
+                                            ]),
+                                        child: Stack(
+                                          children: const [
+                                            Image(
+                                              height: 110,
+                                              width: 150,
+                                              image: AssetImage(
+                                                "assets/img/logo-capstone.png",
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                );
+                              });
+                        }
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      })),
+              Text("  Popular Destinations",
+                  style: blackTextStyle.copyWith(
+                    fontSize: 18,
+                    fontWeight: bold,
+                  )),
+              Flexible(
+                child: StreamBuilder(
+                  stream: _destinations.snapshots(),
+                  builder:
+                      (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
+                    if (streamSnapshot.hasData) {
+                      return ListView.builder(
+                        itemCount: streamSnapshot.data!.docs.length,
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemBuilder: (context, index) {
+                          final DocumentSnapshot documentSnapshot =
+                              streamSnapshot.data!.docs[index];
+                          return Card(
+                            margin: const EdgeInsets.all(10),
+                            child: ListTile(
+                              leading: ConstrainedBox(
+                                constraints: const BoxConstraints(
+                                  minWidth: 48,
+                                  minHeight: 48,
+                                  maxWidth: 64,
+                                  maxHeight: 64,
+                                ),
+                                child: Image.asset(
+                                    "assets/img/logo-capstone.png",
+                                    fit: BoxFit.cover),
+                              ),
+                              title: Text(
+                                documentSnapshot['name'],
+                                style: blackTextStyle,
+                              ),
+                              subtitle: Column(
+                                children: [
+                                  const SizedBox(height: 8),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      const Icon(
+                                        Icons.location_on,
+                                        color: greyColor,
+                                        size: 17,
+                                      ),
+                                      const SizedBox(width: 5),
+                                      Text(
+                                        documentSnapshot['location'],
+                                        style: greyTextStyle,
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(height: 8),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      const Icon(
+                                        Icons.star,
+                                        color: Colors.orange,
+                                        size: 17,
+                                      ),
+                                      const SizedBox(width: 5),
+                                      Text(
+                                        documentSnapshot['rating'].toString(),
+                                        style: greyTextStyle,
+                                      )
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              trailing: SizedBox(
+                                width: 100,
+                                child: Row(
+                                  children: [
+                                    IconButton(
+                                        icon: const Icon(Icons.edit),
+                                        onPressed: () =>
+                                            _createUpdateDestination(
+                                                documentSnapshot)),
+                                    IconButton(
+                                        icon: const Icon(Icons.delete),
+                                        onPressed: () => _deleteDestination(
+                                            documentSnapshot.id)),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                      );
+                    }
 
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        },
-      ),
-            )
-          ]) ,)
-      ),
+                    return const Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  },
+                ),
+              )
+            ]),
+      )),
       floatingActionButton: FloatingActionButton(
         backgroundColor: primaryColor,
         onPressed: () => _createUpdateDestination(),
         child: const Icon(Icons.add),
-      ),);
+      ),
+    );
   }
 }
