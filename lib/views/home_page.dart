@@ -149,12 +149,7 @@ class _HomePageState extends State<HomePage> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 IconButton(
-                    icon: const Icon(Icons.logout),
-                    onPressed: () {
-                      _signOut().then((value) => Navigator.of(context)
-                          .pushReplacement(MaterialPageRoute(
-                              builder: (context) => const LoginScreen())));
-                    }),
+                    icon: const Icon(Icons.search), onPressed: () {},),
               ],
             ),
           ],
@@ -227,8 +222,38 @@ class _HomePageState extends State<HomePage> {
 ),
                     title: Text(documentSnapshot['name'],
                     style: blackTextStyle,),
-                    subtitle: Text(documentSnapshot['location'].toString(),
-                    style: blackTextStyle,),
+                    subtitle: Column(
+            children: [
+              const SizedBox(height: 8),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  const Icon(
+                    Icons.location_on,
+                    color: greyColor,
+                    size: 17,
+                  ),
+                  const SizedBox(width: 5),
+                  Text(documentSnapshot['location'],
+                  style: greyTextStyle,),
+                ],
+              ),
+              const SizedBox(height: 8),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  const Icon(
+                    Icons.star,
+                    color: Colors.orange,
+                    size: 17,
+                  ),
+                  const SizedBox(width: 5),
+                  Text(documentSnapshot['rating'].toString(),
+                  style: greyTextStyle,)
+                ],
+              ),
+            ],
+          ), 
                     trailing: SizedBox(
                       width: 100,
                       child: Row(

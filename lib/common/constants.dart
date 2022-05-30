@@ -9,6 +9,7 @@ const Color lightGreenColor = Color(0xFFA7FF83);
 const Color darkGreenColor = Color(0xFF086972);
 const Color darkPurpleColor = Color(0xFF071A52);
 const Color blackColor = Color(0xFF000000);
+const Color greyColor = Color(0xFF9698A9);
 
 
 TextStyle primaryTextStyle = GoogleFonts.poppins(
@@ -34,6 +35,9 @@ TextStyle darkPurpleTextStyle = GoogleFonts.poppins(
 );
 TextStyle blackTextStyle = GoogleFonts.poppins(
   color: blackColor,
+);
+TextStyle greyTextStyle = GoogleFonts.poppins(
+  color: greyColor,
 );
 
 FontWeight light = FontWeight.w100;
