@@ -6,7 +6,7 @@ class DestinationDetail {
   final String? location;
   final String? price;
   final String? rating;
-  final String? urlImage;
+  final String urlImage;
 
   DestinationDetail(
       {this.name,
@@ -14,7 +14,7 @@ class DestinationDetail {
       this.location,
       this.price,
       this.rating,
-      this.urlImage});
+      required this.urlImage});
 
   factory DestinationDetail.fromMap(map) {
     return DestinationDetail(

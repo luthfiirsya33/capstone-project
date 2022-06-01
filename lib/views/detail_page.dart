@@ -1,22 +1,12 @@
 import 'package:capstone_project_sib_kwi/data/models/destination_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:capstone_project_sib_kwi/common/constants.dart';
-// import 'package:provider/provider.dart';
-// import 'package:restaurant_app/common/style.dart';
-// import 'package:restaurant_app/data/model/detail_resto.dart';
-// import 'package:restaurant_app/provider/database_provider.dart';
-// import 'package:restaurant_app/ui/error_screen.dart';
-// import 'package:restaurant_app/utils/convert_data.dart';
 
 class DetailPage extends StatelessWidget {
   static const routeName = '/detail_page';
   DestinationDetail destinationDetail;
 
-  DetailPage({required this.destinationDetail});
-
-  //final DetailResto restaurant;
-
-  //const DetailRestoPage({Key? key, required this.restaurant}) : super(key: key);
+   DetailPage({Key? key, required this.destinationDetail}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +14,9 @@ class DetailPage extends StatelessWidget {
       theme: ThemeData(
         appBarTheme: const AppBarTheme(elevation: 0),
         colorScheme: Theme.of(context).colorScheme.copyWith(
-              // primary: primaryColor,
+              primary: primaryColor,
               onPrimary: Colors.black,
-              //secondary: secondaryColor,
+              secondary: greenColor,
             ),
       ),
       debugShowCheckedModeBanner: false,
@@ -47,17 +37,31 @@ class DetailPage extends StatelessWidget {
                       child: Stack(
                         children: [
                           const SizedBox(width: 10),
-                          const SizedBox(
-                              // child: Hero(
-                              //   tag: restaurant.pictureId,
-                              //   child: Image.network(
-                              //     _urlPicture + restaurant.pictureId,
-                              //     width: MediaQuery.of(context).size.width,
-                              //     height: 300,
-                              //     fit: BoxFit.cover,
-                              //   ),
-                              // ),
+                           SizedBox(
+                              child: Hero(
+                                tag: destinationDetail.urlImage,
+                                child: Image.network(
+                                    destinationDetail.urlImage,
+                                  width: MediaQuery.of(context).size.width,
+                                  height: 300,
+                                  fit: BoxFit.cover,
+                                ),
                               ),
+                              ),
+                            Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: CircleAvatar(
+                              backgroundColor: primaryColor,
+                              foregroundColor: Colors.white,
+                              child: IconButton(
+                                icon: const Icon(Icons.arrow_back),
+                                onPressed: () async {
+                                  Navigator.of(context, rootNavigator: true).pop(context);
+                                },
+
+                              ),
+                            ),
+                          ),
                           // Consumer<DatabaseProvider>(
                           //     builder: (context, provider, child) {
                           //   return FutureBuilder<bool>(
@@ -112,74 +116,83 @@ class DetailPage extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(destinationDetail.name!),
+                        Text(destinationDetail.name!,
+                        style: kHeading5,),
                       ],
                     ),
                     Row(
-                      children: const [
-                        Icon(
+                      children: [
+                        const Icon(
                           Icons.location_pin,
-                          color: primaryColor,
+                          color: greyColor,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 8,
                         ),
-                        //Text(restaurant.city),
-                        SizedBox(
+                        Text(destinationDetail.location.toString(),
+                        style: kSubtitle,),
+                        const SizedBox(
                           width: 12,
                         ),
-                        Icon(
+                        const Icon(
                           Icons.star_rate,
-                          color: lightGreenColor,
+                          color: Colors.orange,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 8,
                         ),
-                        //Text(restaurant.rating.toString(),)
+                        Text(destinationDetail.rating.toString(),
+                        style: kSubtitle,),
                       ],
                     ),
                     Container(
                         margin: const EdgeInsets.fromLTRB(4, 16, 0, 0),
-                        child: const Text(
+                        child: Text(
                           "Description",
-                          // style: kTitle,
+                          style: kHeading6,
                         )),
-                    Card(
-                      elevation: 4,
-                      child: Container(
-                        margin: const EdgeInsets.all(8),
-                        //child: Text(restaurant.description),
-                      ),
-                    ),
+                    // Card(
+                    //   child: Container(
+                    //     margin: const EdgeInsets.all(2),
+                    //     child: Text(destinationDetail.description.toString()),
+                    //   ),
+                    // ),
                     Container(
-                      margin: const EdgeInsets.fromLTRB(4, 16, 0, 0),
-                      child: const Text(
-                        "Fasilitas",
-                        //style: kTitle,
+                    margin: const EdgeInsets.all(8),
+                    child: Text(
+                      destinationDetail.description.toString(),
+                      style: kBodyText,
                       ),
                     ),
-                    Container(
-                      margin: const EdgeInsets.fromLTRB(4, 16, 0, 0),
-                      child: const Text(
-                        "Restaurant",
-                        // style: ktitle.copyWith(
-                        //   color: kColorFour,
-                      ),
-                    ),
+                    // Container(
+                    //   margin: const EdgeInsets.fromLTRB(4, 16, 0, 0),
+                    //   child: const Text(
+                    //     "Fasilitas",
+                    //     style: kTitle,
+                    //   ),
+                    // ),
+                    // Container(
+                    //   margin: const EdgeInsets.fromLTRB(4, 16, 0, 0),
+                    //   child: const Text(
+                    //     "Restaurant",
+                    //     style: ktitle.copyWith(
+                    //       color: kColorFour,
+                    //   ),
+                    // ),
                     //),
                     // listMenu(restaurant.menus.foods),
-                    Container(
-                      margin: const EdgeInsets.fromLTRB(4, 16, 0, 0),
-                      child: const Text(
-                        "Wisata",
-                        // style: ktitle.copyWith(
-                        //   color: kColorFour,
-                        // ),
-                      ),
-                    ),
+                    // Container(
+                    //   margin: const EdgeInsets.fromLTRB(4, 16, 0, 0),
+                    //   child: const Text(
+                    //     "Wisata",
+                    //     style: ktitle.copyWith(
+                    //       color: kColorFour,
+                    //     ),
+                    //   ),
+                    // ),
                     // listMenu(restaurant.menus.drinks),
                     Container(
-                      padding: const EdgeInsets.all(16.0),
+                      padding: const EdgeInsets.all(10.0),
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           primary: greenColor, // background // foreground
@@ -206,32 +219,32 @@ class DetailPage extends StatelessWidget {
     //);
   }
 
-  listMenu(List<dynamic> menus) {
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
-        children: menus.map((list) {
-          return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  margin: const EdgeInsets.all(4),
-                  height: 150,
-                  width: 150,
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(10),
-                    child: Image.network(
-                      "https://blogunik.com/wp-content/uploads/2019/02/Makanan-Dan-Minuman-Khas-Bandung.jpg",
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-                Container(
-                    margin: const EdgeInsets.fromLTRB(4, 0, 0, 0),
-                    child: Text(list.name))
-              ]);
-        }).toList(),
-      ),
-    );
-  }
+  // listMenu(List<dynamic> menus) {
+  //   return SingleChildScrollView(
+  //     scrollDirection: Axis.horizontal,
+  //     child: Row(
+  //       children: menus.map((list) {
+  //         return Column(
+  //             crossAxisAlignment: CrossAxisAlignment.start,
+  //             children: [
+  //               Container(
+  //                 margin: const EdgeInsets.all(4),
+  //                 height: 150,
+  //                 width: 150,
+  //                 child: ClipRRect(
+  //                   borderRadius: BorderRadius.circular(10),
+  //                   child: Image.network(
+  //                     "https://blogunik.com/wp-content/uploads/2019/02/Makanan-Dan-Minuman-Khas-Bandung.jpg",
+  //                     fit: BoxFit.cover,
+  //                   ),
+  //                 ),
+  //               ),
+  //               Container(
+  //                   margin: const EdgeInsets.fromLTRB(4, 0, 0, 0),
+  //                   child: Text(list.name))
+  //             ]);
+  //       }).toList(),
+  //     ),
+  //   );
+  // }
 }

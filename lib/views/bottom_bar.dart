@@ -2,7 +2,7 @@ import 'package:capstone_project_sib_kwi/common/constants.dart';
 import 'package:flutter/material.dart';
 import 'about_page.dart';
 import 'home_page.dart';
-import 'detail_page.dart';
+//import 'detail_page.dart';
 
 class BottomBar extends StatefulWidget {
   const BottomBar({Key? key}) : super(key: key);
