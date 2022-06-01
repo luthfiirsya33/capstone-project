@@ -11,6 +11,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'dart:math';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -34,41 +35,25 @@ class _HomePageState extends State<HomePage> {
   final TextEditingController _priceController = TextEditingController();
   FirebaseStorage storage = FirebaseStorage.instance;
   FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+  String urlImage = "https://firebasestorage.googleapis.com/v0/b/capstone-project-kwi.appspot.com/o/photo-upload%2Flogo-capstone.png?alt=media&token=fa92a44f-6e38-42bd-af57-fa29991f6e33";
 
-  // File? file = File("assets/img/logo-capstone.png");
+  File? file;
+  String imageName = "";
 
   final CollectionReference _destinations =
       FirebaseFirestore.instance.collection('destinations');
 
-  // void getImage() async {
-  //   final img = await ImagePicker().pickImage(source: ImageSource.gallery);
-  //   if (img == null) return;
-  //
-  //   String getPhotoUrl;
-  //
-  //   final imageTemporary = File(img.path);
-  //
-  //   try {
-  //     await storage.ref("photo-upload/a/").putFile(imageTemporary);
-  //   } on FirebaseException catch (e) {
-  //     print(e);
-  //   }
-  //
-  //   getPhotoUrl = await storage.ref("photo-upload/a").getDownloadURL();
-  //
-  //   Map<String, String> toImageUrl = {
-  //     'imageUrl': getPhotoUrl,
-  //   };
-  //
-  //   if (getPhotoUrl.isNotEmpty) {
-  //     firebaseFirestore.collection('destinations').doc('a').set(toImageUrl);
-  //   }
-  //
-  //   setState(() {
-  //     imageCache.clear();
-  //     file = imageTemporary;
-  //   });
-  // }
+  void getImage() async {
+    final img = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (img == null) return;
+
+    final imageTemporary = File(img.path);
+
+    setState(() {
+      file = imageTemporary;
+      imageName = img.name;
+    });
+  }
 
   Future<void> _createUpdateDestination(
       [DocumentSnapshot? documentSnapshot]) async {
@@ -80,107 +65,135 @@ class _HomePageState extends State<HomePage> {
       _locationController.text = documentSnapshot['location'];
       _descriptionController.text = documentSnapshot['description'];
       _priceController.text = documentSnapshot['price'].toString();
+      urlImage = documentSnapshot['urlImage'];
     }
 
     await showModalBottomSheet(
         isScrollControlled: true,
         context: context,
         builder: (BuildContext ctx) {
-          return Padding(
-            padding: EdgeInsets.only(
-                top: 20,
-                left: 20,
-                right: 20,
-                bottom: MediaQuery.of(ctx).viewInsets.bottom + 20),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // IconButton(
-                //   onPressed: () {
-                //     getImage();
-                //   },
-                //   icon: Image.file(file!),
-                // ),
-                TextField(
-                  controller: _nameController,
-                  decoration:
-                      const InputDecoration(labelText: 'Nama Destinasi'),
-                ),
-                TextField(
-                  keyboardType:
-                      const TextInputType.numberWithOptions(decimal: true),
-                  controller: _ratingController,
-                  decoration: const InputDecoration(
-                    labelText: 'Rating',
+          return SingleChildScrollView(
+            child: Padding(
+              padding: EdgeInsets.only(
+                  top: 20,
+                  left: 20,
+                  right: 20,
+                  bottom: MediaQuery.of(ctx).viewInsets.bottom + 20),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Stack(
+                        alignment: Alignment(1.4, 1.4),
+                        children: [
+                          CircleAvatar(
+                            backgroundImage: (file != null ? FileImage(file!) : NetworkImage(urlImage)) as ImageProvider,
+                            radius: 75,
+                          ),
+                          IconButton(
+                              onPressed: () {
+                                getImage();
+                              },
+                              icon: const Icon(
+                                Icons.camera_alt,
+                                color: Colors.black,
+                              )),
+                        ],
+                      ),
+                    ],
                   ),
-                ),
-                TextField(
-                  controller: _locationController,
-                  decoration: const InputDecoration(labelText: 'Lokasi'),
-                ),
-                TextField(
-                  controller: _descriptionController,
-                  decoration: const InputDecoration(labelText: 'Deskripsi'),
-                ),
-                TextField(
-                  keyboardType:
-                      const TextInputType.numberWithOptions(decimal: false),
-                  controller: _priceController,
-                  decoration: const InputDecoration(
-                    labelText: 'Harga',
+                  TextField(
+                    controller: _nameController,
+                    decoration:
+                    const InputDecoration(labelText: 'Nama Destinasi'),
                   ),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                ElevatedButton(
-                  child: Text(action == 'create' ? 'Create' : 'Update'),
-                  onPressed: () async {
-                    final String? name = _nameController.text;
-                    final double? rating =
-                        double.tryParse(_ratingController.text);
-                    final String? location = _locationController.text;
-                    final String? description = _descriptionController.text;
-                    final double? price =
-                        double.tryParse(_priceController.text);
-                    if (name != null &&
-                        rating != null &&
-                        location != null &&
-                        description != null &&
-                        price != null) {
-                      if (action == 'create') {
-                        await _destinations.add({
-                          "name": name,
-                          "rating": rating,
-                          "location": location,
-                          "description": description,
-                          "price": price
-                        });
+                  TextField(
+                    keyboardType:
+                    const TextInputType.numberWithOptions(decimal: true),
+                    controller: _ratingController,
+                    decoration: const InputDecoration(
+                      labelText: 'Rating',
+                    ),
+                  ),
+                  TextField(
+                    controller: _locationController,
+                    decoration: const InputDecoration(labelText: 'Lokasi'),
+                  ),
+                  TextField(
+                    controller: _descriptionController,
+                    decoration: const InputDecoration(labelText: 'Deskripsi'),
+                  ),
+                  TextField(
+                    keyboardType:
+                    const TextInputType.numberWithOptions(decimal: false),
+                    controller: _priceController,
+                    decoration: const InputDecoration(
+                      labelText: 'Harga',
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  ElevatedButton(
+                    child: Text(action == 'create' ? 'Create' : 'Update'),
+                    onPressed: () async {
+                      final String? name = _nameController.text;
+                      final double? rating =
+                      double.tryParse(_ratingController.text);
+                      final String? location = _locationController.text;
+                      final String? description = _descriptionController.text;
+                      final double? price =
+                      double.tryParse(_priceController.text);
+                      if (name != null &&
+                          rating != null &&
+                          location != null &&
+                          description != null &&
+                          price != null) {
+                        if (action == 'create') {
+                          if ((imageName != "") && (file != null)) {
+                            await storage.ref('photo-upload/${imageName}').putFile(file!);
+
+                            String getDownloadUrl = await storage.ref('photo-upload/${imageName}').getDownloadURL();
+
+                            await _destinations.add({
+                              "name": name,
+                              "rating": rating,
+                              "location": location,
+                              "description": description,
+                              "price": price,
+                              "urlImage": getDownloadUrl,
+                            });
+
+                          }
+
+                        }
+
+                        if (action == 'update') {
+                          await _destinations.doc(documentSnapshot!.id).update({
+                            "name": name,
+                            "rating": rating,
+                            "location": location,
+                            "description": description,
+                            "price": price
+                          });
+                        }
+
+                        _nameController.text = '';
+                        _ratingController.text = '';
+                        _locationController.text = '';
+                        _descriptionController.text = '';
+                        _priceController.text = '';
+
+                        // ignore: use_build_context_synchronously
+                        Navigator.of(context).pop();
                       }
-
-                      if (action == 'update') {
-                        await _destinations.doc(documentSnapshot!.id).update({
-                          "name": name,
-                          "rating": rating,
-                          "location": location,
-                          "description": description,
-                          "price": price
-                        });
-                      }
-
-                      _nameController.text = '';
-                      _ratingController.text = '';
-                      _locationController.text = '';
-                      _descriptionController.text = '';
-                      _priceController.text = '';
-
-                      // ignore: use_build_context_synchronously
-                      Navigator.of(context).pop();
-                    }
-                  },
-                )
-              ],
+                    },
+                  )
+                ],
+              ),
             ),
           );
         });
