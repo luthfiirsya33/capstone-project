@@ -291,12 +291,12 @@ class _HomePageState extends State<HomePage> {
                                                   blurRadius: 6.0),
                                             ]),
                                         child: Stack(
-                                          children: const [
+                                          children: [
                                             Image(
                                               height: 110,
                                               width: 150,
-                                              image: AssetImage(
-                                                "assets/img/logo-capstone.png",
+                                              image: NetworkImage(
+                                                documentSnapshot['urlImage'],
                                               ),
                                             )
                                           ],
