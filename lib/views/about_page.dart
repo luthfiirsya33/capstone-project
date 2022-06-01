@@ -151,14 +151,14 @@ class _AboutPageState extends State<AboutPage> {
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
                           IconButton(
-                            color: whiteColor70,
+                              color: whiteColor70,
                               onPressed: () {
                                 showDialog(
                                     context: context,
                                     builder: (BuildContext context) {
                                       return AlertDialog(
                                         title: Text('Edit Profile',
-                                        style: blackTextStyle),
+                                            style: blackTextStyle),
                                         content: Container(
                                             width: 400,
                                             height: 400,
@@ -168,7 +168,7 @@ class _AboutPageState extends State<AboutPage> {
                                                     CrossAxisAlignment.start,
                                                 children: [
                                                   Text('Nickname',
-                                                  style: blackTextStyle),
+                                                      style: blackTextStyle),
                                                   const SizedBox(
                                                     height: 8,
                                                   ),
@@ -187,7 +187,7 @@ class _AboutPageState extends State<AboutPage> {
                                                     height: 8,
                                                   ),
                                                   Text('Telegram',
-                                                  style: blackTextStyle),
+                                                      style: blackTextStyle),
                                                   const SizedBox(
                                                     height: 8,
                                                   ),
@@ -206,7 +206,7 @@ class _AboutPageState extends State<AboutPage> {
                                                     height: 8,
                                                   ),
                                                   Text('Instagram',
-                                                  style: blackTextStyle),
+                                                      style: blackTextStyle),
                                                   const SizedBox(
                                                     height: 8,
                                                   ),
@@ -225,7 +225,7 @@ class _AboutPageState extends State<AboutPage> {
                                                     height: 8,
                                                   ),
                                                   Text('Gitlab',
-                                                  style: blackTextStyle),
+                                                      style: blackTextStyle),
                                                   const SizedBox(
                                                     height: 8,
                                                   ),
@@ -244,7 +244,7 @@ class _AboutPageState extends State<AboutPage> {
                                                     height: 8,
                                                   ),
                                                   Text('LinkedIn',
-                                                  style: blackTextStyle),
+                                                      style: blackTextStyle),
                                                   const SizedBox(
                                                     height: 8,
                                                   ),
@@ -279,7 +279,7 @@ class _AboutPageState extends State<AboutPage> {
                                                 Navigator.of(context).pop();
                                               },
                                               child: Text('Update',
-                                              style: blackTextStyle))
+                                                  style: blackTextStyle))
                                         ],
                                       );
                                     });

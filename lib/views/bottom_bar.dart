@@ -16,7 +16,7 @@ class _BottomBarState extends State<BottomBar> {
   int currentIndex = 0;
   final List<Widget> screens = [
     const HomePage(),
-    const DetailPage(),
+    // DetailPage(),
     const AboutPage(),
   ];
   @override
@@ -37,11 +37,11 @@ class _BottomBarState extends State<BottomBar> {
                 label: 'Home',
                 backgroundColor: primaryColor,
               ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.details),
-                label: 'Detail',
-                backgroundColor: primaryColor,
-              ),
+              // BottomNavigationBarItem(
+              //   icon: Icon(Icons.details),
+              //   label: 'Detail',
+              //   backgroundColor: primaryColor,
+              // ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.person),
                 label: 'Profile',

@@ -49,10 +49,11 @@ class _DrawwerScreenState extends State<DrawerScreen> {
                 ? NetworkImage(loggedInUser.imageUrl!)
                 : AssetImage("assets/img/logo-capstone.png")) as ImageProvider,
           ),
-          accountName: Text("${loggedInUser.nickname}",
-          style: whiteTextStyle,),
-          accountEmail: Text("${loggedInUser.email}",
-          style: whiteTextStyle),
+          accountName: Text(
+            "${loggedInUser.nickname}",
+            style: whiteTextStyle,
+          ),
+          accountEmail: Text("${loggedInUser.email}", style: whiteTextStyle),
         ),
         DrawerListTile(
           iconData: Icons.person,

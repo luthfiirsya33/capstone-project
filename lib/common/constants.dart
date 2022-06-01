@@ -11,7 +11,6 @@ const Color darkPurpleColor = Color(0xFF071A52);
 const Color blackColor = Color(0xFF000000);
 const Color greyColor = Color(0xFF9698A9);
 
-
 TextStyle primaryTextStyle = GoogleFonts.poppins(
   color: primaryColor,
 );

@@ -1,3 +1,4 @@
+import 'package:capstone_project_sib_kwi/data/models/destination_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:capstone_project_sib_kwi/common/constants.dart';
 // import 'package:provider/provider.dart';
@@ -8,8 +9,10 @@ import 'package:capstone_project_sib_kwi/common/constants.dart';
 // import 'package:restaurant_app/utils/convert_data.dart';
 
 class DetailPage extends StatelessWidget {
+  static const routeName = '/detail_page';
+  DestinationDetail destinationDetail;
 
-  const DetailPage({Key? key}) : super(key: key);
+  DetailPage({required this.destinationDetail});
 
   //final DetailResto restaurant;
 
@@ -21,7 +24,7 @@ class DetailPage extends StatelessWidget {
       theme: ThemeData(
         appBarTheme: const AppBarTheme(elevation: 0),
         colorScheme: Theme.of(context).colorScheme.copyWith(
-             // primary: primaryColor,
+              // primary: primaryColor,
               onPrimary: Colors.black,
               //secondary: secondaryColor,
             ),
@@ -30,179 +33,176 @@ class DetailPage extends StatelessWidget {
       home: Scaffold(
         extendBodyBehindAppBar: true,
         body: NestedScrollView(
-          headerSliverBuilder: (context, isScrolled) {
-            return [
-              SliverAppBar(
-                backgroundColor: Colors.transparent,
-                expandedHeight: 250,
-                flexibleSpace: FlexibleSpaceBar(
-                  background: ClipRRect(
-                    borderRadius: const BorderRadius.only(
-                      bottomLeft: Radius.circular(15),
-                      bottomRight: Radius.circular(15),
-                    ),
-                    child: Stack(
-                      children: [
-                        const SizedBox(width: 10),
-                        const SizedBox(
-                          // child: Hero(
-                          //   tag: restaurant.pictureId,
-                          //   child: Image.network(
-                          //     _urlPicture + restaurant.pictureId,
-                          //     width: MediaQuery.of(context).size.width,
-                          //     height: 300,
-                          //     fit: BoxFit.cover,
-                          //   ),
-                          // ),
-                        ),
-                        // Consumer<DatabaseProvider>(
-                        //     builder: (context, provider, child) {
-                        //   return FutureBuilder<bool>(
-                        //       future: provider.isBookmarked(restaurant.id),
-                        //       builder: (context, snapshot) {
-                        //         var isBookmarked = snapshot.data ?? false;
-                        //         return ListTile(
-                        //           trailing: isBookmarked
-                        //               ? IconButton(
-                        //                   icon: const Icon(
-                        //                     Icons.favorite,
-                        //                     color: Colors.deepOrange,
-                        //                     size: 40.0,
-                        //                   ),
-                        //                   onPressed: () => provider
-                        //                       .removeRestaurant(restaurant.id),
-                        //                 )
-                        //               : IconButton(
-                        //                   icon: const Icon(
-                        //                     Icons.favorite_border,
-                        //                     color: Colors.deepOrange,
-                        //                     size: 40.0,
-                        //                   ),
-                        //                   onPressed: () =>
-                        //                       provider.addRestaurant(
-                        //                           convertData(restaurant)),
-                        //                 ),
-                        //         );
-                        //       });
-                        // }),
-                        const SizedBox(width: 10),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 28, vertical: 24),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: const [],
+            headerSliverBuilder: (context, isScrolled) {
+              return [
+                SliverAppBar(
+                  backgroundColor: Colors.transparent,
+                  expandedHeight: 250,
+                  flexibleSpace: FlexibleSpaceBar(
+                    background: ClipRRect(
+                      borderRadius: const BorderRadius.only(
+                        bottomLeft: Radius.circular(15),
+                        bottomRight: Radius.circular(15),
+                      ),
+                      child: Stack(
+                        children: [
+                          const SizedBox(width: 10),
+                          const SizedBox(
+                              // child: Hero(
+                              //   tag: restaurant.pictureId,
+                              //   child: Image.network(
+                              //     _urlPicture + restaurant.pictureId,
+                              //     width: MediaQuery.of(context).size.width,
+                              //     height: 300,
+                              //     fit: BoxFit.cover,
+                              //   ),
+                              // ),
+                              ),
+                          // Consumer<DatabaseProvider>(
+                          //     builder: (context, provider, child) {
+                          //   return FutureBuilder<bool>(
+                          //       future: provider.isBookmarked(restaurant.id),
+                          //       builder: (context, snapshot) {
+                          //         var isBookmarked = snapshot.data ?? false;
+                          //         return ListTile(
+                          //           trailing: isBookmarked
+                          //               ? IconButton(
+                          //                   icon: const Icon(
+                          //                     Icons.favorite,
+                          //                     color: Colors.deepOrange,
+                          //                     size: 40.0,
+                          //                   ),
+                          //                   onPressed: () => provider
+                          //                       .removeRestaurant(restaurant.id),
+                          //                 )
+                          //               : IconButton(
+                          //                   icon: const Icon(
+                          //                     Icons.favorite_border,
+                          //                     color: Colors.deepOrange,
+                          //                     size: 40.0,
+                          //                   ),
+                          //                   onPressed: () =>
+                          //                       provider.addRestaurant(
+                          //                           convertData(restaurant)),
+                          //                 ),
+                          //         );
+                          //       });
+                          // }),
+                          const SizedBox(width: 10),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 28, vertical: 24),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: const [],
+                            ),
                           ),
-                        ),
+                        ],
+                      ),
+                    ),
+                  ),
+                )
+              ];
+            },
+            body: SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: ListView(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(destinationDetail.name!),
                       ],
                     ),
-                  ),
-                ),
-              )
-            ];
-          },
-          body: SafeArea(
-              child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: ListView(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    // Text(
-                    //   restaurant.name,
-                    //   style: kTitle.copyWith(fontSize: 18),
-                    // ),
+                    Row(
+                      children: const [
+                        Icon(
+                          Icons.location_pin,
+                          color: primaryColor,
+                        ),
+                        SizedBox(
+                          width: 8,
+                        ),
+                        //Text(restaurant.city),
+                        SizedBox(
+                          width: 12,
+                        ),
+                        Icon(
+                          Icons.star_rate,
+                          color: lightGreenColor,
+                        ),
+                        SizedBox(
+                          width: 8,
+                        ),
+                        //Text(restaurant.rating.toString(),)
+                      ],
+                    ),
+                    Container(
+                        margin: const EdgeInsets.fromLTRB(4, 16, 0, 0),
+                        child: const Text(
+                          "Description",
+                          // style: kTitle,
+                        )),
+                    Card(
+                      elevation: 4,
+                      child: Container(
+                        margin: const EdgeInsets.all(8),
+                        //child: Text(restaurant.description),
+                      ),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.fromLTRB(4, 16, 0, 0),
+                      child: const Text(
+                        "Fasilitas",
+                        //style: kTitle,
+                      ),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.fromLTRB(4, 16, 0, 0),
+                      child: const Text(
+                        "Restaurant",
+                        // style: ktitle.copyWith(
+                        //   color: kColorFour,
+                      ),
+                    ),
+                    //),
+                    // listMenu(restaurant.menus.foods),
+                    Container(
+                      margin: const EdgeInsets.fromLTRB(4, 16, 0, 0),
+                      child: const Text(
+                        "Wisata",
+                        // style: ktitle.copyWith(
+                        //   color: kColorFour,
+                        // ),
+                      ),
+                    ),
+                    // listMenu(restaurant.menus.drinks),
+                    Container(
+                      padding: const EdgeInsets.all(16.0),
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: greenColor, // background // foreground
+                        ),
+                        child: const Text('Jelajah Sekarang',
+                            style: TextStyle(color: Colors.white)),
+                        onPressed: () async {
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //     builder: (context) => const ErrorScreen(),
+                          //   ),
+                          // );
+                        },
+                      ),
+                    ),
+                    //],
                   ],
                 ),
-                Row(
-                  children: const [
-                    Icon(
-                      Icons.location_pin,
-                      color: primaryColor,
-                    ),
-                    SizedBox(
-                      width: 8,
-                    ),
-                    //Text(restaurant.city),
-                    SizedBox(
-                      width: 12,
-                    ),
-                    Icon(
-                      Icons.star_rate,
-                      color: lightGreenColor,
-                    ),
-                    SizedBox(
-                      width: 8,
-                    ),
-                    //Text(restaurant.rating.toString(),)
-                  ],
-                ),
-                Container(
-                    margin: const EdgeInsets.fromLTRB(4, 16, 0, 0),
-                    child: const Text(
-                      "Description",
-                     // style: kTitle,
-                    )),
-                Card(
-                  elevation: 4,
-                  child: Container(
-                    margin: const EdgeInsets.all(8),
-                    //child: Text(restaurant.description),
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.fromLTRB(4, 16, 0, 0),
-                  child: const Text(
-                    "Fasilitas",
-                    //style: kTitle,
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.fromLTRB(4, 16, 0, 0),
-                  child: const Text(
-                    "Restaurant",
-                    // style: ktitle.copyWith(
-                    //   color: kColorFour,
-                    ),
-                  ),
-                //),
-               // listMenu(restaurant.menus.foods),
-                Container(
-                  margin: const EdgeInsets.fromLTRB(4, 16, 0, 0),
-                  child: const Text(
-                    "Wisata",
-                    // style: ktitle.copyWith(
-                    //   color: kColorFour,
-                    // ),
-                  ),
-                ),
-               // listMenu(restaurant.menus.drinks),
-                Container(
-                  padding: const EdgeInsets.all(16.0),
-                  child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                      primary: greenColor, // background // foreground
-                    ),
-                    child: const Text('Jelajah Sekarang',
-                        style: TextStyle(color: Colors.white)),
-                    onPressed: () async {
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(
-                      //     builder: (context) => const ErrorScreen(),
-                      //   ),
-                      // );
-                    },
-                  ),
-                ),
-              //],
-              ],
-            ),
               ),
-          )),
-        ),
-      );
+            )),
+      ),
+    );
     //);
   }
 

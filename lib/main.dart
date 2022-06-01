@@ -1,3 +1,5 @@
+import 'package:capstone_project_sib_kwi/data/models/destination_detail.dart';
+import 'package:capstone_project_sib_kwi/views/detail_page.dart';
 import 'package:capstone_project_sib_kwi/views/login_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +23,12 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: const LoginScreen(),
+      routes: {
+        DetailPage.routeName: (context) => DetailPage(
+              destinationDetail: ModalRoute.of(context)?.settings.arguments
+                  as DestinationDetail,
+            )
+      },
     );
   }
 }

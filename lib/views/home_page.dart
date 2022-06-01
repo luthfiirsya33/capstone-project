@@ -1,10 +1,16 @@
+import 'dart:io';
+
 import 'package:capstone_project_sib_kwi/common/constants.dart';
+import 'package:capstone_project_sib_kwi/data/models/destination_detail.dart';
 import 'package:capstone_project_sib_kwi/data/models/user.dart';
+import 'package:capstone_project_sib_kwi/views/detail_page.dart';
 import 'package:capstone_project_sib_kwi/views/drawer_screen.dart';
 import 'package:capstone_project_sib_kwi/views/login_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -26,9 +32,43 @@ class _HomePageState extends State<HomePage> {
   final TextEditingController _locationController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
   final TextEditingController _priceController = TextEditingController();
+  FirebaseStorage storage = FirebaseStorage.instance;
+  FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
+
+  // File? file = File("assets/img/logo-capstone.png");
 
   final CollectionReference _destinations =
       FirebaseFirestore.instance.collection('destinations');
+
+  // void getImage() async {
+  //   final img = await ImagePicker().pickImage(source: ImageSource.gallery);
+  //   if (img == null) return;
+  //
+  //   String getPhotoUrl;
+  //
+  //   final imageTemporary = File(img.path);
+  //
+  //   try {
+  //     await storage.ref("photo-upload/a/").putFile(imageTemporary);
+  //   } on FirebaseException catch (e) {
+  //     print(e);
+  //   }
+  //
+  //   getPhotoUrl = await storage.ref("photo-upload/a").getDownloadURL();
+  //
+  //   Map<String, String> toImageUrl = {
+  //     'imageUrl': getPhotoUrl,
+  //   };
+  //
+  //   if (getPhotoUrl.isNotEmpty) {
+  //     firebaseFirestore.collection('destinations').doc('a').set(toImageUrl);
+  //   }
+  //
+  //   setState(() {
+  //     imageCache.clear();
+  //     file = imageTemporary;
+  //   });
+  // }
 
   Future<void> _createUpdateDestination(
       [DocumentSnapshot? documentSnapshot]) async {
@@ -56,6 +96,12 @@ class _HomePageState extends State<HomePage> {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                // IconButton(
+                //   onPressed: () {
+                //     getImage();
+                //   },
+                //   icon: Image.file(file!),
+                // ),
                 TextField(
                   controller: _nameController,
                   decoration:
@@ -147,6 +193,12 @@ class _HomePageState extends State<HomePage> {
     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text('You have successfully deleted the destination')));
   }
+
+  // @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   super.initState();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -277,9 +329,16 @@ class _HomePageState extends State<HomePage> {
                         itemBuilder: (context, index) {
                           final DocumentSnapshot documentSnapshot =
                               streamSnapshot.data!.docs[index];
+                          var destinationDetail =
+                              toDestination(documentSnapshot);
                           return Card(
                             margin: const EdgeInsets.all(10),
                             child: ListTile(
+                              onTap: () {
+                                Navigator.pushNamed(
+                                    context, DetailPage.routeName,
+                                    arguments: destinationDetail);
+                              },
                               leading: ConstrainedBox(
                                 constraints: const BoxConstraints(
                                   minWidth: 48,
@@ -287,8 +346,8 @@ class _HomePageState extends State<HomePage> {
                                   maxWidth: 64,
                                   maxHeight: 64,
                                 ),
-                                child: Image.asset(
-                                    "assets/img/logo-capstone.png",
+                                child: Image.network(
+                                    documentSnapshot['urlImage'],
                                     fit: BoxFit.cover),
                               ),
                               title: Text(
