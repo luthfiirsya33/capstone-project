@@ -10,241 +10,229 @@ class DetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        appBarTheme: const AppBarTheme(elevation: 0),
-        colorScheme: Theme.of(context).colorScheme.copyWith(
-              primary: primaryColor,
-              onPrimary: Colors.black,
-              secondary: greenColor,
-            ),
-      ),
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        extendBodyBehindAppBar: true,
-        body: NestedScrollView(
-            headerSliverBuilder: (context, isScrolled) {
-              return [
-                SliverAppBar(
-                  backgroundColor: Colors.transparent,
-                  expandedHeight: 250,
-                  flexibleSpace: FlexibleSpaceBar(
-                    background: ClipRRect(
-                      borderRadius: const BorderRadius.only(
-                        bottomLeft: Radius.circular(15),
-                        bottomRight: Radius.circular(15),
-                      ),
-                      child: Stack(
-                        children: [
-                          const SizedBox(width: 10),
-                           SizedBox(
-                              child: Hero(
-                                tag: destinationDetail.urlImage,
-                                child: Image.network(
-                                    destinationDetail.urlImage,
-                                  width: MediaQuery.of(context).size.width,
-                                  height: 300,
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                              ),
-                            Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: CircleAvatar(
-                              backgroundColor: primaryColor,
-                              foregroundColor: Colors.white,
-                              child: IconButton(
-                                icon: const Icon(Icons.arrow_back),
-                                onPressed: () async {
-                                  Navigator.of(context, rootNavigator: true).pop(context);
-                                },
-
-                              ),
-                            ),
+    //print(data);
+    return Scaffold(
+      //backgroundColor: kColorBlue,
+      body: SafeArea(
+        child: Stack(
+          children: [
+           SizedBox(
+            child: Hero(
+             tag: destinationDetail.urlImage,
+             child: Image.network(
+             destinationDetail.urlImage,
+             width: MediaQuery.of(context).size.width,
+             height: 350,
+             fit: BoxFit.cover,
+               ),
+              ),
+             ),
+            ListView(
+              children: [
+                Padding(
+                 padding:
+                     const EdgeInsets.symmetric(horizontal: 18, vertical: 24),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      CircleAvatar(
+                       backgroundColor: primaryColor,
+                       foregroundColor: Colors.white,
+                         child: IconButton(
+                          icon: const Icon(Icons.arrow_back),
+                           onPressed: () async {
+                            Navigator.of(context, rootNavigator: true).pop(context);
+                           },
                           ),
-                          // Consumer<DatabaseProvider>(
-                          //     builder: (context, provider, child) {
-                          //   return FutureBuilder<bool>(
-                          //       future: provider.isBookmarked(restaurant.id),
-                          //       builder: (context, snapshot) {
-                          //         var isBookmarked = snapshot.data ?? false;
-                          //         return ListTile(
-                          //           trailing: isBookmarked
-                          //               ? IconButton(
-                          //                   icon: const Icon(
-                          //                     Icons.favorite,
-                          //                     color: Colors.deepOrange,
-                          //                     size: 40.0,
-                          //                   ),
-                          //                   onPressed: () => provider
-                          //                       .removeRestaurant(restaurant.id),
-                          //                 )
-                          //               : IconButton(
-                          //                   icon: const Icon(
-                          //                     Icons.favorite_border,
-                          //                     color: Colors.deepOrange,
-                          //                     size: 40.0,
-                          //                   ),
-                          //                   onPressed: () =>
-                          //                       provider.addRestaurant(
-                          //                           convertData(restaurant)),
-                          //                 ),
-                          //         );
-                          //       });
-                          // }),
-                          const SizedBox(width: 10),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 28, vertical: 24),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: const [],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                       ),
+                    ],
                   ),
-                )
-              ];
-            },
-            body: SafeArea(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: ListView(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(destinationDetail.name!,
-                        style: kHeading5,),
-                      ],
+                ),
+                const SizedBox(
+                  height: 200,
+                ),
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(40),
                     ),
-                    Row(
-                      children: [
-                        const Icon(
-                          Icons.location_pin,
-                          color: greyColor,
-                        ),
-                        const SizedBox(
-                          width: 8,
-                        ),
-                        Text(destinationDetail.location.toString(),
-                        style: kSubtitle,),
-                        const SizedBox(
-                          width: 12,
-                        ),
-                        const Icon(
-                          Icons.star_rate,
-                          color: Colors.orange,
-                        ),
-                        const SizedBox(
-                          width: 8,
-                        ),
-                        Text(destinationDetail.rating.toString(),
-                        style: kSubtitle,),
-                      ],
+                    color: Colors.white,
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 28.0,
                     ),
-                    Container(
-                        margin: const EdgeInsets.fromLTRB(4, 16, 0, 0),
+                    child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(
+                          height: 40,
+                        ),
+                        Text(
+                          destinationDetail.name!,
+                          style: kHeading5,
+                        ),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        Row(
+                          children: [
+                            const Icon(
+                              Icons.location_pin,
+                              color: greyColor,
+                            ),
+                            const SizedBox(
+                              width: 8,
+                            ),
+                            Text(destinationDetail.location.toString(),
+                            style: kSubtitle,),
+                            const SizedBox(
+                              width: 12,
+                            ),
+                            const Icon(
+                              Icons.star_rate,
+                              color: Colors.orange,
+                            ),
+                            const SizedBox(
+                              width: 8,
+                            ),
+                            Text(destinationDetail.rating.toString(),
+                            style: kSubtitle,),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 2,
+                        ),
+                       Container(
+                        margin: const EdgeInsets.fromLTRB(0, 16, 0, 0),
                         child: Text(
-                          "Description",
+                          "Deskripsi Wisata",
                           style: kHeading6,
                         )),
-                    // Card(
-                    //   child: Container(
-                    //     margin: const EdgeInsets.all(2),
-                    //     child: Text(destinationDetail.description.toString()),
-                    //   ),
-                    // ),
-                    Container(
-                    margin: const EdgeInsets.all(8),
-                    child: Text(
-                      destinationDetail.description.toString(),
-                      style: kBodyText,
-                      ),
-                    ),
-                    // Container(
-                    //   margin: const EdgeInsets.fromLTRB(4, 16, 0, 0),
-                    //   child: const Text(
-                    //     "Fasilitas",
-                    //     style: kTitle,
-                    //   ),
-                    // ),
-                    // Container(
-                    //   margin: const EdgeInsets.fromLTRB(4, 16, 0, 0),
-                    //   child: const Text(
-                    //     "Restaurant",
-                    //     style: ktitle.copyWith(
-                    //       color: kColorFour,
-                    //   ),
-                    // ),
-                    //),
-                    // listMenu(restaurant.menus.foods),
-                    // Container(
-                    //   margin: const EdgeInsets.fromLTRB(4, 16, 0, 0),
-                    //   child: const Text(
-                    //     "Wisata",
-                    //     style: ktitle.copyWith(
-                    //       color: kColorFour,
-                    //     ),
-                    //   ),
-                    // ),
-                    // listMenu(restaurant.menus.drinks),
-                    Container(
-                      padding: const EdgeInsets.all(10.0),
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          primary: greenColor, // background // foreground
+                       const SizedBox(
+                          height: 10,
                         ),
-                        child: const Text('Jelajah Sekarang',
-                            style: TextStyle(color: Colors.white)),
-                        onPressed: () async {
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //     builder: (context) => const ErrorScreen(),
-                          //   ),
-                          // );
-                        },
-                      ),
+                        Text(
+                          destinationDetail.description.toString(),
+                          style: kBodyText,
+                        ),
+                        const SizedBox(
+                          height: 12,
+                        ),
+                        Row(
+                          children: const [
+                            // Column(
+                            //   children: [
+                            //     Container(
+                            //       padding: const EdgeInsets.all(12.0),
+                            //       decoration: const BoxDecoration(
+                            //           shape: BoxShape.circle,
+                            //           color: Color(0xffE8F8F5)),
+                            //       child:
+                            //           Image.asset('assets/icons/pizza (1).png'),
+                            //       width: 75,
+                            //     ),
+                            //     const SizedBox(
+                            //       height: 6,
+                            //     ),
+                            //     const Text(
+                            //       'Makanan',
+                                  //style: interText2.copyWith(
+                                      // fontSize: 18, color: kText),
+                            //     ),
+                            //   ],
+                            // ),
+                            // SizedBox(
+                            //   width: 16,
+                            // ),
+                            // Column(
+                            //   children: [
+                            //     Container(
+                            //       padding: const EdgeInsets.all(12.0),
+                            //       decoration: const BoxDecoration(
+                            //           shape: BoxShape.circle,
+                            //           color: Color(0xffE8F8F5)),
+                            //       child: Image.asset(
+                            //           'assets/icons/coffee (1).png'),
+                            //       width: 75,
+                            //     ),
+                            //     const SizedBox(
+                            //       height: 6,
+                            //     ),
+                            //     const Text(
+                            //       'Minuman',
+                                  //style: interText2.copyWith(
+                                     // fontSize: 18, color: kText),
+                            //     ),
+                            //   ],
+                            // ),
+                            // SizedBox(
+                            //   width: 16,
+                            // ),
+                            // Column(
+                            //   children: [
+                            //     Container(
+                            //       padding: const EdgeInsets.all(12.0),
+                            //       decoration: const BoxDecoration(
+                            //           shape: BoxShape.circle,
+                            //           color: Color(0xffE8F8F5)),
+                            //       child: Image.asset('assets/icons/wifi.png'),
+                            //       width: 75,
+                            //     ),
+                            //     const SizedBox(
+                            //       height: 6,
+                            //     ),
+                            //     const Text(
+                            //       'Wifi',
+                                  // style: interText2.copyWith(
+                                  //     fontSize: 18, color: kText),
+                            //     ),
+                            //   ],
+                            // ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 18,
+                        ),
+                        InkWell(
+                          onTap: () {},
+                          child: SizedBox(
+                            width: MediaQuery.of(context).size.width - 56,
+                            height: 50,
+                            child: ElevatedButton(
+                              onPressed: () {},
+                                style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all(primaryColor),
+                                shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                  RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(18.0),
+                                    side: const BorderSide(color: Colors.green)
+                                  )
+                                )
+                              ),
+                              child:  Text(
+                                'Jelajah Lokasinya Sekarang!',
+                                 style: interText2.copyWith(
+                                     fontSize: 17, color: Colors.white),
+                              )
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 28,
+                        ),
+                      ],
                     ),
-                    //],
-                  ],
+                    ),
+                  ),
                 ),
-              ),
-            )),
+              ],
+            ),
+          ],
+        ),
       ),
     );
-    //);
   }
-
-  // listMenu(List<dynamic> menus) {
-  //   return SingleChildScrollView(
-  //     scrollDirection: Axis.horizontal,
-  //     child: Row(
-  //       children: menus.map((list) {
-  //         return Column(
-  //             crossAxisAlignment: CrossAxisAlignment.start,
-  //             children: [
-  //               Container(
-  //                 margin: const EdgeInsets.all(4),
-  //                 height: 150,
-  //                 width: 150,
-  //                 child: ClipRRect(
-  //                   borderRadius: BorderRadius.circular(10),
-  //                   child: Image.network(
-  //                     "https://blogunik.com/wp-content/uploads/2019/02/Makanan-Dan-Minuman-Khas-Bandung.jpg",
-  //                     fit: BoxFit.cover,
-  //                   ),
-  //                 ),
-  //               ),
-  //               Container(
-  //                   margin: const EdgeInsets.fromLTRB(4, 0, 0, 0),
-  //                   child: Text(list.name))
-  //             ]);
-  //       }).toList(),
-  //     ),
-  //   );
-  // }
 }
