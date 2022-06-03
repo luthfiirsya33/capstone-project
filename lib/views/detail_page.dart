@@ -22,31 +22,16 @@ class DetailPage extends StatelessWidget {
              child: Image.network(
              destinationDetail.urlImage,
              width: MediaQuery.of(context).size.width,
-             height: 350,
+             height: 400,
              fit: BoxFit.cover,
                ),
               ),
              ),
             ListView(
               children: [
-                Padding(
-                 padding:
-                     const EdgeInsets.symmetric(horizontal: 18, vertical: 24),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      CircleAvatar(
-                       backgroundColor: primaryColor,
-                       foregroundColor: Colors.white,
-                         child: IconButton(
-                          icon: const Icon(Icons.arrow_back),
-                           onPressed: () async {
-                            Navigator.of(context, rootNavigator: true).pop(context);
-                           },
-                          ),
-                       ),
-                    ],
-                  ),
+                const Padding(
+                  padding:
+                  EdgeInsets.symmetric(horizontal: 18, vertical: 80),
                 ),
                 const SizedBox(
                   height: 200,
@@ -229,6 +214,25 @@ class DetailPage extends StatelessWidget {
                   ),
                 ),
               ],
+            ),
+            Padding(
+              padding:
+              const EdgeInsets.symmetric(horizontal: 18, vertical: 24),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  CircleAvatar(
+                    backgroundColor: primaryColor,
+                    foregroundColor: Colors.white,
+                    child: IconButton(
+                      icon: const Icon(Icons.arrow_back),
+                      onPressed: () async {
+                        Navigator.of(context, rootNavigator: true).pop(context);
+                      },
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
