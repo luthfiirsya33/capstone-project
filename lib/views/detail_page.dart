@@ -12,7 +12,7 @@ class DetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     //print(data);
     return Scaffold(
-      //backgroundColor: kColorBlue,
+      //backgroundColor: primaryColor,
       body: SafeArea(
         child: Stack(
           children: [
@@ -52,8 +52,19 @@ class DetailPage extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                       const SizedBox(
+                          height: 20,
+                        ),
+                        Align(
+                          alignment: Alignment.topCenter,
+                          child: Container(
+                            color: primaryColor,
+                            height: 4,
+                            width: 48,
+                        ),
+                        ),
                         const SizedBox(
-                          height: 40,
+                          height: 20,
                         ),
                         Text(
                           destinationDetail.name!,
