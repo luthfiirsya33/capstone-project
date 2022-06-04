@@ -6,6 +6,7 @@ import 'package:capstone_project_sib_kwi/data/models/user.dart';
 import 'package:capstone_project_sib_kwi/views/detail_page.dart';
 import 'package:capstone_project_sib_kwi/views/drawer_screen.dart';
 import 'package:capstone_project_sib_kwi/views/login_screen.dart';
+import 'package:capstone_project_sib_kwi/views/search_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -235,7 +236,9 @@ class _HomePageState extends State<HomePage> {
             children: [
               IconButton(
                 icon: const Icon(Icons.search),
-                onPressed: () {},
+                onPressed: () {
+                  showSearch(context: context, delegate: SearchPage());
+                },
               ),
             ],
           ),
@@ -261,7 +264,15 @@ class _HomePageState extends State<HomePage> {
                               itemBuilder: (context, index) {
                                 final DocumentSnapshot documentSnapshot =
                                     streamSnapshot.data!.docs[index];
-                                return Container(
+                                var destinationDetail =
+                              toDestination(documentSnapshot);
+                                return InkWell(
+                                  onTap: () {
+                                Navigator.pushNamed(
+                                    context, DetailPage.routeName,
+                                    arguments: destinationDetail);
+                              },
+                                  child: Container(
                                   margin: const EdgeInsets.all(10.0),
                                   width: 170,
                                   child: Stack(
@@ -327,7 +338,7 @@ class _HomePageState extends State<HomePage> {
                                       )
                                     ],
                                   ),
-                                );
+                                ));
                               });
                         }
                         return const Center(
