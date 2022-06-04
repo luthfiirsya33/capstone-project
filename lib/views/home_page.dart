@@ -35,7 +35,8 @@ class _HomePageState extends State<HomePage> {
   final TextEditingController _priceController = TextEditingController();
   FirebaseStorage storage = FirebaseStorage.instance;
   FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
-  String urlImage = "https://firebasestorage.googleapis.com/v0/b/capstone-project-kwi.appspot.com/o/photo-upload%2Flogo-capstone.png?alt=media&token=fa92a44f-6e38-42bd-af57-fa29991f6e33";
+  String urlImage =
+      "https://firebasestorage.googleapis.com/v0/b/capstone-project-kwi.appspot.com/o/photo-upload%2Flogo-capstone.png?alt=media&token=fa92a44f-6e38-42bd-af57-fa29991f6e33";
 
   File? file;
   String imageName = "";
@@ -90,7 +91,9 @@ class _HomePageState extends State<HomePage> {
                         alignment: Alignment(1.4, 1.4),
                         children: [
                           CircleAvatar(
-                            backgroundImage: (file != null ? FileImage(file!) : NetworkImage(urlImage)) as ImageProvider,
+                            backgroundImage: (file != null
+                                ? FileImage(file!)
+                                : NetworkImage(urlImage)) as ImageProvider,
                             radius: 75,
                           ),
                           IconButton(
@@ -108,11 +111,11 @@ class _HomePageState extends State<HomePage> {
                   TextField(
                     controller: _nameController,
                     decoration:
-                    const InputDecoration(labelText: 'Nama Destinasi'),
+                        const InputDecoration(labelText: 'Nama Destinasi'),
                   ),
                   TextField(
                     keyboardType:
-                    const TextInputType.numberWithOptions(decimal: true),
+                        const TextInputType.numberWithOptions(decimal: true),
                     controller: _ratingController,
                     decoration: const InputDecoration(
                       labelText: 'Rating',
@@ -128,7 +131,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   TextField(
                     keyboardType:
-                    const TextInputType.numberWithOptions(decimal: false),
+                        const TextInputType.numberWithOptions(decimal: false),
                     controller: _priceController,
                     decoration: const InputDecoration(
                       labelText: 'Harga',
@@ -142,11 +145,11 @@ class _HomePageState extends State<HomePage> {
                     onPressed: () async {
                       final String? name = _nameController.text;
                       final double? rating =
-                      double.tryParse(_ratingController.text);
+                          double.tryParse(_ratingController.text);
                       final String? location = _locationController.text;
                       final String? description = _descriptionController.text;
                       final double? price =
-                      double.tryParse(_priceController.text);
+                          double.tryParse(_priceController.text);
                       if (name != null &&
                           rating != null &&
                           location != null &&
@@ -154,9 +157,13 @@ class _HomePageState extends State<HomePage> {
                           price != null) {
                         if (action == 'create') {
                           if ((imageName != "") && (file != null)) {
-                            await storage.ref('photo-upload/${imageName}').putFile(file!);
+                            await storage
+                                .ref('photo-upload/${imageName}')
+                                .putFile(file!);
 
-                            String getDownloadUrl = await storage.ref('photo-upload/${imageName}').getDownloadURL();
+                            String getDownloadUrl = await storage
+                                .ref('photo-upload/${imageName}')
+                                .getDownloadURL();
 
                             await _destinations.add({
                               "name": name,
@@ -166,9 +173,7 @@ class _HomePageState extends State<HomePage> {
                               "price": price,
                               "urlImage": getDownloadUrl,
                             });
-
                           }
-
                         }
 
                         if (action == 'update') {
@@ -258,14 +263,14 @@ class _HomePageState extends State<HomePage> {
                                     streamSnapshot.data!.docs[index];
                                 return Container(
                                   margin: const EdgeInsets.all(10.0),
-                                  width: 150,
+                                  width: 170,
                                   child: Stack(
                                     children: [
                                       Positioned(
-                                        bottom: 10.0,
+                                        bottom: 2.0,
                                         child: Container(
                                           height: 70,
-                                          width: 150,
+                                          width: 170,
                                           decoration: BoxDecoration(
                                             color: whiteColor,
                                             borderRadius:
@@ -305,13 +310,18 @@ class _HomePageState extends State<HomePage> {
                                             ]),
                                         child: Stack(
                                           children: [
-                                            Image(
-                                              height: 110,
-                                              width: 150,
-                                              image: NetworkImage(
-                                                documentSnapshot['urlImage'],
-                                              ),
-                                            )
+                                            ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(15.0),
+                                                child: Image(
+                                                  height: 110,
+                                                  width: 170,
+                                                  image: NetworkImage(
+                                                    documentSnapshot[
+                                                        'urlImage'],
+                                                  ),
+                                                  fit: BoxFit.cover,
+                                                )),
                                           ],
                                         ),
                                       )
@@ -354,10 +364,10 @@ class _HomePageState extends State<HomePage> {
                               },
                               leading: ConstrainedBox(
                                 constraints: const BoxConstraints(
-                                  minWidth: 48,
-                                  minHeight: 48,
-                                  maxWidth: 64,
-                                  maxHeight: 64,
+                                  minWidth: 55,
+                                  minHeight: 55,
+                                  maxWidth: 70,
+                                  maxHeight: 70,
                                 ),
                                 child: Image.network(
                                     documentSnapshot['urlImage'],
