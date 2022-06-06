@@ -1,4 +1,4 @@
-import 'package:capstone_project_sib_kwi/views/login_screen.dart';
+import 'package:capstone_project_sib_kwi/presentation/pages/login/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 

@@ -1,8 +1,8 @@
-// ignore_for_file: unnecessary_const
+// ignore_for_file: unnecessary_const, body_might_complete_normally_nullable
 
 import 'package:capstone_project_sib_kwi/common/constants.dart';
 import 'package:capstone_project_sib_kwi/data/models/user.dart';
-import 'package:capstone_project_sib_kwi/views/bottom_bar.dart';
+import 'package:capstone_project_sib_kwi/presentation/pages/home/bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -18,7 +18,7 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen> {
   bool isHiddenPassword = true;
   final _auth = FirebaseAuth.instance;
-  final _formKey = GlobalKey<FormState>();
+  // final _formKey = GlobalKey<FormState>();
   final TextEditingController _nicknameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -181,7 +181,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     child: const Text("Register"),
                     onPressed: () {
                       registerSubmit();
-                      ;
                     })),
           ],
         ),
@@ -214,8 +213,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
         .set(userModel.toMap());
     Fluttertoast.showToast(msg: "Account created successfully ");
 
-    Navigator.pushAndRemoveUntil((context),
-        MaterialPageRoute(builder: (context) => BottomBar()), (route) => false);
+    Navigator.pushAndRemoveUntil(
+        (context),
+        MaterialPageRoute(builder: (context) => const BottomBar()),
+        (route) => false);
   }
 
   @override

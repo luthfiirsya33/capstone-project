@@ -1,7 +1,7 @@
 import 'package:capstone_project_sib_kwi/common/constants.dart';
+import 'package:capstone_project_sib_kwi/presentation/pages/home/profil_page.dart';
+import 'package:capstone_project_sib_kwi/presentation/pages/home/home_page.dart';
 import 'package:flutter/material.dart';
-import 'about_page.dart';
-import 'home_page.dart';
 //import 'detail_page.dart';
 
 class BottomBar extends StatefulWidget {
@@ -17,7 +17,7 @@ class _BottomBarState extends State<BottomBar> {
   final List<Widget> screens = [
     const HomePage(),
     // DetailPage(),
-    const AboutPage(),
+    const ProfilPage(),
   ];
   @override
   Widget build(BuildContext context) {

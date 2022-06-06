@@ -4,7 +4,6 @@ class DestinationDetail {
   final String? name;
   final String? description;
   final String? location;
-  final String? price;
   final String? rating;
   final String urlImage;
 
@@ -12,7 +11,6 @@ class DestinationDetail {
       {this.name,
       this.description,
       this.location,
-      this.price,
       this.rating,
       required this.urlImage});
 
@@ -21,7 +19,6 @@ class DestinationDetail {
         name: map["name"],
         description: map["description"],
         location: map["location"],
-        price: map["price"].toString(),
         rating: map["rating"].toString(),
         urlImage: map["urlImage"]);
   }

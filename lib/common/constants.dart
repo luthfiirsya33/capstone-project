@@ -53,7 +53,7 @@ final TextStyle kSubtitle = GoogleFonts.poppins(
     fontSize: 15, fontWeight: FontWeight.w400, letterSpacing: 0.15);
 final TextStyle kBodyText = GoogleFonts.poppins(
     fontSize: 13, fontWeight: FontWeight.w400, letterSpacing: 0.25);
- TextStyle interText2 = GoogleFonts.inter(fontWeight: FontWeight.w600);
+TextStyle interText2 = GoogleFonts.inter(fontWeight: FontWeight.w600);
 
 // text theme
 final kTextTheme = TextTheme(
@@ -61,5 +61,4 @@ final kTextTheme = TextTheme(
   headline6: kHeading6,
   subtitle1: kSubtitle,
   bodyText2: kBodyText,
-
 );

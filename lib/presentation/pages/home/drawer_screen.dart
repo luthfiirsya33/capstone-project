@@ -1,7 +1,8 @@
 import 'package:capstone_project_sib_kwi/common/constants.dart';
 import 'package:capstone_project_sib_kwi/data/models/user.dart';
-import 'package:capstone_project_sib_kwi/views/about_page.dart';
-import 'package:capstone_project_sib_kwi/views/login_screen.dart';
+import 'package:capstone_project_sib_kwi/presentation/pages/about/about_page.dart';
+import 'package:capstone_project_sib_kwi/presentation/pages/login/login_screen.dart';
+import 'package:capstone_project_sib_kwi/presentation/widgets/drawer_list_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -41,13 +42,13 @@ class _DrawwerScreenState extends State<DrawerScreen> {
         child: ListView(
       children: <Widget>[
         UserAccountsDrawerHeader(
+          decoration: const BoxDecoration(color: primaryColor),
           currentAccountPicture: CircleAvatar(
-            backgroundColor: Colors.white,
-            foregroundColor: primaryColor,
             radius: 50,
             backgroundImage: (loggedInUser.imageUrl != null
-                ? NetworkImage(loggedInUser.imageUrl!)
-                : AssetImage("assets/img/logo-capstone.png")) as ImageProvider,
+                    ? NetworkImage(loggedInUser.imageUrl!)
+                    : const AssetImage("assets/img/logo-capstone.png"))
+                as ImageProvider,
           ),
           accountName: Text(
             "${loggedInUser.nickname}",
@@ -57,11 +58,9 @@ class _DrawwerScreenState extends State<DrawerScreen> {
         ),
         DrawerListTile(
           iconData: Icons.person,
-          title: 'Profile',
+          title: 'About',
           onTilePressed: () {
-            Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) => const AboutPage(),
-            ));
+            Navigator.pushNamed(context, AboutPage.routeName);
           },
         ),
         DrawerListTile(
@@ -74,27 +73,5 @@ class _DrawwerScreenState extends State<DrawerScreen> {
         ),
       ],
     ));
-  }
-}
-
-class DrawerListTile extends StatelessWidget {
-  final IconData? iconData;
-  final String? title;
-  final VoidCallback? onTilePressed;
-
-  const DrawerListTile(
-      {Key? key, this.iconData, this.title, this.onTilePressed})
-      : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      onTap: onTilePressed,
-      dense: true,
-      leading: Icon(iconData),
-      title: Text(
-        title!,
-        style: const TextStyle(fontSize: 16),
-      ),
-    );
   }
 }

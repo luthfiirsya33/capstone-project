@@ -1,6 +1,7 @@
 import 'package:capstone_project_sib_kwi/data/models/destination_detail.dart';
-import 'package:capstone_project_sib_kwi/views/detail_page.dart';
-import 'package:capstone_project_sib_kwi/views/splash_screen.dart';
+import 'package:capstone_project_sib_kwi/presentation/pages/about/about_page.dart';
+import 'package:capstone_project_sib_kwi/presentation/pages/detail/detail_page.dart';
+import 'package:capstone_project_sib_kwi/presentation/pages/splash/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -27,7 +28,8 @@ class MyApp extends StatelessWidget {
         DetailPage.routeName: (context) => DetailPage(
               destinationDetail: ModalRoute.of(context)?.settings.arguments
                   as DestinationDetail,
-            )
+            ),
+        AboutPage.routeName: (context) => const AboutPage(),
       },
     );
   }

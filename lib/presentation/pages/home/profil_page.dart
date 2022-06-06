@@ -12,15 +12,15 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 
-class AboutPage extends StatefulWidget {
-  const AboutPage({Key? key}) : super(key: key);
+class ProfilPage extends StatefulWidget {
+  const ProfilPage({Key? key}) : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api
-  _AboutPageState createState() => _AboutPageState();
+  _ProfilPageState createState() => _ProfilPageState();
 }
 
-class _AboutPageState extends State<AboutPage> {
+class _ProfilPageState extends State<ProfilPage> {
   User? user = FirebaseAuth.instance.currentUser;
   FirebaseStorage storage = FirebaseStorage.instance;
   UserModel loggedUser = UserModel();
@@ -159,7 +159,7 @@ class _AboutPageState extends State<AboutPage> {
                                       return AlertDialog(
                                         title: Text('Edit Profile',
                                             style: blackTextStyle),
-                                        content: Container(
+                                        content: SizedBox(
                                             width: 400,
                                             height: 400,
                                             child: SingleChildScrollView(
