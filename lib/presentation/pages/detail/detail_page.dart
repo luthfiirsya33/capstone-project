@@ -1,7 +1,7 @@
 import 'package:capstone_project_sib_kwi/data/models/destination_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:capstone_project_sib_kwi/common/constants.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/link.dart';
 
 class DetailPage extends StatelessWidget {
   static const routeName = '/detail_page';
@@ -196,24 +196,22 @@ class DetailPage extends StatelessWidget {
                           const SizedBox(
                             height: 18,
                           ),
-                          Column(
+                          SafeArea(
+                            child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               InkWell(
                                 onTap: () {},
                                 child: SizedBox(
-                                  width: 150,
+                                  width: 75,
                                   height: 50,
-                                  child: ElevatedButton(
-                                      onPressed: () async {
-                                        var url = Uri.parse(
-                                            "https://www.google.com/maps/dir//water+blaster/data=!4m6!4m5!1m1!4e2!1m2!1m1!1s0x2e708d368c2bab47:0x7cb65896fa025470?sa=X&ved=2ahUKEwj8iPLQ2Zr4AhWEUGwGHa2CALMQ9Rd6BAhxEAQ");
-                                        if (await canLaunchUrl(url)) {
-                                          await launchUrl(url);
-                                        } else {
-                                          // can't launch url
-                                        }
-                                      },
-                                      style: ButtonStyle(
+                                  child : Link(
+                                    target: LinkTarget.blank,
+                                    uri: Uri.parse("https://www.google.com/maps/dir//water+blaster/data=!4m6!4m5!1m1!4e2!1m2!1m1!1s0x2e708d368c2bab47:0x7cb65896fa025470?sa=X&ved=2ahUKEwj8iPLQ2Zr4AhWEUGwGHa2CALMQ9Rd6BAhxEAQ"),
+                                    builder: (context, followLink) {
+                                      return ElevatedButton(
+                                        onPressed: followLink,
+                                        style: ButtonStyle(
                                           backgroundColor:
                                               MaterialStateProperty.all(
                                                   primaryColor),
@@ -225,32 +223,32 @@ class DetailPage extends StatelessWidget {
                                                           18.0),
                                                   side: const BorderSide(
                                                       color: Colors.green)))),
-                                      child: Text(
-                                        'Gmaps',
-                                        style: interText2.copyWith(
-                                            fontSize: 17, color: Colors.white),
-                                      )),
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 10,
+                                             child: const Icon(
+                                                Icons.add_location_alt_outlined,
+                                                color: Colors.white,
+                                                size: 24.0,
+                                            ),
+                                      // child: Text(
+                                      //   'Detail lebih lanjut',
+                                      //   style: interText2.copyWith(
+                                      //       fontSize: 17, color: Colors.white),
+                                      // )
+                                      );
+                                    },
+                                  )),
                               ),
                               InkWell(
                                 onTap: () {},
                                 child: SizedBox(
-                                  width: 265,
+                                  width: 280,
                                   height: 50,
-                                  child: ElevatedButton(
-                                      onPressed: () async {
-                                        var url = Uri.parse(
-                                            destinationDetail.urlWeb!);
-                                        if (await canLaunchUrl(url)) {
-                                          await launchUrl(url);
-                                        } else {
-                                          // can't launch url
-                                        }
-                                      },
-                                      style: ButtonStyle(
+                                  child : Link(
+                                    target: LinkTarget.blank,
+                                    uri: Uri.parse(destinationDetail.urlWeb!),
+                                    builder: (context, followLink) {
+                                      return ElevatedButton(
+                                        onPressed: followLink,
+                                        style: ButtonStyle(
                                           backgroundColor:
                                               MaterialStateProperty.all(
                                                   primaryColor),
@@ -266,10 +264,13 @@ class DetailPage extends StatelessWidget {
                                         'Detail lebih lanjut',
                                         style: interText2.copyWith(
                                             fontSize: 17, color: Colors.white),
-                                      )),
-                                ),
+                                      )
+                                      );
+                                    },
+                                  )),
                               ),
                             ],
+                          ),
                           ),
                           const SizedBox(
                             height: 28,
