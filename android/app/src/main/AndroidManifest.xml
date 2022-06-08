@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.capstone_project_sib_kwi">
+
    <application
         android:label="capstone_project_sib_kwi"
         android:name="${applicationName}"
@@ -30,5 +31,6 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+
     </application>
 </manifest>

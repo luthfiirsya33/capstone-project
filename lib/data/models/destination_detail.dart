@@ -5,22 +5,29 @@ class DestinationDetail {
   final String? description;
   final String? location;
   final String? rating;
-  final String urlImage;
+  final String? urlImage;
+  final String? urlWeb;
+  final String? city;
 
   DestinationDetail(
       {this.name,
       this.description,
       this.location,
       this.rating,
-      required this.urlImage});
+      this.urlImage,
+      this.urlWeb,
+      this.city});
 
   factory DestinationDetail.fromMap(map) {
     return DestinationDetail(
-        name: map["name"],
-        description: map["description"],
-        location: map["location"],
-        rating: map["rating"].toString(),
-        urlImage: map["urlImage"]);
+      name: map["name"],
+      description: map["description"],
+      location: map["location"],
+      rating: map["rating"].toString(),
+      urlImage: map["urlImage"],
+      urlWeb: map["urlWeb"],
+      city: map["city"],
+    );
   }
 }
 
