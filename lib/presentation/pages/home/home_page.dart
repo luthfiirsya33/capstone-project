@@ -274,8 +274,7 @@ class _HomePageState extends State<HomePage> {
                                                       style: blackTextStyle,
                                                     ),
                                                     Text(
-                                                      documentSnapshot[
-                                                          'location'],
+                                                      documentSnapshot['city'],
                                                       style: greenTextStyle,
                                                     )
                                                   ],
@@ -377,7 +376,7 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                       const SizedBox(width: 5),
                                       Text(
-                                        documentSnapshot['location'],
+                                        documentSnapshot['city'],
                                         style: greyTextStyle,
                                       ),
                                     ],

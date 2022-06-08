@@ -11,6 +11,7 @@ class AboutPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('About'),
         backgroundColor: primaryColor,
+        elevation: 0,
       ),
       body: Center(
           child: Column(
@@ -25,25 +26,32 @@ class AboutPage extends StatelessWidget {
               Container(
                 height: 200,
                 decoration: const BoxDecoration(
-                  color: greenColor,
+                  color: primaryColor,
                   borderRadius: BorderRadius.only(
                       bottomLeft: Radius.circular(100),
                       bottomRight: Radius.circular(100)),
                 ),
               ),
               Container(
-                margin: const EdgeInsets.only(top: 50),
+                margin: const EdgeInsets.only(top: 25),
                 width: 300,
-                height: 400,
+                height: 350,
                 decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(12)),
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(12),
+                  boxShadow: [
+                    BoxShadow(
+                        color: primaryColor.withOpacity(0.5),
+                        spreadRadius: 2,
+                        blurRadius: 3),
+                  ],
+                ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Image.asset(
                       'assets/img/logo-capstone.png',
-                      height: 240,
+                      height: 200,
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -57,6 +65,50 @@ class AboutPage extends StatelessWidget {
                 ),
               ),
             ],
+          ),
+          Container(
+            margin: const EdgeInsets.only(top: 20),
+            height: 200,
+            width: 240,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: const [
+                BoxShadow(
+                  color: primaryColor,
+                  spreadRadius: 2,
+                  blurRadius: 4,
+                )
+              ],
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: const [
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text('Grup ID: CPSG-25'),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Text('1. P2211B177 - Dion Sunardi'),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Text('2. P2009A052 - Wadi Wahyudin'),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Text('3. P2007A023 - Luthfi Irsyadurrafi'),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Text('4. P2387A387 - Maulana Aryo Nugroho'),
+                ],
+              ),
+            ),
           ),
         ],
       )),
