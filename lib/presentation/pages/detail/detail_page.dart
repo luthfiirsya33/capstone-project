@@ -240,7 +240,7 @@ class DetailPage extends StatelessWidget {
                               InkWell(
                                 onTap: () {},
                                 child: SizedBox(
-                                  width: 280,
+                                  width: 260,
                                   height: 50,
                                   child : Link(
                                     target: LinkTarget.blank,
