@@ -1,6 +1,6 @@
 import 'package:capstone_project_sib_kwi/common/constants.dart';
-import 'package:capstone_project_sib_kwi/presentation/pages/about/about_page.dart';
 import 'package:capstone_project_sib_kwi/presentation/pages/home/bookmark_page.dart';
+import 'package:capstone_project_sib_kwi/presentation/pages/home/chatbot.dart';
 import 'package:capstone_project_sib_kwi/presentation/pages/home/profil_page.dart';
 import 'package:capstone_project_sib_kwi/presentation/pages/home/home_page.dart';
 import 'package:capstone_project_sib_kwi/presentation/widgets/create_destination.dart';
@@ -19,7 +19,7 @@ class _BottomBarState extends State<BottomBar> {
   final List<Widget> screens = [
     const HomePage(),
     const BookmarkPage(),
-    const AboutPage(),
+    const ChatBotScreen(),
     const ProfilPage(),
   ];
 
@@ -106,7 +106,7 @@ class _BottomBarState extends State<BottomBar> {
                   MaterialButton(
                     onPressed: () {
                       setState(() {
-                        currentScreen = const AboutPage();
+                        currentScreen = const ChatBotScreen();
                         currentIndex = 3;
                       });
                     },
