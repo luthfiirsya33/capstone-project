@@ -6,7 +6,6 @@ import 'package:capstone_project_sib_kwi/common/constants.dart';
 import 'package:capstone_project_sib_kwi/data/models/destination_detail.dart';
 import 'package:capstone_project_sib_kwi/data/models/user.dart';
 import 'package:capstone_project_sib_kwi/presentation/pages/home/drawer_screen.dart';
-import 'package:capstone_project_sib_kwi/presentation/widgets/create_destination.dart';
 import 'package:capstone_project_sib_kwi/presentation/pages/detail/detail_page.dart';
 import 'package:capstone_project_sib_kwi/presentation/pages/search/search_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -428,11 +427,6 @@ class _HomePageState extends State<HomePage> {
                 ),
               )
             ]),
-      ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: primaryColor,
-        onPressed: () => createDestination(context),
-        child: const Icon(Icons.add),
       ),
     );
   }
