@@ -50,15 +50,16 @@ Future<void> createDestination(BuildContext context) async {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Stack(
-                      alignment: const Alignment(1.4, 1.4),
+                      alignment: const Alignment(1.1, 1.1),
                       children: [
                         CircleAvatar(
                           backgroundImage: (file != null
                               ? FileImage(file!)
                               : NetworkImage(urlImage)) as ImageProvider,
-                          radius: 75,
+                          radius: 72,
                         ),
                         IconButton(
+                          iconSize: 33,
                             onPressed: () {
                               _getImage();
                             },

@@ -1,9 +1,10 @@
 import 'package:capstone_project_sib_kwi/common/constants.dart';
+import 'package:capstone_project_sib_kwi/presentation/pages/about/about_page.dart';
+import 'package:capstone_project_sib_kwi/presentation/pages/home/bookmark_page.dart';
 import 'package:capstone_project_sib_kwi/presentation/pages/home/profil_page.dart';
 import 'package:capstone_project_sib_kwi/presentation/pages/home/home_page.dart';
 import 'package:capstone_project_sib_kwi/presentation/widgets/create_destination.dart';
 import 'package:flutter/material.dart';
-//import 'detail_page.dart';
 
 class BottomBar extends StatefulWidget {
   const BottomBar({Key? key}) : super(key: key);
@@ -17,7 +18,8 @@ class _BottomBarState extends State<BottomBar> {
   int currentIndex = 0;
   final List<Widget> screens = [
     const HomePage(),
-    // DetailPage(),
+    const BookmarkPage(),
+    const AboutPage(),
     const ProfilPage(),
   ];
 
@@ -75,7 +77,7 @@ class _BottomBarState extends State<BottomBar> {
                   MaterialButton(
                     onPressed: () {
                       setState(() {
-                        currentScreen = const ProfilPage();
+                        currentScreen = const BookmarkPage();
                         currentIndex = 1;
                       });
                     },
@@ -83,11 +85,11 @@ class _BottomBarState extends State<BottomBar> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Icon(
-                          Icons.person,
+                          Icons.bookmark,
                           color: currentIndex == 1 ? primaryColor : greyColor,
                         ),
                         Text(
-                          'Profile',
+                          'Bookmark',
                           style: TextStyle(
                               color: currentIndex == 1
                                   ? primaryColor
@@ -104,7 +106,7 @@ class _BottomBarState extends State<BottomBar> {
                   MaterialButton(
                     onPressed: () {
                       setState(() {
-                        currentScreen = const HomePage();
+                        currentScreen = const AboutPage();
                         currentIndex = 3;
                       });
                     },
@@ -112,11 +114,11 @@ class _BottomBarState extends State<BottomBar> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Icon(
-                          Icons.home,
+                          Icons.chat,
                           color: currentIndex == 3 ? primaryColor : greyColor,
                         ),
                         Text(
-                          'Home',
+                          'Chatbot',
                           style: TextStyle(
                               color: currentIndex == 3
                                   ? primaryColor
@@ -136,11 +138,11 @@ class _BottomBarState extends State<BottomBar> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Icon(
-                          Icons.person,
+                          Icons.settings,
                           color: currentIndex == 4 ? primaryColor : greyColor,
                         ),
                         Text(
-                          'Profile',
+                          'Settings',
                           style: TextStyle(
                               color: currentIndex == 4
                                   ? primaryColor

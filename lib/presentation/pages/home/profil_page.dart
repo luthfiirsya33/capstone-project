@@ -308,11 +308,6 @@ class _ProfilPageState extends State<ProfilPage> {
                               )),
                         ],
                       ),
-                      // const CircleAvatar(
-                      //   backgroundImage:
-                      //       AssetImage("assets/img/logo-capstone.png"),
-                      //   radius: 50.0,
-                      // ),
                       const SizedBox(
                         height: 10.0,
                       ),

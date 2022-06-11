@@ -35,7 +35,7 @@ class AboutPage extends StatelessWidget {
               Container(
                 margin: const EdgeInsets.only(top: 25),
                 width: 300,
-                height: 350,
+                height: 380,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(12),
@@ -68,8 +68,8 @@ class AboutPage extends StatelessWidget {
           ),
           Container(
             margin: const EdgeInsets.only(top: 20),
-            height: 200,
-            width: 240,
+            height: 180,
+            width: 250,
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(20),
@@ -101,11 +101,11 @@ class AboutPage extends StatelessWidget {
                   SizedBox(
                     height: 5,
                   ),
-                  Text('3. P2007A023 - Luthfi Irsyadurrafi'),
+                  Text('3. P2007A023 - Luthfi I'),
                   SizedBox(
                     height: 5,
                   ),
-                  Text('4. P2387A387 - Maulana Aryo Nugroho'),
+                  Text('4. P2387A387 - Maulana Aryo N'),
                 ],
               ),
             ),
