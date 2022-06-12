@@ -31,8 +31,11 @@ class _DetailPageState extends State<DetailPage> {
       "name": widget.destinationDetail.name,
       "city": widget.destinationDetail.city,
       "imageUrl": widget.destinationDetail.urlImage,
-      "rating": widget.destinationDetail.rating,
-      "id": widget.destinationDetail.idDoc
+      "rating": double.parse(widget.destinationDetail.rating!),
+      "id": widget.destinationDetail.idDoc,
+      "description": widget.destinationDetail.description,
+      "location": widget.destinationDetail.location,
+      "urlWeb": widget.destinationDetail.urlWeb,
     }).then((value) {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text('Added to Bookmarks'),
