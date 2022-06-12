@@ -1,13 +1,61 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:capstone_project_sib_kwi/data/models/destination_detail.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:capstone_project_sib_kwi/common/constants.dart';
 import 'package:url_launcher/link.dart';
 
-class DetailPage extends StatelessWidget {
+class DetailPage extends StatefulWidget {
   static const routeName = '/detail_page';
   DestinationDetail destinationDetail;
 
   DetailPage({Key? key, required this.destinationDetail}) : super(key: key);
+
+  @override
+  State<DetailPage> createState() => _DetailPageState();
+}
+
+class _DetailPageState extends State<DetailPage> {
+  User? currentUser = FirebaseAuth.instance.currentUser;
+
+  Future addBookmark() async {
+    CollectionReference collectionRef =
+        FirebaseFirestore.instance.collection("users");
+    return collectionRef
+        .doc(currentUser?.uid)
+        .collection("bookmarks")
+        .doc(widget.destinationDetail.idDoc)
+        .set({
+      "name": widget.destinationDetail.name,
+      "city": widget.destinationDetail.city,
+      "imageUrl": widget.destinationDetail.urlImage,
+      "rating": widget.destinationDetail.rating,
+      "id": widget.destinationDetail.idDoc
+    }).then((value) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text('Added to Bookmarks'),
+        duration: Duration(seconds: 1),
+      ));
+    });
+  }
+
+  Future deleteBookmark() async {
+    CollectionReference collectionRef =
+        FirebaseFirestore.instance.collection("users");
+    return collectionRef
+        .doc(currentUser?.uid)
+        .collection("bookmarks")
+        .doc(widget.destinationDetail.idDoc)
+        .delete()
+        .then((value) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text('Removed from Bookmarks'),
+        duration: Duration(seconds: 1),
+      ));
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +67,9 @@ class DetailPage extends StatelessWidget {
           children: [
             SizedBox(
               child: Hero(
-                tag: destinationDetail.urlImage!,
+                tag: widget.destinationDetail.urlImage!,
                 child: Image.network(
-                  destinationDetail.urlImage!,
+                  widget.destinationDetail.urlImage!,
                   width: MediaQuery.of(context).size.width,
                   height: 400,
                   fit: BoxFit.cover,
@@ -66,9 +114,51 @@ class DetailPage extends StatelessWidget {
                           const SizedBox(
                             height: 20,
                           ),
-                          Text(
-                            destinationDetail.name!,
-                            style: kHeading5,
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                widget.destinationDetail.name!,
+                                style: kHeading5,
+                              ),
+                              StreamBuilder(
+                                  stream: FirebaseFirestore.instance
+                                      .collection('users')
+                                      .doc(currentUser?.uid)
+                                      .collection('bookmarks')
+                                      .where('id',
+                                          isEqualTo:
+                                              widget.destinationDetail.idDoc)
+                                      .snapshots(),
+                                  builder: (context,
+                                      AsyncSnapshot<QuerySnapshot> snapshot) {
+                                    if (snapshot.hasError) {
+                                      return const Center(
+                                        child: Text('Error'),
+                                      );
+                                    } else if (snapshot.hasData) {
+                                      return IconButton(
+                                        onPressed: () =>
+                                            snapshot.data!.docs.isEmpty
+                                                ? addBookmark()
+                                                : deleteBookmark(),
+                                        icon: snapshot.data!.docs.isEmpty
+                                            ? const Icon(
+                                                Icons.bookmark_outline,
+                                                size: 32,
+                                              )
+                                            : const Icon(
+                                                Icons.bookmark,
+                                                size: 32,
+                                              ),
+                                      );
+                                    } else {
+                                      return const Center(
+                                        child: CircularProgressIndicator(),
+                                      );
+                                    }
+                                  }),
+                            ],
                           ),
                           const SizedBox(
                             height: 15,
@@ -83,7 +173,7 @@ class DetailPage extends StatelessWidget {
                                 width: 8,
                               ),
                               Text(
-                                destinationDetail.city.toString(),
+                                widget.destinationDetail.city.toString(),
                                 style: kSubtitle,
                               ),
                               const SizedBox(
@@ -97,7 +187,7 @@ class DetailPage extends StatelessWidget {
                                 width: 8,
                               ),
                               Text(
-                                destinationDetail.rating.toString(),
+                                widget.destinationDetail.rating.toString(),
                                 style: kSubtitle,
                               ),
                             ],
@@ -115,7 +205,7 @@ class DetailPage extends StatelessWidget {
                             height: 10,
                           ),
                           Text(
-                            destinationDetail.description.toString(),
+                            widget.destinationDetail.description.toString(),
                             style: kBodyText,
                           ),
                           const SizedBox(
@@ -198,79 +288,84 @@ class DetailPage extends StatelessWidget {
                           ),
                           SafeArea(
                             child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              InkWell(
-                                onTap: () {},
-                                child: SizedBox(
-                                  width: 75,
-                                  height: 50,
-                                  child : Link(
-                                    target: LinkTarget.blank,
-                                    uri: Uri.parse("https://www.google.com/maps/dir//water+blaster/data=!4m6!4m5!1m1!4e2!1m2!1m1!1s0x2e708d368c2bab47:0x7cb65896fa025470?sa=X&ved=2ahUKEwj8iPLQ2Zr4AhWEUGwGHa2CALMQ9Rd6BAhxEAQ"),
-                                    builder: (context, followLink) {
-                                      return ElevatedButton(
-                                        onPressed: followLink,
-                                        style: ButtonStyle(
-                                          backgroundColor:
-                                              MaterialStateProperty.all(
-                                                  primaryColor),
-                                          shape: MaterialStateProperty.all<
-                                                  RoundedRectangleBorder>(
-                                              RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          18.0),
-                                                  side: const BorderSide(
-                                                      color: Colors.green)))),
-                                             child: const Icon(
-                                                Icons.add_location_alt_outlined,
-                                                color: Colors.white,
-                                                size: 24.0,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                InkWell(
+                                  onTap: () {},
+                                  child: SizedBox(
+                                      width: 75,
+                                      height: 50,
+                                      child: Link(
+                                        target: LinkTarget.blank,
+                                        uri: Uri.parse(
+                                            "https://www.google.com/maps/dir//water+blaster/data=!4m6!4m5!1m1!4e2!1m2!1m1!1s0x2e708d368c2bab47:0x7cb65896fa025470?sa=X&ved=2ahUKEwj8iPLQ2Zr4AhWEUGwGHa2CALMQ9Rd6BAhxEAQ"),
+                                        builder: (context, followLink) {
+                                          return ElevatedButton(
+                                            onPressed: followLink,
+                                            style: ButtonStyle(
+                                                backgroundColor:
+                                                    MaterialStateProperty.all(
+                                                        primaryColor),
+                                                shape: MaterialStateProperty.all<
+                                                        RoundedRectangleBorder>(
+                                                    RoundedRectangleBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(18.0),
+                                                        side: const BorderSide(
+                                                            color: Colors
+                                                                .green)))),
+                                            child: const Icon(
+                                              Icons.add_location_alt_outlined,
+                                              color: Colors.white,
+                                              size: 24.0,
                                             ),
-                                      // child: Text(
-                                      //   'Detail lebih lanjut',
-                                      //   style: interText2.copyWith(
-                                      //       fontSize: 17, color: Colors.white),
-                                      // )
-                                      );
-                                    },
-                                  )),
-                              ),
-                              InkWell(
-                                onTap: () {},
-                                child: SizedBox(
-                                  width: 260,
-                                  height: 50,
-                                  child : Link(
-                                    target: LinkTarget.blank,
-                                    uri: Uri.parse(destinationDetail.urlWeb!),
-                                    builder: (context, followLink) {
-                                      return ElevatedButton(
-                                        onPressed: followLink,
-                                        style: ButtonStyle(
-                                          backgroundColor:
-                                              MaterialStateProperty.all(
-                                                  primaryColor),
-                                          shape: MaterialStateProperty.all<
-                                                  RoundedRectangleBorder>(
-                                              RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          18.0),
-                                                  side: const BorderSide(
-                                                      color: Colors.green)))),
-                                      child: Text(
-                                        'Detail lebih lanjut',
-                                        style: interText2.copyWith(
-                                            fontSize: 17, color: Colors.white),
-                                      )
-                                      );
-                                    },
-                                  )),
-                              ),
-                            ],
-                          ),
+                                            // child: Text(
+                                            //   'Detail lebih lanjut',
+                                            //   style: interText2.copyWith(
+                                            //       fontSize: 17, color: Colors.white),
+                                            // )
+                                          );
+                                        },
+                                      )),
+                                ),
+                                InkWell(
+                                  onTap: () {},
+                                  child: SizedBox(
+                                      width: 260,
+                                      height: 50,
+                                      child: Link(
+                                        target: LinkTarget.blank,
+                                        uri: Uri.parse(
+                                            widget.destinationDetail.urlWeb!),
+                                        builder: (context, followLink) {
+                                          return ElevatedButton(
+                                              onPressed: followLink,
+                                              style: ButtonStyle(
+                                                  backgroundColor:
+                                                      MaterialStateProperty.all(
+                                                          primaryColor),
+                                                  shape: MaterialStateProperty.all<
+                                                          RoundedRectangleBorder>(
+                                                      RoundedRectangleBorder(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      18.0),
+                                                          side: const BorderSide(
+                                                              color: Colors
+                                                                  .green)))),
+                                              child: Text(
+                                                'Detail lebih lanjut',
+                                                style: interText2.copyWith(
+                                                    fontSize: 17,
+                                                    color: Colors.white),
+                                              ));
+                                        },
+                                      )),
+                                ),
+                              ],
+                            ),
                           ),
                           const SizedBox(
                             height: 28,

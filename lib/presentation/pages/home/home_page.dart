@@ -79,20 +79,22 @@ class _HomePageState extends State<HomePage> {
                                     streamSnapshot.data!.docs[index];
                                 var destinationDetail =
                                     toDestination(documentSnapshot);
-                                return Card(child: DestinationCard(destinationDetail));
+                                return Card(
+                                    child: DestinationCard(destinationDetail));
                               });
                         }
                         return const Center(
                           child: CircularProgressIndicator(),
                         );
                       })),
-                      Container(
-                        margin: const EdgeInsets.only(left: 14.0),
-              child: Text("Popular Destinations",
-                  style: blackTextStyle.copyWith(
-                    fontSize: 18,
-                    fontWeight: bold,
-                  )),),
+              Container(
+                margin: const EdgeInsets.only(left: 14.0),
+                child: Text("Popular Destinations",
+                    style: blackTextStyle.copyWith(
+                      fontSize: 18,
+                      fontWeight: bold,
+                    )),
+              ),
               Flexible(
                 child: StreamBuilder(
                   stream: _destinations.snapshots(),
@@ -109,9 +111,8 @@ class _HomePageState extends State<HomePage> {
                           var destinationDetail =
                               toDestination(documentSnapshot);
                           return Card(
-                            margin: const EdgeInsets.all(10),
-                            child: DestinationTile(destinationDetail)
-                          );
+                              margin: const EdgeInsets.all(10),
+                              child: DestinationTile(destinationDetail));
                         },
                       );
                     }

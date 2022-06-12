@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class DestinationDetail {
+  final String? idDoc;
   final String? name;
   final String? description;
   final String? location;
@@ -10,7 +11,8 @@ class DestinationDetail {
   final String? city;
 
   DestinationDetail(
-      {this.name,
+      {this.idDoc,
+      this.name,
       this.description,
       this.location,
       this.rating,
@@ -20,6 +22,7 @@ class DestinationDetail {
 
   factory DestinationDetail.fromMap(map) {
     return DestinationDetail(
+      idDoc: map["idDoc"],
       name: map["name"],
       description: map["description"],
       location: map["location"],

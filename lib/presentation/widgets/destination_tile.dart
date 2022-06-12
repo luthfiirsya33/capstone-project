@@ -18,7 +18,9 @@ class DestinationTile extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => DetailPage(destinationDetail: destinationDetail,),
+            builder: (context) => DetailPage(
+              destinationDetail: destinationDetail,
+            ),
           ),
         );
       },
@@ -60,22 +62,22 @@ class DestinationTile extends StatelessWidget {
                     height: 5,
                   ),
                   Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      const Icon(
-                                        Icons.location_on,
-                                        color: greyColor,
-                                        size: 17,
-                                      ),
-                                      const SizedBox(width: 5),
-                                      Text(
-                    destinationDetail.city!,
-                    style: greyTextStyle.copyWith(
-                      fontWeight: light,
-                    ),
-                  )],
-                                  ),
-                  
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      const Icon(
+                        Icons.location_on,
+                        color: greyColor,
+                        size: 17,
+                      ),
+                      const SizedBox(width: 5),
+                      Text(
+                        destinationDetail.city!,
+                        style: greyTextStyle.copyWith(
+                          fontWeight: light,
+                        ),
+                      )
+                    ],
+                  ),
                 ],
               ),
             ),
@@ -88,21 +90,20 @@ class DestinationTile extends StatelessWidget {
                   height: 40,
                   margin: const EdgeInsets.only(right: 2),
                   child: const Icon(
-                                    Icons.star,
-                                    color: Colors.orange,
-                                    size: 30,
-                                    ),
-                                      
-                ),
-                Container(
-                  margin: const EdgeInsets.only(top:7),
-                child: Text(
-                  destinationDetail.rating.toString(),
-                  style: blackTextStyle.copyWith(
-                    fontWeight: regular,
-                    fontSize: 18,
+                    Icons.star,
+                    color: Colors.orange,
+                    size: 30,
                   ),
                 ),
+                Container(
+                  margin: const EdgeInsets.only(top: 7),
+                  child: Text(
+                    destinationDetail.rating.toString(),
+                    style: blackTextStyle.copyWith(
+                      fontWeight: regular,
+                      fontSize: 18,
+                    ),
+                  ),
                 ),
                 Container(
                   width: 40,
@@ -110,12 +111,11 @@ class DestinationTile extends StatelessWidget {
                   //padding: const EdgeInsets.only(bottom: 2),
                   margin: const EdgeInsets.only(right: 2),
                   child: IconButton(
-                                        icon: const Icon(Icons.bookmark_add_outlined),
-                                        color: Colors.grey,
-                                        iconSize: 30,
-                                        onPressed: (){},
-                                      ),
-                                      
+                    icon: const Icon(Icons.bookmark_add_outlined),
+                    color: Colors.grey,
+                    iconSize: 30,
+                    onPressed: () {},
+                  ),
                 ),
               ],
             ),

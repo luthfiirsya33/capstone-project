@@ -42,7 +42,7 @@ class _BottomBarState extends State<BottomBar> {
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
         notchMargin: 10,
-        child: Container(
+        child: SizedBox(
           height: 60,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -67,9 +67,8 @@ class _BottomBarState extends State<BottomBar> {
                         Text(
                           'Home',
                           style: TextStyle(
-                              color: currentIndex == 0
-                                  ? primaryColor
-                                  : greyColor),
+                              color:
+                                  currentIndex == 0 ? primaryColor : greyColor),
                         ),
                       ],
                     ),
@@ -91,9 +90,8 @@ class _BottomBarState extends State<BottomBar> {
                         Text(
                           'Bookmark',
                           style: TextStyle(
-                              color: currentIndex == 1
-                                  ? primaryColor
-                                  : greyColor),
+                              color:
+                                  currentIndex == 1 ? primaryColor : greyColor),
                         ),
                       ],
                     ),
@@ -120,9 +118,8 @@ class _BottomBarState extends State<BottomBar> {
                         Text(
                           'Chatbot',
                           style: TextStyle(
-                              color: currentIndex == 3
-                                  ? primaryColor
-                                  : greyColor),
+                              color:
+                                  currentIndex == 3 ? primaryColor : greyColor),
                         ),
                       ],
                     ),
@@ -144,9 +141,8 @@ class _BottomBarState extends State<BottomBar> {
                         Text(
                           'Settings',
                           style: TextStyle(
-                              color: currentIndex == 4
-                                  ? primaryColor
-                                  : greyColor),
+                              color:
+                                  currentIndex == 4 ? primaryColor : greyColor),
                         ),
                       ],
                     ),

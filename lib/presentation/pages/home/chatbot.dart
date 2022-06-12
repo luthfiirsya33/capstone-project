@@ -17,9 +17,8 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
   List<Map> messsages = [];
 
   void response(query) async {
-    AuthGoogle authGoogle = await AuthGoogle(
-            fileJson: "assets/crudential-chatbot.json")
-        .build();
+    AuthGoogle authGoogle =
+        await AuthGoogle(fileJson: "assets/crudential-chatbot.json").build();
     DialogFlow dialogflow = DialogFlow(authGoogle: authGoogle, language: "id");
     AIResponse aiResponse = await dialogflow.detectIntent(query);
     setState(() {
@@ -83,16 +82,15 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
                           if (kDebugMode) {
                             print("empty message");
                           }
-                        }
-                        else { setState(() {
+                        } else {
+                          setState(() {
                             messsages.insert(
-                                0, {"data":
-                                1, "message": messageInsert.text});
+                                0, {"data": 1, "message": messageInsert.text});
                           });
                           response(messageInsert.text);
                           messageInsert.clear();
                         }
-                   }),
+                      }),
                 )
               ],
             ),
@@ -114,7 +112,6 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
           elevation: 0.0,
           alignment: data == 0 ? Alignment.topLeft : Alignment.topRight,
           nip: data == 0 ? BubbleNip.leftBottom : BubbleNip.rightTop,
-
           child: Padding(
             padding: const EdgeInsets.all(2.0),
             child: Row(
@@ -136,7 +133,7 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
                 ))
               ],
             ),
-        )),
+          )),
     );
   }
 }

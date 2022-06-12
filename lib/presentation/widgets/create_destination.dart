@@ -59,7 +59,7 @@ Future<void> createDestination(BuildContext context) async {
                           radius: 72,
                         ),
                         IconButton(
-                          iconSize: 33,
+                            iconSize: 33,
                             onPressed: () {
                               _getImage();
                             },
@@ -123,6 +123,10 @@ Future<void> createDestination(BuildContext context) async {
                         "urlImage": getDownloadUrl,
                         "urlWeb": "",
                         "city": "",
+                      }).then((value) {
+                        destinations.doc(value.id).update({
+                          "idDoc": value.id,
+                        });
                       });
                     }
 
