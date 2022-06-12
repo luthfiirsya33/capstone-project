@@ -30,7 +30,7 @@ class _DetailPageState extends State<DetailPage> {
         .set({
       "name": widget.destinationDetail.name,
       "city": widget.destinationDetail.city,
-      "imageUrl": widget.destinationDetail.urlImage,
+      "urlImage": widget.destinationDetail.urlImage,
       "rating": double.parse(widget.destinationDetail.rating!),
       "id": widget.destinationDetail.idDoc,
       "description": widget.destinationDetail.description,
@@ -170,7 +170,7 @@ class _DetailPageState extends State<DetailPage> {
                             children: [
                               const Icon(
                                 Icons.location_pin,
-                                color: greyColor,
+                                color: greenColor,
                               ),
                               const SizedBox(
                                 width: 8,

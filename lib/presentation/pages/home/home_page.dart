@@ -64,6 +64,11 @@ class _HomePageState extends State<HomePage> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Padding(padding: EdgeInsets.only(top: 10, left: 14),
+              child: Text("Explore\nYour Vacation",
+              style: darkPurpleTextStyle.copyWith(
+              fontSize: 32,
+              fontWeight: bold))),
               SizedBox(
                   height: 200,
                   child: StreamBuilder(
@@ -90,7 +95,7 @@ class _HomePageState extends State<HomePage> {
               Container(
                 margin: const EdgeInsets.only(left: 14.0),
                 child: Text("Popular Destinations",
-                    style: blackTextStyle.copyWith(
+                    style: darkPurpleTextStyle.copyWith(
                       fontSize: 18,
                       fontWeight: bold,
                     )),

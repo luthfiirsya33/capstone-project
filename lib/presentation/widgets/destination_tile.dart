@@ -66,7 +66,7 @@ class DestinationTile extends StatelessWidget {
                     children: [
                       const Icon(
                         Icons.location_on,
-                        color: greyColor,
+                        color: greenColor,
                         size: 17,
                       ),
                       const SizedBox(width: 5),
@@ -87,8 +87,8 @@ class DestinationTile extends StatelessWidget {
               children: [
                 Container(
                   width: 40,
-                  height: 40,
-                  margin: const EdgeInsets.only(right: 2),
+                  height: 32,
+                  margin: const EdgeInsets.fromLTRB(0, 0, 2, 4),
                   child: const Icon(
                     Icons.star,
                     color: Colors.orange,
@@ -96,25 +96,13 @@ class DestinationTile extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  margin: const EdgeInsets.only(top: 7),
+                  margin: const EdgeInsets.fromLTRB(0, 2, 8, 0),
                   child: Text(
                     destinationDetail.rating.toString(),
                     style: blackTextStyle.copyWith(
                       fontWeight: regular,
                       fontSize: 18,
                     ),
-                  ),
-                ),
-                Container(
-                  width: 40,
-                  height: 40,
-                  //padding: const EdgeInsets.only(bottom: 2),
-                  margin: const EdgeInsets.only(right: 2),
-                  child: IconButton(
-                    icon: const Icon(Icons.bookmark_add_outlined),
-                    color: Colors.grey,
-                    iconSize: 30,
-                    onPressed: () {},
                   ),
                 ),
               ],
