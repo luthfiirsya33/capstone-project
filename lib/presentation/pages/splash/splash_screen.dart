@@ -12,7 +12,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    Future.delayed(const Duration(seconds: 9), () {
+    Future.delayed(const Duration(seconds: 5), () {
       Navigator.pushReplacement(context,
           MaterialPageRoute(builder: (context) => const LoginScreen()));
     });
@@ -24,7 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       body: Center(
         child: Center(
-          child: Lottie.asset("assets/splash.json"),
+          child: Lottie.network("https://assets2.lottiefiles.com/packages/lf20_Cqp4Yg/satetraveling.json"),
         ),
       ),
     );
