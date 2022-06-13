@@ -2,7 +2,7 @@
     package="com.example.capstone_project_sib_kwi">
 
    <application
-        android:label="capstone_project_sib_kwi"
+        android:label="KWI App"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
