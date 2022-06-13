@@ -21,7 +21,8 @@ class MyApp extends StatelessWidget {
       title: 'KWI App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
+        appBarTheme: const AppBarTheme(elevation: 0),
       ),
       home: const SplashScreen(),
       routes: {

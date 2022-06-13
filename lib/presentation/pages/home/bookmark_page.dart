@@ -19,8 +19,10 @@ class _BookmarkPageState extends State<BookmarkPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Bookmarks', style: whiteTextStyle),
-        backgroundColor: primaryColor,
+
+        title: Text('Bookmarks', style: darkPurpleTextStyle),
+        backgroundColor: Colors.transparent,
+
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance

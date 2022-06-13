@@ -42,14 +42,27 @@ class _HomePageState extends State<HomePage> {
     }
     return Scaffold(
       appBar: AppBar(
-        title: Text("Home", style: whiteTextStyle),
-        backgroundColor: primaryColor,
+          leading: Builder(
+            builder: (BuildContext context) {
+        return IconButton(
+            icon: const Icon(Icons.menu),
+            color: darkPurpleColor,
+            onPressed: () {
+               Scaffold.of(context).openDrawer();
+             },
+           );
+          },
+        ),
+        title: Text("Home", style: darkPurpleTextStyle),
+        backgroundColor: Colors.transparent,
         actions: <Widget>[
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               IconButton(
-                icon: const Icon(Icons.search),
+                icon: const Icon(Icons.search,
+                color: darkPurpleColor
+                ),
                 onPressed: () {
                   showSearch(context: context, delegate: SearchPage());
                 },
@@ -64,7 +77,7 @@ class _HomePageState extends State<HomePage> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(padding: EdgeInsets.only(top: 10, left: 14),
+              Padding(padding: const EdgeInsets.only(top: 10, left: 14),
               child: Text("Explore\nYour Vacation",
               style: darkPurpleTextStyle.copyWith(
               fontSize: 32,
