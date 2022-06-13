@@ -19,10 +19,8 @@ class _BookmarkPageState extends State<BookmarkPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-
         title: Text('Bookmarks', style: darkPurpleTextStyle),
         backgroundColor: Colors.transparent,
-
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance
@@ -40,44 +38,109 @@ class _BookmarkPageState extends State<BookmarkPage> {
           if (snapshot.hasData) {
             return GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,),
+                  crossAxisCount: 2,
+                ),
                 itemCount: snapshot.data?.docs.length,
                 itemBuilder: (context, index) {
                   var data = snapshot.data!.docs[index];
                   return Card(
-                    elevation: 10.0,
-                    child: InkWell(
-                    onTap: () {
-                      Navigator.pushNamed(context, DetailPage.routeName,
-                          arguments: DestinationDetail(
-                              idDoc: data["id"],
-                              name: data['name'],
-                              description: data['description'],
-                              location: data['location'],
-                              rating: data['rating'].toString(),
-                              urlImage: data['urlImage'],
-                              urlWeb: data['urlWeb'],
-                              city: data["city"],
-                              urlMap: data["urlMap"]));
-                    },
-                    child: Column(children: <Widget> [
-                      Image.network(data["urlImage"],
-                      fit: BoxFit.cover,
-                      height: 140,
-                      width: 200,),
-                      const SizedBox(height: 3,),
-                      Text(data["name"],
-                      style: blackTextStyle.copyWith(
-                    fontSize: 14,
-                    fontWeight: regular,
-                    ),),
-                    const SizedBox(height: 1,),
-                    Text(data["city"],
-                      style: greenTextStyle.copyWith(
-                    fontSize: 12,
-                    fontWeight: light,
-                    ),),
-                    ])));
+                      elevation: 10.0,
+                      child: InkWell(
+                          onTap: () {
+                            Navigator.pushNamed(context, DetailPage.routeName,
+                                arguments: DestinationDetail(
+                                    idDoc: data["id"],
+                                    name: data['name'],
+                                    description: data['description'],
+                                    location: data['location'],
+                                    rating: data['rating'].toString(),
+                                    urlImage: data['urlImage'],
+                                    urlWeb: data['urlWeb'],
+                                    city: data["city"],
+                                    urlMap: data["urlMap"]));
+                          },
+                          child: Column(children: <Widget>[
+                            Container(
+                              height: 100,
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                  borderRadius: const BorderRadius.only(
+                                      topLeft: Radius.circular(20),
+                                      topRight: Radius.circular(20)),
+                                  image: DecorationImage(
+                                      image: NetworkImage(data["urlImage"]),
+                                      fit: BoxFit.cover)),
+                            ),
+                            Container(
+                              padding: const EdgeInsets.only(top: 12, left: 10),
+                              height: 95,
+                              width: double.infinity,
+                              decoration: const BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(20),
+                                  bottomRight: Radius.circular(20),
+                                ),
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    data["name"],
+                                    style: blackTextStyle.copyWith(
+                                      fontSize: 15,
+                                      fontWeight: regular,
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        top: 5, right: 5),
+                                    child: Row(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            const Icon(
+                                              Icons.location_on,
+                                              color: greenColor,
+                                              size: 17,
+                                            ),
+                                            const SizedBox(
+                                              width: 3,
+                                            ),
+                                            Text(
+                                              data["city"],
+                                              style:
+                                                  greyTextStyle.copyWith(
+                                                fontWeight: light,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        Row(
+                                          children: [
+                                            const Icon(
+                                              Icons.star,
+                                              color: Colors.amber,
+                                            ),
+                                            Text(
+                                              data["rating"].toString(),
+                                              style: blackTextStyle.copyWith(
+                                                fontSize: 14,
+                                                fontWeight: regular,
+                                              ),
+                                            ),
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ])));
                 });
           }
 
