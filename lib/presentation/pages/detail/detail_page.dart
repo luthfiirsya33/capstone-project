@@ -36,6 +36,7 @@ class _DetailPageState extends State<DetailPage> {
       "description": widget.destinationDetail.description,
       "location": widget.destinationDetail.location,
       "urlWeb": widget.destinationDetail.urlWeb,
+      "urlMap": widget.destinationDetail.urlMap,
     }).then((value) {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text('Added to Bookmarks'),
@@ -216,74 +217,7 @@ class _DetailPageState extends State<DetailPage> {
                           ),
                           Row(
                             children: const [
-                              // Column(
-                              //   children: [
-                              //     Container(
-                              //       padding: const EdgeInsets.all(12.0),
-                              //       decoration: const BoxDecoration(
-                              //           shape: BoxShape.circle,
-                              //           color: Color(0xffE8F8F5)),
-                              //       child:
-                              //           Image.asset('assets/icons/pizza (1).png'),
-                              //       width: 75,
-                              //     ),
-                              //     const SizedBox(
-                              //       height: 6,
-                              //     ),
-                              //     const Text(
-                              //       'Makanan',
-                              //style: interText2.copyWith(
-                              // fontSize: 18, color: kText),
-                              //     ),
-                              //   ],
-                              // ),
-                              // SizedBox(
-                              //   width: 16,
-                              // ),
-                              // Column(
-                              //   children: [
-                              //     Container(
-                              //       padding: const EdgeInsets.all(12.0),
-                              //       decoration: const BoxDecoration(
-                              //           shape: BoxShape.circle,
-                              //           color: Color(0xffE8F8F5)),
-                              //       child: Image.asset(
-                              //           'assets/icons/coffee (1).png'),
-                              //       width: 75,
-                              //     ),
-                              //     const SizedBox(
-                              //       height: 6,
-                              //     ),
-                              //     const Text(
-                              //       'Minuman',
-                              //style: interText2.copyWith(
-                              // fontSize: 18, color: kText),
-                              //     ),
-                              //   ],
-                              // ),
-                              // SizedBox(
-                              //   width: 16,
-                              // ),
-                              // Column(
-                              //   children: [
-                              //     Container(
-                              //       padding: const EdgeInsets.all(12.0),
-                              //       decoration: const BoxDecoration(
-                              //           shape: BoxShape.circle,
-                              //           color: Color(0xffE8F8F5)),
-                              //       child: Image.asset('assets/icons/wifi.png'),
-                              //       width: 75,
-                              //     ),
-                              //     const SizedBox(
-                              //       height: 6,
-                              //     ),
-                              //     const Text(
-                              //       'Wifi',
-                              // style: interText2.copyWith(
-                              //     fontSize: 18, color: kText),
-                              //     ),
-                              //   ],
-                              // ),
+                              
                             ],
                           ),
                           const SizedBox(
@@ -301,7 +235,7 @@ class _DetailPageState extends State<DetailPage> {
                                       child: Link(
                                         target: LinkTarget.blank,
                                         uri: Uri.parse(
-                                            "https://www.google.com/maps/dir//water+blaster/data=!4m6!4m5!1m1!4e2!1m2!1m1!1s0x2e708d368c2bab47:0x7cb65896fa025470?sa=X&ved=2ahUKEwj8iPLQ2Zr4AhWEUGwGHa2CALMQ9Rd6BAhxEAQ"),
+                                            widget.destinationDetail.urlMap!),
                                         builder: (context, followLink) {
                                           return ElevatedButton(
                                             onPressed: followLink,

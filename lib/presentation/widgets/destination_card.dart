@@ -57,60 +57,6 @@ class DestinationCard extends StatelessWidget {
 
                         ]),),)
                         )),
-        //         Container(
-        //           // height: 70,
-        //           // width: 170,
-        //           decoration: BoxDecoration(
-        //             color: whiteColor,
-        //             borderRadius: BorderRadius.circular(15.0),
-        //           ),
-        //           child: Padding(
-        //             padding: const EdgeInsets.all(10.0),
-        //             child: Column(
-        //               mainAxisAlignment: MainAxisAlignment.end,
-        //               crossAxisAlignment: CrossAxisAlignment.start,
-        //               children: [
-        //                 Text(
-        //                   destinationDetail.name!,
-        //                   style: blackTextStyle,
-        //                 ),
-        //                 Text(
-        //                   destinationDetail.city!,
-        //                   style: greenTextStyle,
-        //                 )
-        //               ],
-        //             ),
-        //           ),
-        //         ),
-        //       ),
-        //       Container(
-        //         decoration: BoxDecoration(
-        //             color: Colors.white,
-        //             borderRadius: BorderRadius.circular(20.0),
-        //             boxShadow: const [
-        //               BoxShadow(
-        //                   color: Colors.black12,
-        //                   offset: Offset(0.0, 2.0),
-        //                   blurRadius: 6.0),
-        //             ]),
-        //         child: Stack(
-        //           children: [
-        //             ClipRRect(
-        //                 borderRadius: BorderRadius.circular(15.0),
-        //                 child: Image(
-        //                   height: 110,
-        //                   width: 140,
-        //                   image: NetworkImage(
-        //                     destinationDetail.urlImage!,
-        //                   ),
-        //                   fit: BoxFit.cover,
-        //                 )),
-        //           ],
-        //         ),
-        //       )
-        //     ],
-        //   ),
-        // )
             ]
         )));
   }

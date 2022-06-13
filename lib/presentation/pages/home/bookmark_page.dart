@@ -57,7 +57,8 @@ class _BookmarkPageState extends State<BookmarkPage> {
                               rating: data['rating'].toString(),
                               urlImage: data['urlImage'],
                               urlWeb: data['urlWeb'],
-                              city: data["city"]));
+                              city: data["city"],
+                              urlMap: data["urlMap"]));
                     },
                     child: Column(children: <Widget> [
                       Image.network(data["urlImage"],

@@ -9,6 +9,7 @@ class DestinationDetail {
   final String? urlImage;
   final String? urlWeb;
   final String? city;
+  final String? urlMap;
 
   DestinationDetail(
       {this.idDoc,
@@ -18,7 +19,8 @@ class DestinationDetail {
       this.rating,
       this.urlImage,
       this.urlWeb,
-      this.city});
+      this.city,
+      this.urlMap});
 
   factory DestinationDetail.fromMap(map) {
     return DestinationDetail(
@@ -30,6 +32,7 @@ class DestinationDetail {
       urlImage: map["urlImage"],
       urlWeb: map["urlWeb"],
       city: map["city"],
+      urlMap: map["urlMap"],
     );
   }
 }
