@@ -22,12 +22,12 @@ class _BookmarkPageState extends State<BookmarkPage> {
         title: Text('Bookmarks', style: whiteTextStyle),
         backgroundColor: primaryColor,
       ),
-      body: FutureBuilder<QuerySnapshot>(
-        future: FirebaseFirestore.instance
+      body: StreamBuilder<QuerySnapshot>(
+        stream: FirebaseFirestore.instance
             .collection('users')
             .doc(currentUser?.uid)
             .collection('bookmarks')
-            .get(),
+            .snapshots(),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             return const Center(
@@ -48,6 +48,7 @@ class _BookmarkPageState extends State<BookmarkPage> {
                     onTap: () {
                       Navigator.pushNamed(context, DetailPage.routeName,
                           arguments: DestinationDetail(
+                              idDoc: data["id"],
                               name: data['name'],
                               description: data['description'],
                               location: data['location'],
@@ -59,9 +60,9 @@ class _BookmarkPageState extends State<BookmarkPage> {
                     child: Column(children: <Widget> [
                       Image.network(data["urlImage"],
                       fit: BoxFit.cover,
-                      height: 150,
+                      height: 140,
                       width: 200,),
-                      const SizedBox(height: 1,),
+                      const SizedBox(height: 3,),
                       Text(data["name"],
                       style: blackTextStyle.copyWith(
                     fontSize: 14,
