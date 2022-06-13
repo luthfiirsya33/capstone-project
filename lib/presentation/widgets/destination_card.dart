@@ -22,7 +22,7 @@ class DestinationCard extends StatelessWidget {
         child: Container(
           width: 300,
           decoration: BoxDecoration( 
-            borderRadius: BorderRadius.circular(4),
+            borderRadius: BorderRadius.circular(20),
             image: DecorationImage(
               image: NetworkImage(
                             destinationDetail.urlImage!,

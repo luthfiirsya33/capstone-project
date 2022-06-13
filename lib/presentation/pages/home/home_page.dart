@@ -106,7 +106,7 @@ class _HomePageState extends State<HomePage> {
                         );
                       })),
               Container(
-                margin: const EdgeInsets.only(left: 14.0),
+                margin: const EdgeInsets.only(top: 10, left: 14.0),
                 child: Text("Popular Destinations",
                     style: darkPurpleTextStyle.copyWith(
                       fontSize: 18,

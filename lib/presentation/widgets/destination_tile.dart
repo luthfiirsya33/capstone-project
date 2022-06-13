@@ -25,7 +25,7 @@ class DestinationTile extends StatelessWidget {
         );
       },
       child: Container(
-        margin: const EdgeInsets.only(top: 12),
+        //margin: const EdgeInsets.only(top: 4),
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
           color: whiteColor,

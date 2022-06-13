@@ -123,6 +123,7 @@ Future<void> createDestination(BuildContext context) async {
                         "urlImage": getDownloadUrl,
                         "urlWeb": "",
                         "city": "",
+                        "urlMap": "",
                       }).then((value) {
                         destinations.doc(value.id).update({
                           "idDoc": value.id,
