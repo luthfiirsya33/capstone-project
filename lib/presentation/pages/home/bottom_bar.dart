@@ -1,7 +1,7 @@
 import 'package:capstone_project_sib_kwi/common/constants.dart';
 import 'package:capstone_project_sib_kwi/presentation/pages/home/bookmark_page.dart';
 import 'package:capstone_project_sib_kwi/presentation/pages/home/chatbot.dart';
-import 'package:capstone_project_sib_kwi/presentation/pages/home/profil_page.dart';
+import 'package:capstone_project_sib_kwi/presentation/pages/home/setting_page.dart';
 import 'package:capstone_project_sib_kwi/presentation/pages/home/home_page.dart';
 import 'package:capstone_project_sib_kwi/presentation/widgets/create_destination.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +20,7 @@ class _BottomBarState extends State<BottomBar> {
     const HomePage(),
     const BookmarkPage(),
     const ChatBotScreen(),
-    const ProfilPage(),
+    const SettingPage(),
   ];
 
   final PageStorageBucket bucket = PageStorageBucket();
@@ -127,7 +127,7 @@ class _BottomBarState extends State<BottomBar> {
                   MaterialButton(
                     onPressed: () {
                       setState(() {
-                        currentScreen = const ProfilPage();
+                        currentScreen = const SettingPage();
                         currentIndex = 4;
                       });
                     },
