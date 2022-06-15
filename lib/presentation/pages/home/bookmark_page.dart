@@ -93,10 +93,11 @@ class _BookmarkPageState extends State<BookmarkPage> {
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.only(
-                                        top: 5, right: 5),
+                                    padding:
+                                        const EdgeInsets.only(top: 5, right: 5),
                                     child: Row(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
@@ -112,8 +113,7 @@ class _BookmarkPageState extends State<BookmarkPage> {
                                             ),
                                             Text(
                                               data["city"],
-                                              style:
-                                                  greyTextStyle.copyWith(
+                                              style: greyTextStyle.copyWith(
                                                 fontWeight: light,
                                               ),
                                             ),

@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:capstone_project_sib_kwi/common/constants.dart';
 import 'package:capstone_project_sib_kwi/data/models/user.dart';
+import 'package:capstone_project_sib_kwi/presentation/pages/home/drawer_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -133,8 +134,22 @@ class _ProfilPageState extends State<ProfilPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: DrawerScreen(),
       body: Column(
         children: <Widget>[
+          Builder(builder: (context) {
+            return Column(
+              children: [
+                IconButton(
+                  icon: const Icon(Icons.menu),
+                  color: darkPurpleColor,
+                  onPressed: () {
+                    Scaffold.of(context).openDrawer();
+                  },
+                ),
+              ],
+            );
+          }),
           Container(
               decoration: const BoxDecoration(
                 color: primaryColor,

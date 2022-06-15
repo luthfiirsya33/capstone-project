@@ -42,15 +42,15 @@ class _HomePageState extends State<HomePage> {
     }
     return Scaffold(
       appBar: AppBar(
-          leading: Builder(
-            builder: (BuildContext context) {
-        return IconButton(
-            icon: const Icon(Icons.menu),
-            color: darkPurpleColor,
-            onPressed: () {
-               Scaffold.of(context).openDrawer();
-             },
-           );
+        leading: Builder(
+          builder: (BuildContext context) {
+            return IconButton(
+              icon: const Icon(Icons.menu),
+              color: darkPurpleColor,
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+            );
           },
         ),
         title: Text("Home", style: darkPurpleTextStyle),
@@ -60,9 +60,7 @@ class _HomePageState extends State<HomePage> {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               IconButton(
-                icon: const Icon(Icons.search,
-                color: darkPurpleColor
-                ),
+                icon: const Icon(Icons.search, color: darkPurpleColor),
                 onPressed: () {
                   showSearch(context: context, delegate: SearchPage());
                 },
@@ -77,11 +75,11 @@ class _HomePageState extends State<HomePage> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(padding: const EdgeInsets.only(top: 10, left: 14),
-              child: Text("Explore\nYour Vacation",
-              style: darkPurpleTextStyle.copyWith(
-              fontSize: 32,
-              fontWeight: bold))),
+              Padding(
+                  padding: const EdgeInsets.only(top: 10, left: 14),
+                  child: Text("Explore\nYour Vacation",
+                      style: darkPurpleTextStyle.copyWith(
+                          fontSize: 32, fontWeight: bold))),
               SizedBox(
                   height: 200,
                   child: StreamBuilder(

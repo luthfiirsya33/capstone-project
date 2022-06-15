@@ -20,44 +20,43 @@ class DestinationCard extends StatelessWidget {
               arguments: destinationDetail);
         },
         child: Container(
-          width: 300,
-          decoration: BoxDecoration( 
-            borderRadius: BorderRadius.circular(20),
-            image: DecorationImage(
-              image: NetworkImage(
-                            destinationDetail.urlImage!,
-                          ),
-                          fit: BoxFit.cover,
-                        )
-            ),
-          child: Stack(
-            children: <Widget> [
+            width: 300,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                image: DecorationImage(
+                  image: NetworkImage(
+                    destinationDetail.urlImage!,
+                  ),
+                  fit: BoxFit.cover,
+                )),
+            child: Stack(children: <Widget>[
               Positioned(
-                bottom: 12,
-                left: 12,
-                child: ClipRRect(
-                        borderRadius: BorderRadius.circular(5),
-                        child: BackdropFilter(filter: ImageFilter.blur(sigmaX: 16, sigmaY: 16),
-                        child: Container(alignment: Alignment.centerLeft,
-                        height: 30,
-                        padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                        child: Row(children: <Widget> [
-                          const Icon(
-                        Icons.location_on,
-                        color: greenColor,
-                        size: 18,
-                      ),
-                      const SizedBox(width: 4),
-                      Text(
-                        destinationDetail.city!,
-                        style: whiteTextStyle.copyWith(
-                          fontWeight: light,
+                  bottom: 12,
+                  left: 12,
+                  child: ClipRRect(
+                      borderRadius: BorderRadius.circular(5),
+                      child: BackdropFilter(
+                        filter: ImageFilter.blur(sigmaX: 16, sigmaY: 16),
+                        child: Container(
+                          alignment: Alignment.centerLeft,
+                          height: 30,
+                          padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                          child: Row(children: <Widget>[
+                            const Icon(
+                              Icons.location_on,
+                              color: greenColor,
+                              size: 18,
+                            ),
+                            const SizedBox(width: 4),
+                            Text(
+                              destinationDetail.city!,
+                              style: whiteTextStyle.copyWith(
+                                fontWeight: light,
+                              ),
+                            )
+                          ]),
                         ),
-                      )
-
-                        ]),),)
-                        )),
-            ]
-        )));
+                      ))),
+            ])));
   }
 }

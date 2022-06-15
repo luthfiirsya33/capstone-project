@@ -1,6 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:capstone_project_sib_kwi/data/models/destination_detail.dart';
+import 'package:capstone_project_sib_kwi/presentation/widgets/add_remove_bookmark.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -19,47 +20,6 @@ class DetailPage extends StatefulWidget {
 
 class _DetailPageState extends State<DetailPage> {
   User? currentUser = FirebaseAuth.instance.currentUser;
-
-  Future addBookmark() async {
-    CollectionReference collectionRef =
-        FirebaseFirestore.instance.collection("users");
-    return collectionRef
-        .doc(currentUser?.uid)
-        .collection("bookmarks")
-        .doc(widget.destinationDetail.idDoc)
-        .set({
-      "name": widget.destinationDetail.name,
-      "city": widget.destinationDetail.city,
-      "urlImage": widget.destinationDetail.urlImage,
-      "rating": double.parse(widget.destinationDetail.rating!),
-      "id": widget.destinationDetail.idDoc,
-      "description": widget.destinationDetail.description,
-      "location": widget.destinationDetail.location,
-      "urlWeb": widget.destinationDetail.urlWeb,
-      "urlMap": widget.destinationDetail.urlMap,
-    }).then((value) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text('Added to Bookmarks'),
-        duration: Duration(seconds: 1),
-      ));
-    });
-  }
-
-  Future deleteBookmark() async {
-    CollectionReference collectionRef =
-        FirebaseFirestore.instance.collection("users");
-    return collectionRef
-        .doc(currentUser?.uid)
-        .collection("bookmarks")
-        .doc(widget.destinationDetail.idDoc)
-        .delete()
-        .then((value) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text('Removed from Bookmarks'),
-        duration: Duration(seconds: 1),
-      ));
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -125,43 +85,9 @@ class _DetailPageState extends State<DetailPage> {
                                 widget.destinationDetail.name!,
                                 style: kHeading5,
                               ),
-                              StreamBuilder(
-                                  stream: FirebaseFirestore.instance
-                                      .collection('users')
-                                      .doc(currentUser?.uid)
-                                      .collection('bookmarks')
-                                      .where('id',
-                                          isEqualTo:
-                                              widget.destinationDetail.idDoc)
-                                      .snapshots(),
-                                  builder: (context,
-                                      AsyncSnapshot<QuerySnapshot> snapshot) {
-                                    if (snapshot.hasError) {
-                                      return const Center(
-                                        child: Text('Error'),
-                                      );
-                                    } else if (snapshot.hasData) {
-                                      return IconButton(
-                                        onPressed: () =>
-                                            snapshot.data!.docs.isEmpty
-                                                ? addBookmark()
-                                                : deleteBookmark(),
-                                        icon: snapshot.data!.docs.isEmpty
-                                            ? const Icon(
-                                                Icons.bookmark_outline,
-                                                size: 32,
-                                              )
-                                            : const Icon(
-                                                Icons.bookmark,
-                                                size: 32,
-                                              ),
-                                      );
-                                    } else {
-                                      return const Center(
-                                        child: CircularProgressIndicator(),
-                                      );
-                                    }
-                                  }),
+                              AddRemoveBookmark(
+                                  destinationDetail: widget.destinationDetail,
+                                  context: context)
                             ],
                           ),
                           const SizedBox(
@@ -216,9 +142,7 @@ class _DetailPageState extends State<DetailPage> {
                             height: 12,
                           ),
                           Row(
-                            children: const [
-                              
-                            ],
+                            children: const [],
                           ),
                           const SizedBox(
                             height: 18,
