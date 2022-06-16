@@ -30,30 +30,30 @@ class _DrawwerScreenState extends State<DrawerScreen> {
     if (user.uid == 'NQSrVbrJqNPXK05hR4pOcGJe2m22') {
       return ExpansionTile(
         leading: const Icon(Icons.admin_panel_settings),
-        title: const Text( "Admin"),
+        title: const Text("Admin"),
         children: <Widget>[
-              ListTile(
-              leading: const Icon(Icons.request_page),
-              title: const Text('Request'),
-              onTap: () {
-                Navigator.pushNamed(context, RequestPage.routeName);
-              },
-            ),
-              ListTile(
-              leading: const Icon(Icons.update),
-              title: const Text('Update'),
-              onTap: () {
-                Navigator.pushNamed(context, UpdatePage.routeName);
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.delete),
-              title: const Text('Delete'),
-              onTap: () {
-                Navigator.pushNamed(context, DeletePage.routeName);
-              },
-            ),
-            ],
+          ListTile(
+            leading: const Icon(Icons.request_page),
+            title: const Text('Request'),
+            onTap: () {
+              Navigator.pushNamed(context, RequestPage.routeName);
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.update),
+            title: const Text('Update'),
+            onTap: () {
+              Navigator.pushNamed(context, UpdatePage.routeName);
+            },
+          ),
+          ListTile(
+            leading: const Icon(Icons.delete),
+            title: const Text('Delete'),
+            onTap: () {
+              Navigator.pushNamed(context, DeletePage.routeName);
+            },
+          ),
+        ],
       );
     } else {
       return const Text('');

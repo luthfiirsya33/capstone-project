@@ -6,7 +6,9 @@ class CategoryCard extends StatelessWidget {
   final VoidCallback press;
 
   const CategoryCard({
-    Key? key, required this.title, required this.press,
+    Key? key,
+    required this.title,
+    required this.press,
   }) : super(key: key);
 
   @override
@@ -25,10 +27,12 @@ class CategoryCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(100),
             ),
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8.0),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 15, vertical: 8.0),
               child: Text(
                 title,
-                style: greyTextStyle.copyWith(fontSize: 15, fontWeight: regular),
+                style:
+                    greyTextStyle.copyWith(fontSize: 15, fontWeight: regular),
               ),
             ),
           ),

@@ -3,7 +3,9 @@ import 'package:capstone_project_sib_kwi/presentation/pages/home/bookmark_page.d
 import 'package:capstone_project_sib_kwi/presentation/pages/home/chatbot.dart';
 import 'package:capstone_project_sib_kwi/presentation/pages/home/setting_page.dart';
 import 'package:capstone_project_sib_kwi/presentation/pages/home/home_page.dart';
-import 'package:capstone_project_sib_kwi/presentation/widgets/create_destination.dart';
+import 'package:capstone_project_sib_kwi/presentation/widgets/create_destination_admin.dart';
+import 'package:capstone_project_sib_kwi/presentation/widgets/create_destination_user.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class BottomBar extends StatefulWidget {
@@ -25,6 +27,15 @@ class _BottomBarState extends State<BottomBar> {
 
   final PageStorageBucket bucket = PageStorageBucket();
   Widget currentScreen = const HomePage();
+  User? user = FirebaseAuth.instance.currentUser;
+
+  createDestination(String uid, BuildContext context) {
+    if (uid == 'NQSrVbrJqNPXK05hR4pOcGJe2m22') {
+      return createDestinationAdmin(context);
+    } else {
+      return createDestinationUser(context);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +46,7 @@ class _BottomBarState extends State<BottomBar> {
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: primaryColor,
-        onPressed: () => createDestination(context),
+        onPressed: () => createDestination(user!.uid, context),
         child: const Icon(Icons.add),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

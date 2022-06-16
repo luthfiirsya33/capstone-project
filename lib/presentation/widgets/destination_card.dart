@@ -44,17 +44,16 @@ class DestinationCard extends StatelessWidget {
                           child: Row(children: <Widget>[
                             const Icon(
                               Icons.star,
-                    color: Colors.orange,
+                              color: Colors.orange,
                               size: 18,
                             ),
                             const SizedBox(width: 4),
                             Text(
                               destinationDetail.rating!,
                               style: whiteTextStyle.copyWith(
-                                fontWeight: light, 
+                                fontWeight: light,
                               ),
                             ),
-                            
                           ]),
                         ),
                       ))),
@@ -79,12 +78,15 @@ class DestinationCard extends StatelessWidget {
                             Text(
                               destinationDetail.name!,
                               style: whiteTextStyle.copyWith(
-                                fontWeight: light, 
+                                fontWeight: light,
                               ),
                             ),
-                            Text(",",style: whiteTextStyle.copyWith(
-                                fontWeight: light, 
-                              ),),
+                            Text(
+                              ",",
+                              style: whiteTextStyle.copyWith(
+                                fontWeight: light,
+                              ),
+                            ),
                             const SizedBox(width: 4),
                             Text(
                               destinationDetail.city!,
@@ -92,7 +94,6 @@ class DestinationCard extends StatelessWidget {
                                 fontWeight: light,
                               ),
                             ),
-                            
                           ]),
                         ),
                       ))),

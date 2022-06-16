@@ -8,11 +8,11 @@ class DeleteDestinationTile extends StatelessWidget {
   final DestinationDetail destinationDetail;
   BuildContext context;
 
-   DeleteDestinationTile(
+  DeleteDestinationTile(
       {Key? key, required this.destinationDetail, required this.context})
       : super(key: key);
 
-Future deleteDestination() async {
+  Future deleteDestination() async {
     CollectionReference destinations =
         FirebaseFirestore.instance.collection("destinations");
     return await destinations
@@ -25,6 +25,7 @@ Future deleteDestination() async {
       ));
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -100,9 +101,8 @@ Future deleteDestination() async {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 IconButton(
-                              icon: const Icon(Icons.delete),
-                              onPressed: () =>
-                                  deleteDestination()),
+                    icon: const Icon(Icons.delete),
+                    onPressed: () => deleteDestination()),
               ],
             ),
           ],

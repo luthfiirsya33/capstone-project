@@ -77,13 +77,14 @@ class _HomePageState extends State<HomePage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                  padding: const EdgeInsets.only(top: 10, left: 14),
-                  child: Text("Explore\nYour Vacation",
-                      style: darkPurpleTextStyle.copyWith(
-                          fontSize: 32, fontWeight: bold),
-                          ),
-                          ),
-                          const SizedBox(
+                padding: const EdgeInsets.only(top: 10, left: 14),
+                child: Text(
+                  "Explore\nYour Vacation",
+                  style: darkPurpleTextStyle.copyWith(
+                      fontSize: 32, fontWeight: bold),
+                ),
+              ),
+              const SizedBox(
                 height: 10,
               ),
               Padding(

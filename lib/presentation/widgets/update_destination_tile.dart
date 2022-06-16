@@ -85,10 +85,7 @@ class UpdateDestinationTile extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                IconButton(
-                              icon: const Icon(Icons.edit),
-                              onPressed: () {}
-                                  ),
+                IconButton(icon: const Icon(Icons.edit), onPressed: () {}),
               ],
             ),
           ],

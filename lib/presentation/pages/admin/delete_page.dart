@@ -18,35 +18,35 @@ class _DeleteState extends State<DeletePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Delete'),
-      ),
-      body: SingleChildScrollView(
-      child: StreamBuilder(
-        stream: _destinations.snapshots(),
-        builder:
-            (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
-          if (streamSnapshot.hasData) {
-            return ListView.builder(
-              itemCount: streamSnapshot.data!.docs.length,
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              itemBuilder: (context, index) {
-                final DocumentSnapshot documentSnapshot =
-                    streamSnapshot.data!.docs[index];
-                var destinationDetail =
-                    toDestination(documentSnapshot);
-                return Card(
-                    margin: const EdgeInsets.all(10),
-                    child: DeleteDestinationTile(destinationDetail: destinationDetail, context: context,));
-              },
+        appBar: AppBar(
+          title: const Text('Delete'),
+        ),
+        body: SingleChildScrollView(
+            child: StreamBuilder(
+          stream: _destinations.snapshots(),
+          builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
+            if (streamSnapshot.hasData) {
+              return ListView.builder(
+                itemCount: streamSnapshot.data!.docs.length,
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemBuilder: (context, index) {
+                  final DocumentSnapshot documentSnapshot =
+                      streamSnapshot.data!.docs[index];
+                  var destinationDetail = toDestination(documentSnapshot);
+                  return Card(
+                      margin: const EdgeInsets.all(10),
+                      child: DeleteDestinationTile(
+                        destinationDetail: destinationDetail,
+                        context: context,
+                      ));
+                },
+              );
+            }
+            return const Center(
+              child: CircularProgressIndicator(),
             );
-          }
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        },
-      ))
-    );
+          },
+        )));
   }
 }

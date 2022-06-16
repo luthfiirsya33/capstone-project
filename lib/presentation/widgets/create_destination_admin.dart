@@ -8,7 +8,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-Future<void> createDestination(BuildContext context) async {
+Future<void> createDestinationAdmin(BuildContext context) async {
   late String name;
   late String rating;
   late String location;
@@ -100,7 +100,7 @@ Future<void> createDestination(BuildContext context) async {
                 ),
                 TextField(
                   onChanged: (value) {
-                    city= value;
+                    city = value;
                   },
                   decoration: const InputDecoration(labelText: 'Kota'),
                 ),
@@ -120,7 +120,8 @@ Future<void> createDestination(BuildContext context) async {
                   onChanged: (value) {
                     urlMap = value;
                   },
-                  decoration: const InputDecoration(labelText: 'Url Google Map'),
+                  decoration:
+                      const InputDecoration(labelText: 'Url Google Map'),
                 ),
                 const SizedBox(
                   height: 20,
@@ -136,7 +137,9 @@ Future<void> createDestination(BuildContext context) async {
                       String getDownloadUrl = await storage
                           .ref('photo-upload/$imageName')
                           .getDownloadURL();
-                        
+
+                      String imgPath = 'photo-upload/$imageName';
+
                       await destinations.add({
                         "idDoc": destinations.id,
                         "name": name,
@@ -147,12 +150,18 @@ Future<void> createDestination(BuildContext context) async {
                         "urlImage": getDownloadUrl,
                         "urlWeb": urlWeb,
                         "urlMap": urlMap,
+                        "imgPath": imgPath
                       }).then((value) {
                         destinations.doc(value.id).update({
                           "idDoc": value.id,
                         });
                       });
                     }
+
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      content: Text('Successfully Added'),
+                      duration: Duration(seconds: 1),
+                    ));
 
                     Navigator.of(context).pop();
                   },
