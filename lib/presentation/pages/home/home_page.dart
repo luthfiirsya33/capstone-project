@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:capstone_project_sib_kwi/common/constants.dart';
 import 'package:capstone_project_sib_kwi/data/models/destination_detail.dart';
 import 'package:capstone_project_sib_kwi/data/models/user.dart';
+import 'package:capstone_project_sib_kwi/presentation/widgets/category_card.dart';
 import 'package:capstone_project_sib_kwi/presentation/widgets/destination_card.dart';
 import 'package:capstone_project_sib_kwi/presentation/widgets/destination_tile.dart';
 import 'package:capstone_project_sib_kwi/presentation/pages/home/drawer_screen.dart';
@@ -79,7 +80,58 @@ class _HomePageState extends State<HomePage> {
                   padding: const EdgeInsets.only(top: 10, left: 14),
                   child: Text("Explore\nYour Vacation",
                       style: darkPurpleTextStyle.copyWith(
-                          fontSize: 32, fontWeight: bold))),
+                          fontSize: 32, fontWeight: bold),
+                          ),
+                          ),
+                          const SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 14),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    Text(
+                      "Category",
+                      style: blackTextStyle.copyWith(
+                          fontSize: 20, fontWeight: bold),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 55,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  padding: const EdgeInsets.only(left: 14.0),
+                  children: [
+                    Row(
+                      children: [
+                        CategoryCard(
+                          press: () {},
+                          title: "Semarang",
+                        ),
+                        CategoryCard(
+                          press: () {},
+                          title: "Yogyakarta",
+                        ),
+                        CategoryCard(
+                          press: () {},
+                          title: "Lombok",
+                        ),
+                        CategoryCard(
+                          press: () {},
+                          title: "Denpasar",
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
               SizedBox(
                   height: 200,
                   child: StreamBuilder(
