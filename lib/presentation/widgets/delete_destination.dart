@@ -1,24 +1,30 @@
 import 'package:capstone_project_sib_kwi/common/constants.dart';
 import 'package:capstone_project_sib_kwi/data/models/destination_detail.dart';
 import 'package:capstone_project_sib_kwi/presentation/pages/detail/detail_page.dart';
+import 'package:capstone_project_sib_kwi/presentation/widgets/alert_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 
-class DeleteDestinationTile extends StatelessWidget {
-  final DestinationDetail destinationDetail;
-  BuildContext context;
 
-  DeleteDestinationTile(
-      {Key? key, required this.destinationDetail, required this.context})
-      : super(key: key);
+class DeleteDestination extends StatefulWidget {
+  final DestinationDetail destinationDetail;
+  const DeleteDestination({Key? key, required this.destinationDetail}) : super(key: key);
+
+  @override
+  State<DeleteDestination> createState() => _DeleteDestinationState();
+}
+
+class _DeleteDestinationState extends State<DeleteDestination> {
+  String title = 'AlertDialog';
+  bool tapConfirm = false;
 
   Future deleteDestination() async {
     CollectionReference destinations =
         FirebaseFirestore.instance.collection("destinations");
     FirebaseStorage storage = FirebaseStorage.instance;
-    return await storage.ref(destinationDetail.imgPath).delete().then((value) {
-      destinations.doc(destinationDetail.idDoc).delete().whenComplete(() {
+    return await storage.ref(widget.destinationDetail.imgPath).delete().then((value) {
+      destinations.doc(widget.destinationDetail.idDoc).delete().whenComplete(() {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text('Successfully Deleted the Destination'),
           duration: Duration(seconds: 1),
@@ -35,7 +41,7 @@ class DeleteDestinationTile extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (context) => DetailPage(
-              destinationDetail: destinationDetail,
+              destinationDetail: widget.destinationDetail,
             ),
           ),
         );
@@ -58,7 +64,7 @@ class DeleteDestinationTile extends StatelessWidget {
                 image: DecorationImage(
                   fit: BoxFit.cover,
                   image: NetworkImage(
-                    destinationDetail.urlImage!,
+                    widget.destinationDetail.urlImage!,
                   ),
                 ),
               ),
@@ -68,7 +74,7 @@ class DeleteDestinationTile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    destinationDetail.name!,
+                    widget.destinationDetail.name!,
                     style: blackTextStyle.copyWith(
                       fontSize: 18,
                       fontWeight: regular,
@@ -87,7 +93,7 @@ class DeleteDestinationTile extends StatelessWidget {
                       ),
                       const SizedBox(width: 5),
                       Text(
-                        destinationDetail.city!,
+                        widget.destinationDetail.city!,
                         style: greyTextStyle.copyWith(
                           fontWeight: light,
                         ),
@@ -103,7 +109,16 @@ class DeleteDestinationTile extends StatelessWidget {
               children: [
                 IconButton(
                     icon: const Icon(Icons.delete),
-                    onPressed: () => deleteDestination()),
+                    
+                    onPressed: () async {
+            final action = await AlertDialogs.confirmCancelDialog(context, 'Delete the Destinations', 'are you sure ?');
+            if(action == DialogAction.confirm) {
+              deleteDestination();
+            } else {
+              setState(() => tapConfirm = false);
+            }
+          },
+                    ),
               ],
             ),
           ],
@@ -111,4 +126,5 @@ class DeleteDestinationTile extends StatelessWidget {
       ),
     );
   }
-}
+    
+  }

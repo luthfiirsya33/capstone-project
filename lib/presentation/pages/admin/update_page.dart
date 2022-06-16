@@ -1,7 +1,7 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:capstone_project_sib_kwi/data/models/destination_detail.dart';
-import 'package:capstone_project_sib_kwi/presentation/widgets/update_destination_tile.dart';
+import 'package:capstone_project_sib_kwi/presentation/widgets/update_destination.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -37,7 +37,7 @@ class _UpdateState extends State<UpdatePage> {
                   var destinationDetail = toDestination(documentSnapshot);
                   return Card(
                       margin: const EdgeInsets.all(10),
-                      child: UpdateDestinationTile(destinationDetail));
+                      child: UpdateDestination(destinationDetail));
                 },
               );
             }

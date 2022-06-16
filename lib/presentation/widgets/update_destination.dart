@@ -3,10 +3,10 @@ import 'package:capstone_project_sib_kwi/data/models/destination_detail.dart';
 import 'package:capstone_project_sib_kwi/presentation/pages/detail/detail_page.dart';
 import 'package:flutter/material.dart';
 
-class UpdateDestinationTile extends StatelessWidget {
+class UpdateDestination extends StatelessWidget {
   final DestinationDetail destinationDetail;
 
-  const UpdateDestinationTile(
+  const UpdateDestination(
     this.destinationDetail, {
     Key? key,
   }) : super(key: key);

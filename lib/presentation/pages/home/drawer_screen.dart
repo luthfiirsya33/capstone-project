@@ -5,6 +5,7 @@ import 'package:capstone_project_sib_kwi/presentation/pages/admin/delete_page.da
 import 'package:capstone_project_sib_kwi/presentation/pages/admin/request_page.dart';
 import 'package:capstone_project_sib_kwi/presentation/pages/admin/update_page.dart';
 import 'package:capstone_project_sib_kwi/presentation/pages/login/login_screen.dart';
+import 'package:capstone_project_sib_kwi/presentation/widgets/alert_dialog.dart';
 import 'package:capstone_project_sib_kwi/presentation/widgets/drawer_list_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -25,6 +26,8 @@ Future<void> _signOut() async {
 class _DrawwerScreenState extends State<DrawerScreen> {
   User? user = FirebaseAuth.instance.currentUser;
   UserModel loggedInUser = UserModel();
+  String title = 'AlertDialog';
+  bool tapConfirm = false;
 
   adminCRUD(UserModel user) {
     if (user.uid == 'NQSrVbrJqNPXK05hR4pOcGJe2m22') {
@@ -105,9 +108,15 @@ class _DrawwerScreenState extends State<DrawerScreen> {
         DrawerListTile(
           iconData: Icons.logout,
           title: "Logout",
-          onTilePressed: () {
-            _signOut().then((value) => Navigator.of(context).pushReplacement(
+          onTilePressed: () async {
+            final action = await AlertDialogs.confirmCancelDialog(context, 'Logout', 'are you sure ?');
+            if(action == DialogAction.confirm) {
+              _signOut().then((value) => Navigator.of(context).pushReplacement(
                 MaterialPageRoute(builder: (context) => const LoginScreen())));
+            } else {
+              setState(() => tapConfirm = false);
+            }
+            
           },
         ),
       ],

@@ -1,6 +1,5 @@
 import 'package:capstone_project_sib_kwi/data/models/destination_detail.dart';
-import 'package:capstone_project_sib_kwi/presentation/widgets/delete_destination_tile.dart';
-import 'package:capstone_project_sib_kwi/presentation/widgets/update_destination_tile.dart';
+import 'package:capstone_project_sib_kwi/presentation/widgets/delete_destination.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -36,9 +35,7 @@ class _DeleteState extends State<DeletePage> {
                   var destinationDetail = toDestination(documentSnapshot);
                   return Card(
                       margin: const EdgeInsets.all(10),
-                      child: DeleteDestinationTile(
-                        destinationDetail: destinationDetail,
-                        context: context,
+                      child: DeleteDestination(destinationDetail: destinationDetail,
                       ));
                 },
               );
