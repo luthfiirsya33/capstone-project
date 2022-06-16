@@ -20,7 +20,7 @@ Future<void> createDestinationUser(BuildContext context) async {
   File? file;
   FirebaseStorage storage = FirebaseStorage.instance;
   final CollectionReference destinations =
-      FirebaseFirestore.instance.collection('destinations');
+      FirebaseFirestore.instance.collection('request-destinations');
 
   void _getImage() async {
     final img = await ImagePicker().pickImage(source: ImageSource.gallery);
@@ -125,6 +125,8 @@ Future<void> createDestinationUser(BuildContext context) async {
                         "location": location,
                         "description": description,
                         "urlImage": getDownloadUrl,
+                        "urlMap": '',
+                        "city": '',
                         "imgPath": imgPath
                       }).then((value) {
                         destinations.doc(value.id).update({
