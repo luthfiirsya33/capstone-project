@@ -1,7 +1,9 @@
 import 'package:capstone_project_sib_kwi/common/constants.dart';
 import 'package:capstone_project_sib_kwi/data/models/user.dart';
 import 'package:capstone_project_sib_kwi/presentation/pages/about/about_page.dart';
-import 'package:capstone_project_sib_kwi/presentation/pages/admin/admin_kwi_page.dart';
+import 'package:capstone_project_sib_kwi/presentation/pages/admin/delete_page.dart';
+import 'package:capstone_project_sib_kwi/presentation/pages/admin/request_page.dart';
+import 'package:capstone_project_sib_kwi/presentation/pages/admin/update_page.dart';
 import 'package:capstone_project_sib_kwi/presentation/pages/login/login_screen.dart';
 import 'package:capstone_project_sib_kwi/presentation/widgets/drawer_list_tile.dart';
 import 'package:flutter/material.dart';
@@ -26,15 +28,35 @@ class _DrawwerScreenState extends State<DrawerScreen> {
 
   adminCRUD(UserModel user) {
     if (user.uid == 'NQSrVbrJqNPXK05hR4pOcGJe2m22') {
-      return DrawerListTile(
-        iconData: Icons.admin_panel_settings,
-        title: "Admin",
-        onTilePressed: () {
-          Navigator.pushNamed(context, AdminKWIPage.routeName);
-        },
+      return ExpansionTile(
+        leading: const Icon(Icons.admin_panel_settings),
+        title: const Text( "Admin"),
+        children: <Widget>[
+              ListTile(
+              leading: const Icon(Icons.request_page),
+              title: const Text('Request'),
+              onTap: () {
+                Navigator.pushNamed(context, RequestPage.routeName);
+              },
+            ),
+              ListTile(
+              leading: const Icon(Icons.update),
+              title: const Text('Update'),
+              onTap: () {
+                Navigator.pushNamed(context, UpdatePage.routeName);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.delete),
+              title: const Text('Delete'),
+              onTap: () {
+                Navigator.pushNamed(context, DeletePage.routeName);
+              },
+            ),
+            ],
       );
     } else {
-      return Text('');
+      return const Text('');
     }
   }
 
@@ -72,6 +94,7 @@ class _DrawwerScreenState extends State<DrawerScreen> {
           ),
           accountEmail: Text("${loggedInUser.email}", style: whiteTextStyle),
         ),
+        adminCRUD(loggedInUser),
         DrawerListTile(
           iconData: Icons.person,
           title: 'About',
@@ -87,7 +110,6 @@ class _DrawwerScreenState extends State<DrawerScreen> {
                 MaterialPageRoute(builder: (context) => const LoginScreen())));
           },
         ),
-        adminCRUD(loggedInUser),
       ],
     ));
   }

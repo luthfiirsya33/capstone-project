@@ -2,6 +2,7 @@
 
 import 'dart:io';
 
+import 'package:capstone_project_sib_kwi/common/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +12,10 @@ Future<void> createDestination(BuildContext context) async {
   late String name;
   late String rating;
   late String location;
+  late String city;
   late String description;
+  late String urlWeb;
+  late String urlMap;
 
   String urlImage =
       "https://firebasestorage.googleapis.com/v0/b/capstone-project-kwi.appspot.com/o/photo-upload%2Flogo-capstone.png?alt=media&token=fa92a44f-6e38-42bd-af57-fa29991f6e33";
@@ -65,7 +69,7 @@ Future<void> createDestination(BuildContext context) async {
                             },
                             icon: const Icon(
                               Icons.camera_alt,
-                              color: Colors.black,
+                              color: primaryColor,
                             )),
                       ],
                     ),
@@ -96,9 +100,27 @@ Future<void> createDestination(BuildContext context) async {
                 ),
                 TextField(
                   onChanged: (value) {
+                    city= value;
+                  },
+                  decoration: const InputDecoration(labelText: 'Kota'),
+                ),
+                TextField(
+                  onChanged: (value) {
                     description = value;
                   },
                   decoration: const InputDecoration(labelText: 'Deskripsi'),
+                ),
+                TextField(
+                  onChanged: (value) {
+                    urlWeb = value;
+                  },
+                  decoration: const InputDecoration(labelText: 'Website Resmi'),
+                ),
+                TextField(
+                  onChanged: (value) {
+                    urlMap = value;
+                  },
+                  decoration: const InputDecoration(labelText: 'Url Google Map'),
                 ),
                 const SizedBox(
                   height: 20,
@@ -114,16 +136,17 @@ Future<void> createDestination(BuildContext context) async {
                       String getDownloadUrl = await storage
                           .ref('photo-upload/$imageName')
                           .getDownloadURL();
-
+                        
                       await destinations.add({
+                        "idDoc": destinations.id,
                         "name": name,
                         "rating": rating,
                         "location": location,
+                        "city": city,
                         "description": description,
                         "urlImage": getDownloadUrl,
-                        "urlWeb": "",
-                        "city": "",
-                        "urlMap": "",
+                        "urlWeb": urlWeb,
+                        "urlMap": urlMap,
                       }).then((value) {
                         destinations.doc(value.id).update({
                           "idDoc": value.id,

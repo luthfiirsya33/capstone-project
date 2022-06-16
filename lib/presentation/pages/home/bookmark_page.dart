@@ -65,15 +65,15 @@ class _BookmarkPageState extends State<BookmarkPage> {
                               width: double.infinity,
                               decoration: BoxDecoration(
                                   borderRadius: const BorderRadius.only(
-                                      topLeft: Radius.circular(20),
-                                      topRight: Radius.circular(20)),
+                                      topLeft: Radius.circular(4),
+                                      topRight: Radius.circular(4)),
                                   image: DecorationImage(
                                       image: NetworkImage(data["urlImage"]),
                                       fit: BoxFit.cover)),
                             ),
                             Container(
                               padding: const EdgeInsets.only(top: 12, left: 10),
-                              height: 95,
+                              height: 70,
                               width: double.infinity,
                               decoration: const BoxDecoration(
                                 color: Colors.white,

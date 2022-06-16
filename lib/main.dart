@@ -1,6 +1,8 @@
 import 'package:capstone_project_sib_kwi/data/models/destination_detail.dart';
 import 'package:capstone_project_sib_kwi/presentation/pages/about/about_page.dart';
-import 'package:capstone_project_sib_kwi/presentation/pages/admin/admin_kwi_page.dart';
+import 'package:capstone_project_sib_kwi/presentation/pages/admin/delete_page.dart';
+import 'package:capstone_project_sib_kwi/presentation/pages/admin/request_page.dart';
+import 'package:capstone_project_sib_kwi/presentation/pages/admin/update_page.dart';
 import 'package:capstone_project_sib_kwi/presentation/pages/detail/detail_page.dart';
 import 'package:capstone_project_sib_kwi/presentation/pages/splash/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -32,7 +34,9 @@ class MyApp extends StatelessWidget {
                   as DestinationDetail,
             ),
         AboutPage.routeName: (context) => const AboutPage(),
-        AdminKWIPage.routeName: (context) => const AdminKWIPage(),
+        RequestPage.routeName: (context) => const RequestPage(),
+        UpdatePage.routeName: (context) => const UpdatePage(),
+        DeletePage.routeName: (context) => const DeletePage(),
       },
     );
   }
