@@ -10,6 +10,7 @@ class DestinationDetail {
   final String? urlWeb;
   final String? city;
   final String? urlMap;
+  final String? imgPath;
 
   DestinationDetail(
       {this.idDoc,
@@ -20,20 +21,21 @@ class DestinationDetail {
       this.urlImage,
       this.urlWeb,
       this.city,
-      this.urlMap});
+      this.urlMap,
+      this.imgPath});
 
   factory DestinationDetail.fromMap(map) {
     return DestinationDetail(
-      idDoc: map["idDoc"],
-      name: map["name"],
-      description: map["description"],
-      location: map["location"],
-      rating: map["rating"].toString(),
-      urlImage: map["urlImage"],
-      urlWeb: map["urlWeb"],
-      city: map["city"],
-      urlMap: map["urlMap"],
-    );
+        idDoc: map["idDoc"],
+        name: map["name"],
+        description: map["description"],
+        location: map["location"],
+        rating: map["rating"].toString(),
+        urlImage: map["urlImage"],
+        urlWeb: map["urlWeb"],
+        city: map["city"],
+        urlMap: map["urlMap"],
+        imgPath: map["imgPath"]);
   }
 }
 

@@ -2,6 +2,7 @@ import 'package:capstone_project_sib_kwi/common/constants.dart';
 import 'package:capstone_project_sib_kwi/data/models/destination_detail.dart';
 import 'package:capstone_project_sib_kwi/presentation/pages/detail/detail_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 
 class DeleteDestinationTile extends StatelessWidget {
@@ -15,14 +16,14 @@ class DeleteDestinationTile extends StatelessWidget {
   Future deleteDestination() async {
     CollectionReference destinations =
         FirebaseFirestore.instance.collection("destinations");
-    return await destinations
-        .doc(destinationDetail.idDoc)
-        .delete()
-        .then((value) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        content: Text('Successfully Deleted the Destination'),
-        duration: Duration(seconds: 1),
-      ));
+    FirebaseStorage storage = FirebaseStorage.instance;
+    return await storage.ref(destinationDetail.imgPath).delete().then((value) {
+      destinations.doc(destinationDetail.idDoc).delete().whenComplete(() {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text('Successfully Deleted the Destination'),
+          duration: Duration(seconds: 1),
+        ));
+      });
     });
   }
 
