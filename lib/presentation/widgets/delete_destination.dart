@@ -111,7 +111,7 @@ class _DeleteDestinationState extends State<DeleteDestination> {
                     icon: const Icon(Icons.delete),
                     
                     onPressed: () async {
-            final action = await AlertDialogs.confirmCancelDialog(context, 'Delete the Destinations', 'are you sure ?');
+            final action = await AlertDialogs.confirmCancelDialog(context, 'Delete this Destination', 'are you sure ?');
             if(action == DialogAction.confirm) {
               deleteDestination();
             } else {

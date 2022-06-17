@@ -1,6 +1,7 @@
 import 'package:capstone_project_sib_kwi/common/constants.dart';
 import 'package:capstone_project_sib_kwi/data/models/destination_detail.dart';
 import 'package:capstone_project_sib_kwi/presentation/pages/detail/detail_page.dart';
+import 'package:capstone_project_sib_kwi/presentation/widgets/update_destination_admin.dart';
 import 'package:flutter/material.dart';
 
 class UpdateDestination extends StatelessWidget {
@@ -85,7 +86,9 @@ class UpdateDestination extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                IconButton(icon: const Icon(Icons.edit), onPressed: () {}),
+                IconButton(icon: const Icon(Icons.edit), onPressed: () {
+                  editDestination(context, destinationDetail);
+                }),
               ],
             ),
           ],
