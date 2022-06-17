@@ -1,3 +1,4 @@
+import 'package:capstone_project_sib_kwi/presentation/pages/landing/landing_page.dart';
 import 'package:capstone_project_sib_kwi/presentation/pages/login/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
@@ -14,7 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     Future.delayed(const Duration(seconds: 5), () {
       Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (context) => const LoginScreen()));
+          MaterialPageRoute(builder: (context) => const LandingPage()));
     });
     super.initState();
   }
