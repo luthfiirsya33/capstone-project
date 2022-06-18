@@ -19,7 +19,7 @@ class _DeleteDestinationState extends State<DeleteDestination> {
   String title = 'AlertDialog';
   bool tapConfirm = false;
 
-  Future deleteDestination() async {
+  Future<void> deleteDestination() async {
     CollectionReference destinations =
         FirebaseFirestore.instance.collection("destinations");
     FirebaseStorage storage = FirebaseStorage.instance;
