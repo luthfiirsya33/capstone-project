@@ -215,7 +215,9 @@ class _UpdatePageState extends State<UpdatePage> {
                   final DocumentSnapshot documentSnapshot =
                       streamSnapshot.data!.docs[index];
                   var destinationDetail = toDestination(documentSnapshot);
-                  return GestureDetector(
+                  return Card(
+          margin: const EdgeInsets.all(10),
+                  child: GestureDetector(
       onTap: () {
         Navigator.push(
           context,
@@ -227,7 +229,6 @@ class _UpdatePageState extends State<UpdatePage> {
         );
       },
       child: Container(
-        //margin: const EdgeInsets.only(top: 4),
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
           color: whiteColor,
@@ -295,7 +296,7 @@ class _UpdatePageState extends State<UpdatePage> {
           ],
         ),
       ),
-    );
+    ));
                 },
               );
             }

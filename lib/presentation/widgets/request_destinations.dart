@@ -7,26 +7,26 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 
 
-class DeleteDestination extends StatefulWidget {
+class RequestDestination extends StatefulWidget {
   final DestinationDetail destinationDetail;
-  const DeleteDestination({Key? key, required this.destinationDetail}) : super(key: key);
+  const RequestDestination({Key? key, required this.destinationDetail}) : super(key: key);
 
   @override
-  State<DeleteDestination> createState() => _DeleteDestinationState();
+  State<RequestDestination> createState() => _RequestDestinationState();
 }
 
-class _DeleteDestinationState extends State<DeleteDestination> {
+class _RequestDestinationState extends State<RequestDestination> {
   String title = 'AlertDialog';
   bool tapConfirm = false;
 
-  Future<void> deleteDestination() async {
-    CollectionReference destinations =
-        FirebaseFirestore.instance.collection("destinations");
+  Future<void> approveDestination() async {
+    CollectionReference requestdestinations =
+        FirebaseFirestore.instance.collection("request-destinations");
     FirebaseStorage storage = FirebaseStorage.instance;
     return await storage.ref(widget.destinationDetail.imgPath).delete().then((value) {
-      destinations.doc(widget.destinationDetail.idDoc).delete().whenComplete(() {
+      requestdestinations.doc(widget.destinationDetail.idDoc).delete().whenComplete(() {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text('Successfully Deleted the Destination'),
+          content: Text('Successfully Approved the Destination'),
           duration: Duration(seconds: 1),
         ));
       });
@@ -47,6 +47,7 @@ class _DeleteDestinationState extends State<DeleteDestination> {
         );
       },
       child: Container(
+        //margin: const EdgeInsets.only(top: 4),
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
           color: whiteColor,
@@ -107,12 +108,12 @@ class _DeleteDestinationState extends State<DeleteDestination> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 IconButton(
-                    icon: const Icon(Icons.delete),
+                    icon: const Icon(Icons.check),
                     
                     onPressed: () async {
-            final action = await AlertDialogs.confirmCancelDialog(context, 'Delete this Destination', 'are you sure ?');
+            final action = await AlertDialogs.confirmCancelDialog(context, 'Approve this Destination', 'are you sure ?');
             if(action == DialogAction.confirm) {
-              deleteDestination();
+              approveDestination();
             } else {
               setState(() => tapConfirm = false);
             }
