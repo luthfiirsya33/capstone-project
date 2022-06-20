@@ -45,24 +45,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
         padding: const EdgeInsets.all(10),
         child: ListView(
           children: <Widget>[
-              Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 18),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  CircleAvatar(
-                    backgroundColor: primaryColor,
-                    foregroundColor: Colors.white,
-                    child: IconButton(
-                      icon: const Icon(Icons.arrow_back),
-                      onPressed: () async {
-                        Navigator.of(context, rootNavigator: true).pop(context);
-                      },
-                    ),
-                  ),
-                ],
-              ),
-            ),
             Container(
               alignment: Alignment.center,
               padding: const EdgeInsets.all(10),
