@@ -13,7 +13,7 @@ class LandingPage extends StatelessWidget {
       body: Stack(
         children: [
           // Container(
-          //   width: double.infinity,
+          //  /width: double.infinity,
           //   height: double.infinity,
           //   decoration: const BoxDecoration(
           //     image: DecorationImage(
@@ -35,6 +35,16 @@ class LandingPage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
+                ClipOval(
+                      child: SizedBox.fromSize(
+                        size: const Size.fromRadius(80), // Image radius
+                        child:
+                            Image.asset('assets/img/logo-capstone.png', fit: BoxFit.cover),
+                      ),
+                    ),
+                const SizedBox(
+                  height: 20,
+                ),
                 Text(
                   'KWI APP',
                   style: whiteTextStyle.copyWith(
@@ -43,7 +53,7 @@ class LandingPage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(
-                  height: 10,
+                  height: 30,
                 ),
                 Text(
                   'Explore new destination in Indonesian with us and get a vacation',
@@ -54,11 +64,11 @@ class LandingPage extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
                 CustomButton(
-                  title: 'GET STARTED',
-                  width: 220,
+                  title: 'Get Started',
+                  width: 250,
                   margin: const EdgeInsets.only(
-                    top: 140,
-                    bottom: 20,
+                    top: 100,
+                    bottom: 10,
                   ),
                   onPressed: () {
                      Navigator.pushReplacement(context,
@@ -66,7 +76,7 @@ class LandingPage extends StatelessWidget {
                   },
                 ),
                 const SizedBox(
-                  height: 170,
+                  height: 190,
                 ),
           //       CustomButton(
           //         title: 'Register',
