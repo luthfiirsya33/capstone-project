@@ -185,7 +185,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               const Text("Have an account ? "),
               GestureDetector(
                 onTap: () {
-                  Navigator.push(
+                  Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
                           builder: (context) => const LoginScreen()));
