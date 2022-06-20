@@ -17,9 +17,9 @@ class LandingPage extends StatelessWidget {
             height: double.infinity,
             decoration: BoxDecoration(
               image: DecorationImage(
-                fit: BoxFit.cover,
+                fit: BoxFit.fill,
                 image: AssetImage(
-                  'assets/landing_page2.png',
+                  'assets/waterfall.png',
                 ),
               ),
             ),

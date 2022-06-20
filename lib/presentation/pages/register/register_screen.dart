@@ -3,6 +3,7 @@
 import 'package:capstone_project_sib_kwi/common/constants.dart';
 import 'package:capstone_project_sib_kwi/data/models/user.dart';
 import 'package:capstone_project_sib_kwi/presentation/pages/home/bottom_bar.dart';
+import 'package:capstone_project_sib_kwi/presentation/pages/login/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -179,6 +180,25 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     onPressed: () {
                       registerSubmit();
                     })),
+                    const SizedBox(height: 20),
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
+              const Text("Have an account ? "),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const LoginScreen()));
+                },
+                child: const Text(
+                  "SignIn",
+                  style: TextStyle(
+                      color: primaryColor,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15),
+                ),
+              )
+            ]),
           ],
         ),
       ),
