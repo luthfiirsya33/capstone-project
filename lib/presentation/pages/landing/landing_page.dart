@@ -25,7 +25,8 @@ class LandingPage extends StatelessWidget {
           //   ),
           // ),
           SizedBox(
-          height: double.infinity,
+          width: 500,
+          height: 900,
           child: FittedBox(
             fit: BoxFit.cover,
             child: Image.asset('assets/leaf2.png'),
