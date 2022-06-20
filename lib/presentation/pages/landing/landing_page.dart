@@ -12,16 +12,23 @@ class LandingPage extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          Container(
-            width: double.infinity,
-            height: double.infinity,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image: AssetImage(
-                  'assets/landing_page2.png',
-                ),
-              ),
+          // Container(
+          //   width: double.infinity,
+          //   height: double.infinity,
+          //   decoration: const BoxDecoration(
+          //     image: DecorationImage(
+          //       fit: BoxFit.cover,
+          //       image: AssetImage(
+          //         'assets/leaf2.png',
+          //       ),
+          //     ),
+          //   ),
+          // ),
+          SizedBox(
+          height: double.infinity,
+          child: FittedBox(
+            fit: BoxFit.cover,
+            child: Image.asset('assets/leaf2.png'),
             ),
           ),
           Center(
@@ -35,7 +42,7 @@ class LandingPage extends StatelessWidget {
                     fontWeight: semiBold,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Text(
@@ -47,9 +54,9 @@ class LandingPage extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
                 CustomButton(
-                  title: 'Login',
+                  title: 'GET STARTED',
                   width: 220,
-                  margin: EdgeInsets.only(
+                  margin: const EdgeInsets.only(
                     top: 140,
                     bottom: 20,
                   ),
@@ -58,18 +65,21 @@ class LandingPage extends StatelessWidget {
           MaterialPageRoute(builder: (context) => const LoginScreen()));
                   },
                 ),
-                CustomButton(
-                  title: 'Register',
-                  width: 220,
-                  margin: EdgeInsets.only(
-                    top: 20,
-                    bottom: 80,
-                  ),
-                  onPressed: () {
-                     Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (context) => const RegisterScreen()));
-                  },
+                const SizedBox(
+                  height: 170,
                 ),
+          //       CustomButton(
+          //         title: 'Register',
+          //         width: 220,
+          //         margin: const EdgeInsets.only(
+          //           top: 20,
+          //           bottom: 80,
+          //         ),
+          //         onPressed: () {
+          //            Navigator.push(context,
+          // MaterialPageRoute(builder: (context) => const RegisterScreen()));
+          //         },
+          //       ),
               ],
             ),
           ),
