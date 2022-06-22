@@ -1,9 +1,8 @@
 import 'package:capstone_project_sib_kwi/common/constants.dart';
 import 'package:capstone_project_sib_kwi/data/models/destination_detail.dart';
-import 'package:capstone_project_sib_kwi/presentation/pages/detail/detail_page.dart';
+import 'package:capstone_project_sib_kwi/presentation/pages/home/detail_page.dart';
 import 'package:capstone_project_sib_kwi/presentation/widgets/alert_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 
 
@@ -19,8 +18,6 @@ class _RequestDestinationState extends State<RequestDestination> {
   String title = 'AlertDialog';
   bool tapConfirm = false;
 
-
-
   Future<void> approveDestination() async {
 
     Map<String, dynamic> toDes = {
@@ -35,17 +32,7 @@ class _RequestDestinationState extends State<RequestDestination> {
       "urlMap": '',
       "imgPath": widget.destinationDetail.imgPath
     };
-    FirebaseFirestore destinations =
-        FirebaseFirestore.instance;
-    FirebaseStorage storage = FirebaseStorage.instance;
-    // return await storage.ref(widget.destinationDetail.imgPath).delete().then((value) {
-    //   requestdestinations.doc(widget.destinationDetail.idDoc).delete().whenComplete(() {
-    //     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-    //       content: Text('Successfully Approved the Destination'),
-    //       duration: Duration(seconds: 1),
-    //     ));
-    //   });
-    // });
+    FirebaseFirestore destinations = FirebaseFirestore.instance;
     return await destinations.collection('destinations').doc().set(toDes).then((value) {
       return destinations.collection('request-destinations').doc(widget.destinationDetail.idDoc).delete().whenComplete(() {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
@@ -70,7 +57,6 @@ class _RequestDestinationState extends State<RequestDestination> {
         );
       },
       child: Container(
-        //margin: const EdgeInsets.only(top: 4),
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
           color: whiteColor,
@@ -132,7 +118,6 @@ class _RequestDestinationState extends State<RequestDestination> {
               children: [
                 IconButton(
                     icon: const Icon(Icons.check),
-                    
                     onPressed: () async {
             final action = await AlertDialogs.confirmCancelDialog(context, 'Approve this Destination', 'are you sure ?');
             if(action == DialogAction.confirm) {

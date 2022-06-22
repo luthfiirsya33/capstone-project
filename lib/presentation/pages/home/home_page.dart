@@ -1,7 +1,4 @@
-// ignore_for_file: library_private_types_in_public_api
-
 import 'dart:io';
-
 import 'package:capstone_project_sib_kwi/common/constants.dart';
 import 'package:capstone_project_sib_kwi/data/models/destination_detail.dart';
 import 'package:capstone_project_sib_kwi/data/models/user.dart';
@@ -9,7 +6,7 @@ import 'package:capstone_project_sib_kwi/presentation/widgets/category_card.dart
 import 'package:capstone_project_sib_kwi/presentation/widgets/destination_card.dart';
 import 'package:capstone_project_sib_kwi/presentation/widgets/destination_tile.dart';
 import 'package:capstone_project_sib_kwi/presentation/pages/home/drawer_screen.dart';
-import 'package:capstone_project_sib_kwi/presentation/pages/search/search_page.dart';
+import 'package:capstone_project_sib_kwi/presentation/pages/home/search_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -19,6 +16,7 @@ class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _HomePageState createState() => _HomePageState();
 }
 

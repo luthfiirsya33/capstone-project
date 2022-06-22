@@ -1,10 +1,10 @@
 import 'package:capstone_project_sib_kwi/data/models/destination_detail.dart';
-import 'package:capstone_project_sib_kwi/presentation/pages/about/about_page.dart';
+import 'package:capstone_project_sib_kwi/presentation/pages/home/about_page.dart';
 import 'package:capstone_project_sib_kwi/presentation/pages/admin/delete_page.dart';
 import 'package:capstone_project_sib_kwi/presentation/pages/admin/request_page.dart';
 import 'package:capstone_project_sib_kwi/presentation/pages/admin/update_page.dart';
-import 'package:capstone_project_sib_kwi/presentation/pages/detail/detail_page.dart';
-import 'package:capstone_project_sib_kwi/presentation/pages/splash/splash_screen.dart';
+import 'package:capstone_project_sib_kwi/presentation/pages/home/detail_page.dart';
+import 'package:capstone_project_sib_kwi/presentation/pages/home/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 

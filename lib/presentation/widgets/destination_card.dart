@@ -1,8 +1,7 @@
 import 'dart:ui';
-
 import 'package:capstone_project_sib_kwi/common/constants.dart';
 import 'package:capstone_project_sib_kwi/data/models/destination_detail.dart';
-import 'package:capstone_project_sib_kwi/presentation/pages/detail/detail_page.dart';
+import 'package:capstone_project_sib_kwi/presentation/pages/home/detail_page.dart';
 import 'package:flutter/material.dart';
 
 class DestinationCard extends StatelessWidget {
@@ -77,19 +76,6 @@ class DestinationCard extends StatelessWidget {
                             const SizedBox(width: 4),
                             Text(
                               destinationDetail.name!,
-                              style: whiteTextStyle.copyWith(
-                                fontWeight: light,
-                              ),
-                            ),
-                            Text(
-                              ",",
-                              style: whiteTextStyle.copyWith(
-                                fontWeight: light,
-                              ),
-                            ),
-                            const SizedBox(width: 4),
-                            Text(
-                              destinationDetail.city!,
                               style: whiteTextStyle.copyWith(
                                 fontWeight: light,
                               ),

@@ -1,8 +1,7 @@
 import 'dart:io';
-
 import 'package:capstone_project_sib_kwi/common/constants.dart';
 import 'package:capstone_project_sib_kwi/data/models/destination_detail.dart';
-import 'package:capstone_project_sib_kwi/presentation/pages/detail/detail_page.dart';
+import 'package:capstone_project_sib_kwi/presentation/pages/home/detail_page.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -46,9 +45,7 @@ class _UpdatePageState extends State<UpdatePage> {
   }
 
   Future<void> _updateDestination([DocumentSnapshot? documentSnapshot]) async {
-    String action = 'create';
     if (documentSnapshot != null) {
-      action = 'update';
       _nameController.text = documentSnapshot['name'];
       _ratingController.text = documentSnapshot['rating'];
       _locationController.text = documentSnapshot['location'];
@@ -132,7 +129,7 @@ class _UpdatePageState extends State<UpdatePage> {
                   height: 20,
                 ),
                 ElevatedButton(
-                  child: Text(action == 'create' ? 'Create' : 'Update'),
+                  child: const Text('Update'),
                   onPressed: () async {
                     if ((imageName != '') && (file != null)) {
                       await storage
@@ -151,21 +148,7 @@ class _UpdatePageState extends State<UpdatePage> {
                       final String city = _cityController.text;
                       final String urlWeb = _urlWebController.text;
                       final String urlMap = _urlMapController.text;
-                      if (action == 'create') {
-                        await _destinations.add({
-                          "name": name,
-                          "rating": rating,
-                          "location": location,
-                          "description": description,
-                          "city": city,
-                          "urlWeb": urlWeb,
-                          "urlMap": urlMap,
-                          "imgPath": imgPath,
-                          "urlImage": getDownloadUrl
-                        });
-                      }
 
-                      if (action == 'update') {
                         await _destinations.doc(documentSnapshot!.id).update({
                           "name": name,
                           "rating": rating,
@@ -177,7 +160,6 @@ class _UpdatePageState extends State<UpdatePage> {
                           "imgPath": imgPath,
                           "urlImage": getDownloadUrl
                         });
-                      }
 
                       _nameController.text = '';
                       _ratingController.text = '';
@@ -187,6 +169,7 @@ class _UpdatePageState extends State<UpdatePage> {
                       _urlWebController.text = '';
                       _urlMapController.text = '';
 
+                      // ignore: use_build_context_synchronously
                       Navigator.of(context).pop();
                     }
                   },

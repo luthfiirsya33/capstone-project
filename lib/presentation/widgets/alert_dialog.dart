@@ -21,7 +21,7 @@ class AlertDialogs {
               ElevatedButton(
                 onPressed: () =>
                     Navigator.of(context).pop(DialogAction.cancel),
-                child: Text(
+                child: const Text(
                   'Cancel',
                   style: TextStyle(
                       color: primaryColor, fontWeight: FontWeight.bold),
@@ -29,7 +29,7 @@ class AlertDialogs {
               ),
               ElevatedButton(
                 onPressed: () => Navigator.of(context).pop(DialogAction.confirm),
-                child: Text(
+                child: const Text(
                   'Confirm',
                   style: TextStyle(
                       color: primaryColor, fontWeight: FontWeight.w700),

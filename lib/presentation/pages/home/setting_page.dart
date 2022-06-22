@@ -1,5 +1,3 @@
-// ignore_for_file: library_private_types_in_public_api
-
 import 'package:capstone_project_sib_kwi/data/models/user.dart';
 import 'package:capstone_project_sib_kwi/presentation/widgets/profil.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -10,6 +8,7 @@ class SettingPage extends StatefulWidget {
   const SettingPage({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _SettingPageState createState() => _SettingPageState();
 }
 

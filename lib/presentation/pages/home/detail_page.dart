@@ -1,5 +1,3 @@
-// ignore_for_file: must_be_immutable
-
 import 'package:capstone_project_sib_kwi/data/models/destination_detail.dart';
 import 'package:capstone_project_sib_kwi/presentation/widgets/add_remove_bookmark.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -7,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:capstone_project_sib_kwi/common/constants.dart';
 import 'package:url_launcher/link.dart';
 
+// ignore: must_be_immutable
 class DetailPage extends StatefulWidget {
   static const routeName = '/detail_page';
   DestinationDetail destinationDetail;
@@ -22,9 +21,7 @@ class _DetailPageState extends State<DetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    //print(data);
     return Scaffold(
-      //backgroundColor: primaryColor,
       body: SafeArea(
         child: Stack(
           children: [

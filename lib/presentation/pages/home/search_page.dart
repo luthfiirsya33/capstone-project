@@ -1,5 +1,5 @@
 import 'package:capstone_project_sib_kwi/data/models/destination_detail.dart';
-import 'package:capstone_project_sib_kwi/presentation/pages/detail/detail_page.dart';
+import 'package:capstone_project_sib_kwi/presentation/pages/home/detail_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';

@@ -1,6 +1,6 @@
 import 'package:capstone_project_sib_kwi/common/constants.dart';
 import 'package:capstone_project_sib_kwi/data/models/destination_detail.dart';
-import 'package:capstone_project_sib_kwi/presentation/pages/detail/detail_page.dart';
+import 'package:capstone_project_sib_kwi/presentation/pages/home/detail_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -119,21 +119,6 @@ class _BookmarkPageState extends State<BookmarkPage> {
                                             ),
                                           ],
                                         ),
-                                        Row(
-                                          children: [
-                                            const Icon(
-                                              Icons.star,
-                                              color: Colors.amber,
-                                            ),
-                                            Text(
-                                              data["rating"].toString(),
-                                              style: blackTextStyle.copyWith(
-                                                fontSize: 14,
-                                                fontWeight: regular,
-                                              ),
-                                            ),
-                                          ],
-                                        )
                                       ],
                                     ),
                                   ),
@@ -143,7 +128,6 @@ class _BookmarkPageState extends State<BookmarkPage> {
                           ])));
                 });
           }
-
           return const Center(
             child: CircularProgressIndicator(),
           );

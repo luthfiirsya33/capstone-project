@@ -1,6 +1,5 @@
 import 'package:capstone_project_sib_kwi/common/constants.dart';
-import 'package:capstone_project_sib_kwi/presentation/pages/login/login_screen.dart';
-import 'package:capstone_project_sib_kwi/presentation/pages/register/register_screen.dart';
+import 'package:capstone_project_sib_kwi/presentation/pages/auth/login_screen.dart';
 import 'package:capstone_project_sib_kwi/presentation/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 
@@ -12,18 +11,6 @@ class LandingPage extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          // Container(
-          //  /width: double.infinity,
-          //   height: double.infinity,
-          //   decoration: const BoxDecoration(
-          //     image: DecorationImage(
-          //       fit: BoxFit.cover,
-          //       image: AssetImage(
-          //         'assets/leaf2.png',
-          //       ),
-          //     ),
-          //   ),
-          // ),
           SizedBox(
           width: 500,
           height: 900,
@@ -79,18 +66,6 @@ class LandingPage extends StatelessWidget {
                 const SizedBox(
                   height: 190,
                 ),
-          //       CustomButton(
-          //         title: 'Register',
-          //         width: 220,
-          //         margin: const EdgeInsets.only(
-          //           top: 20,
-          //           bottom: 80,
-          //         ),
-          //         onPressed: () {
-          //            Navigator.push(context,
-          // MaterialPageRoute(builder: (context) => const RegisterScreen()));
-          //         },
-          //       ),
               ],
             ),
           ),

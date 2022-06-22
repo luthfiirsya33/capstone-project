@@ -8,6 +8,7 @@ class DeletePage extends StatefulWidget {
   const DeletePage({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _DeleteState createState() => _DeleteState();
 }
 

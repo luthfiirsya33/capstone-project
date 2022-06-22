@@ -1,5 +1,3 @@
-// ignore_for_file: avoid_print, library_private_types_in_public_api, must_be_immutable
-
 import 'dart:io';
 import 'package:capstone_project_sib_kwi/common/constants.dart';
 import 'package:capstone_project_sib_kwi/data/models/user.dart';
@@ -11,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 
+// ignore: must_be_immutable
 class Profil extends StatelessWidget {
   Profil({Key? key, required this.loggedUser}) : super(key: key);
   User? user = FirebaseAuth.instance.currentUser;
@@ -77,7 +76,6 @@ class Profil extends StatelessWidget {
                     color: primaryColor.withOpacity(0.5),
                     spreadRadius: 2,
                     blurRadius: 2,
-                    //offset: Offset(3, 3)
                   )
                 ]),
             child: Column(

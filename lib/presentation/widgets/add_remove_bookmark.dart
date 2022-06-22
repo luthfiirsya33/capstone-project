@@ -1,10 +1,9 @@
-// ignore_for_file: must_be_immutable
-
 import 'package:capstone_project_sib_kwi/data/models/destination_detail.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class AddRemoveBookmark extends StatelessWidget {
   DestinationDetail destinationDetail;
   User? currentUser = FirebaseAuth.instance.currentUser;

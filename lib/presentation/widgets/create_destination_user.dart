@@ -1,7 +1,4 @@
-// ignore_for_file: use_build_context_synchronously
-
 import 'dart:io';
-
 import 'package:capstone_project_sib_kwi/common/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -105,7 +102,7 @@ Future<void> createDestinationUser(BuildContext context) async {
                   height: 20,
                 ),
                 ElevatedButton(
-                  child: const Text('Create'),
+                  child: const Text('Request'),
                   onPressed: () async {
                     if ((imageName != '') && (file != null)) {
                       await storage
@@ -136,11 +133,13 @@ Future<void> createDestinationUser(BuildContext context) async {
                       });
                     }
 
+                    // ignore: use_build_context_synchronously
                     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                       content: Text('Successfully Requested'),
                       duration: Duration(seconds: 1),
                     ));
 
+                    // ignore: use_build_context_synchronously
                     Navigator.of(context).pop();
                   },
                 ),

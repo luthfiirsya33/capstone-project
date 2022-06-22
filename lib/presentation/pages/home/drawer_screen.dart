@@ -1,10 +1,10 @@
 import 'package:capstone_project_sib_kwi/common/constants.dart';
 import 'package:capstone_project_sib_kwi/data/models/user.dart';
-import 'package:capstone_project_sib_kwi/presentation/pages/about/about_page.dart';
+import 'package:capstone_project_sib_kwi/presentation/pages/home/about_page.dart';
 import 'package:capstone_project_sib_kwi/presentation/pages/admin/delete_page.dart';
 import 'package:capstone_project_sib_kwi/presentation/pages/admin/request_page.dart';
 import 'package:capstone_project_sib_kwi/presentation/pages/admin/update_page.dart';
-import 'package:capstone_project_sib_kwi/presentation/pages/login/login_screen.dart';
+import 'package:capstone_project_sib_kwi/presentation/pages/auth/login_screen.dart';
 import 'package:capstone_project_sib_kwi/presentation/widgets/alert_dialog.dart';
 import 'package:capstone_project_sib_kwi/presentation/widgets/drawer_list_tile.dart';
 import 'package:flutter/material.dart';

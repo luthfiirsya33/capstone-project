@@ -1,9 +1,7 @@
-// ignore_for_file: unnecessary_const, body_might_complete_normally_nullable
-
 import 'package:capstone_project_sib_kwi/common/constants.dart';
 import 'package:capstone_project_sib_kwi/data/models/user.dart';
 import 'package:capstone_project_sib_kwi/presentation/pages/home/bottom_bar.dart';
-import 'package:capstone_project_sib_kwi/presentation/pages/login/login_screen.dart';
+import 'package:capstone_project_sib_kwi/presentation/pages/auth/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -19,7 +17,6 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen> {
   bool isHiddenPassword = true;
   final _auth = FirebaseAuth.instance;
-  // final _formKey = GlobalKey<FormState>();
   final TextEditingController _nicknameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -59,8 +56,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
             ),
             const Padding(
               padding: EdgeInsets.all(8.0),
-              child: const Image(
-                image: const AssetImage("assets/img/logo-capstone.png"),
+              child: Image(
+                image: AssetImage("assets/img/logo-capstone.png"),
                 height: 200,
                 width: 200,
               ),

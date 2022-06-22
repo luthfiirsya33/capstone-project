@@ -1,8 +1,6 @@
-// ignore_for_file: avoid_print
-
 import 'package:capstone_project_sib_kwi/common/constants.dart';
 import 'package:capstone_project_sib_kwi/presentation/pages/home/bottom_bar.dart';
-import 'package:capstone_project_sib_kwi/presentation/pages/register/register_screen.dart';
+import 'package:capstone_project_sib_kwi/presentation/pages/auth/register_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fluttertoast/fluttertoast.dart';

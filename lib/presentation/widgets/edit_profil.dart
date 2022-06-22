@@ -1,5 +1,3 @@
-// ignore_for_file: avoid_print
-
 import 'package:capstone_project_sib_kwi/common/constants.dart';
 import 'package:capstone_project_sib_kwi/data/models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -32,18 +30,21 @@ Future editProfil(BuildContext context, UserModel loggedUser) {
 
     if (nickname.isNotEmpty) {
       documentReference.update(toNickname).whenComplete(
+            // ignore: avoid_print
             () => print("Update Successful"),
           );
     }
 
     if (instagram.isNotEmpty) {
       documentReference.update(toInstagram).whenComplete(
+            // ignore: avoid_print
             () => print("Update Successful"),
           );
     }
 
     if (linkedIn.isNotEmpty) {
       documentReference.update(toLinkedIn).whenComplete(
+            // ignore: avoid_print
             () => print("Update Successful"),
           );
     }

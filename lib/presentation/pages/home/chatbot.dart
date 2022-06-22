@@ -1,5 +1,3 @@
-// ignore_for_file: library_private_types_in_public_api
-
 import 'package:bubble/bubble.dart';
 import 'package:capstone_project_sib_kwi/common/constants.dart';
 import 'package:dialogflow_flutter/dialogflowFlutter.dart';
@@ -11,6 +9,7 @@ class ChatBotScreen extends StatefulWidget {
   const ChatBotScreen({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _ChatBotScreenState createState() => _ChatBotScreenState();
 }
 
