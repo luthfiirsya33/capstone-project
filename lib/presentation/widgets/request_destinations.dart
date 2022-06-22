@@ -19,16 +19,39 @@ class _RequestDestinationState extends State<RequestDestination> {
   String title = 'AlertDialog';
   bool tapConfirm = false;
 
+
+
   Future<void> approveDestination() async {
-    CollectionReference requestdestinations =
-        FirebaseFirestore.instance.collection("request-destinations");
+
+    Map<String, dynamic> toDes = {
+      "idDoc": widget.destinationDetail.idDoc,
+      "name": widget.destinationDetail.name,
+      "rating": widget.destinationDetail.rating,
+      "location": widget.destinationDetail.location,
+      "city": '',
+      "description": widget.destinationDetail.description,
+      "urlImage": widget.destinationDetail.urlImage,
+      "urlWeb": '',
+      "urlMap": '',
+      "imgPath": widget.destinationDetail.imgPath
+    };
+    FirebaseFirestore destinations =
+        FirebaseFirestore.instance;
     FirebaseStorage storage = FirebaseStorage.instance;
-    return await storage.ref(widget.destinationDetail.imgPath).delete().then((value) {
-      requestdestinations.doc(widget.destinationDetail.idDoc).delete().whenComplete(() {
+    // return await storage.ref(widget.destinationDetail.imgPath).delete().then((value) {
+    //   requestdestinations.doc(widget.destinationDetail.idDoc).delete().whenComplete(() {
+    //     ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+    //       content: Text('Successfully Approved the Destination'),
+    //       duration: Duration(seconds: 1),
+    //     ));
+    //   });
+    // });
+    return await destinations.collection('destinations').doc().set(toDes).then((value) {
+      return destinations.collection('request-destinations').doc(widget.destinationDetail.idDoc).delete().whenComplete(() {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text('Successfully Approved the Destination'),
-          duration: Duration(seconds: 1),
-        ));
+                  content: Text('Successfully Approved the Destination'),
+                  duration: Duration(seconds: 1),
+                ));
       });
     });
   }

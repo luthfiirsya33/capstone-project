@@ -1,4 +1,3 @@
-
 import 'dart:io';
 
 import 'package:capstone_project_sib_kwi/common/constants.dart';
@@ -9,9 +8,9 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:image_picker/image_picker.dart';
 
-
 class UpdatePage extends StatefulWidget {
   static const routeName = '/Update_page';
+
   const UpdatePage({Key? key}) : super(key: key);
 
   @override
@@ -35,6 +34,7 @@ class _UpdatePageState extends State<UpdatePage> {
   FirebaseStorage storage = FirebaseStorage.instance;
   final CollectionReference _destinations =
       FirebaseFirestore.instance.collection('destinations');
+
   void _getImage() async {
     final img = await ImagePicker().pickImage(source: ImageSource.gallery);
     if (img == null) return;
@@ -63,7 +63,7 @@ class _UpdatePageState extends State<UpdatePage> {
         context: context,
         builder: (BuildContext ctx) {
           return SingleChildScrollView(
-          child: Padding(
+              child: Padding(
             padding: EdgeInsets.only(
                 top: 20,
                 left: 20,
@@ -74,28 +74,29 @@ class _UpdatePageState extends State<UpdatePage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Stack(
-                      alignment: const Alignment(1.1, 1.1),
-                      children: [
-                        CircleAvatar(
-                          backgroundImage: (file != null
-                              ? FileImage(file!)
-                              : NetworkImage(urlImage)) as ImageProvider,
-                          radius: 72,
-                        ),
-                        IconButton(
-                            iconSize: 33,
-                            onPressed: () {
-                              _getImage();
-                            },
-                            icon: const Icon(
-                              Icons.camera_alt,
-                              color: primaryColor,
-                            )),
-                      ],
+                  alignment: const Alignment(1.1, 1.1),
+                  children: [
+                    CircleAvatar(
+                      backgroundImage: (file != null
+                          ? FileImage(file!)
+                          : NetworkImage(urlImage)) as ImageProvider,
+                      radius: 72,
                     ),
+                    IconButton(
+                        iconSize: 33,
+                        onPressed: () {
+                          _getImage();
+                        },
+                        icon: const Icon(
+                          Icons.camera_alt,
+                          color: primaryColor,
+                        )),
+                  ],
+                ),
                 TextField(
                   controller: _nameController,
-                  decoration: const InputDecoration(labelText: 'Nama Destinasi'),
+                  decoration:
+                      const InputDecoration(labelText: 'Nama Destinasi'),
                 ),
                 TextField(
                   keyboardType:
@@ -143,50 +144,51 @@ class _UpdatePageState extends State<UpdatePage> {
                           .getDownloadURL();
 
                       String imgPath = 'photo-upload/$imageName';
-                    final String name = _nameController.text;
-                    final String rating = _ratingController.text;
-                    final String location = _locationController.text;
-                    final String description = _descriptionController.text;
-                    final String city = _cityController.text;
-                    final String urlWeb = _urlWebController.text;
-                    final String urlMap = _urlMapController.text;
-                    if (action == 'create') {
-                      await _destinations.add({"name": name, 
-                                              "rating": rating, 
-                                              "location": location, 
-                                              "description": description, 
-                                              "city":city, "urlWeb":urlWeb, 
-                                              "urlMap":urlMap, 
-                                              "imgPath":imgPath, 
-                                              "urlImage":getDownloadUrl
-                                              });
+                      final String name = _nameController.text;
+                      final String rating = _ratingController.text;
+                      final String location = _locationController.text;
+                      final String description = _descriptionController.text;
+                      final String city = _cityController.text;
+                      final String urlWeb = _urlWebController.text;
+                      final String urlMap = _urlMapController.text;
+                      if (action == 'create') {
+                        await _destinations.add({
+                          "name": name,
+                          "rating": rating,
+                          "location": location,
+                          "description": description,
+                          "city": city,
+                          "urlWeb": urlWeb,
+                          "urlMap": urlMap,
+                          "imgPath": imgPath,
+                          "urlImage": getDownloadUrl
+                        });
+                      }
+
+                      if (action == 'update') {
+                        await _destinations.doc(documentSnapshot!.id).update({
+                          "name": name,
+                          "rating": rating,
+                          "location": location,
+                          "description": description,
+                          "city": city,
+                          "urlWeb": urlWeb,
+                          "urlMap": urlMap,
+                          "imgPath": imgPath,
+                          "urlImage": getDownloadUrl
+                        });
+                      }
+
+                      _nameController.text = '';
+                      _ratingController.text = '';
+                      _locationController.text = '';
+                      _descriptionController.text = '';
+                      _cityController.text = '';
+                      _urlWebController.text = '';
+                      _urlMapController.text = '';
+
+                      Navigator.of(context).pop();
                     }
-
-                    if (action == 'update') {
-                      await _destinations
-                          .doc(documentSnapshot!.id)
-                          .update({"name": name, 
-                                  "rating": rating, 
-                                  "location": location, 
-                                  "description": description, 
-                                  "city":city, "urlWeb":urlWeb, 
-                                  "urlMap":urlMap, 
-                                  "imgPath":imgPath, 
-                                  "urlImage":getDownloadUrl
-                                  });}
-
-
-                    _nameController.text = '';
-                    _ratingController.text = '';
-                    _locationController.text = '';
-                    _descriptionController.text = '';
-                    _cityController.text ='';
-                    _urlWebController.text='';
-                    _urlMapController.text='';
-
-                    
-                    Navigator.of(context).pop();
-}
                   },
                 )
               ],
@@ -194,7 +196,6 @@ class _UpdatePageState extends State<UpdatePage> {
           ));
         });
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -216,87 +217,91 @@ class _UpdatePageState extends State<UpdatePage> {
                       streamSnapshot.data!.docs[index];
                   var destinationDetail = toDestination(documentSnapshot);
                   return Card(
-          margin: const EdgeInsets.all(10),
-                  child: GestureDetector(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => DetailPage(
-              destinationDetail: destinationDetail,
-            ),
-          ),
-        );
-      },
-      child: Container(
-        padding: const EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          color: whiteColor,
-          borderRadius: BorderRadius.circular(18),
-        ),
-        child: Row(
-          children: [
-            Container(
-              width: 70,
-              height: 70,
-              margin: const EdgeInsets.only(right: 16),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: NetworkImage(
-                    destinationDetail.urlImage!,
-                  ),
-                ),
-              ),
-            ),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    destinationDetail.name!,
-                    style: blackTextStyle.copyWith(
-                      fontSize: 18,
-                      fontWeight: regular,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      const Icon(
-                        Icons.location_on,
-                        color: greenColor,
-                        size: 17,
-                      ),
-                      const SizedBox(width: 5),
-                      Text(
-                        destinationDetail.city!,
-                        style: greyTextStyle.copyWith(
-                          fontWeight: light,
+                      margin: const EdgeInsets.all(10),
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => DetailPage(
+                                destinationDetail: destinationDetail,
+                              ),
+                            ),
+                          );
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            color: whiteColor,
+                            borderRadius: BorderRadius.circular(18),
+                          ),
+                          child: Row(
+                            children: [
+                              Container(
+                                width: 70,
+                                height: 70,
+                                margin: const EdgeInsets.only(right: 16),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(20),
+                                  image: DecorationImage(
+                                    fit: BoxFit.cover,
+                                    image: NetworkImage(
+                                      destinationDetail.urlImage!,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      destinationDetail.name!,
+                                      style: blackTextStyle.copyWith(
+                                        fontSize: 18,
+                                        fontWeight: regular,
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      height: 5,
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        const Icon(
+                                          Icons.location_on,
+                                          color: greenColor,
+                                          size: 17,
+                                        ),
+                                        const SizedBox(width: 5),
+                                        Text(
+                                          destinationDetail.city!,
+                                          style: greyTextStyle.copyWith(
+                                            fontWeight: light,
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  IconButton(
+                                      icon: const Icon(Icons.edit),
+                                      onPressed: () {
+                                        _updateDestination(documentSnapshot);
+                                        urlImage = documentSnapshot["urlImage"];
+                                      }),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
-                      )
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                IconButton(icon: const Icon(Icons.edit), onPressed: () {
-                  _updateDestination(documentSnapshot);
-                }),
-              ],
-            ),
-          ],
-        ),
-      ),
-    ));
+                      ));
                 },
               );
             }
@@ -306,6 +311,4 @@ class _UpdatePageState extends State<UpdatePage> {
           },
         )));
   }
-  
-
 }
