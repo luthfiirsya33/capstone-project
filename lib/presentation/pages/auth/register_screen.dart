@@ -20,7 +20,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController _nicknameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
 
   registerSubmit() async {
     try {
@@ -29,8 +30,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
               email: _emailController.text.toString().trim(),
               password: _passwordController.text)
           .then((value) => {postDetailsToFirestore()});
-    }on FirebaseAuthException catch (e) {
-      Fluttertoast.showToast(msg: e.message.toString(), gravity: ToastGravity.TOP);
+    } on FirebaseAuthException catch (e) {
+      Fluttertoast.showToast(
+          msg: e.message.toString(), gravity: ToastGravity.TOP);
     }
   }
 
@@ -177,7 +179,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     onPressed: () {
                       registerSubmit();
                     })),
-                    const SizedBox(height: 20),
+            const SizedBox(height: 20),
             Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
               const Text("Have an account ? "),
               GestureDetector(

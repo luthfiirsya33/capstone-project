@@ -12,11 +12,11 @@ class LandingPage extends StatelessWidget {
       body: Stack(
         children: [
           SizedBox(
-          width: 500,
-          height: 900,
-          child: FittedBox(
-            fit: BoxFit.cover,
-            child: Image.asset('assets/leaf2.png'),
+            width: 500,
+            height: 900,
+            child: FittedBox(
+              fit: BoxFit.cover,
+              child: Image.asset('assets/leaf2.png'),
             ),
           ),
           Center(
@@ -24,12 +24,12 @@ class LandingPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 ClipOval(
-                      child: SizedBox.fromSize(
-                        size: const Size.fromRadius(80), // Image radius
-                        child:
-                            Image.asset('assets/img/logo-capstone.png', fit: BoxFit.cover),
-                      ),
-                    ),
+                  child: SizedBox.fromSize(
+                    size: const Size.fromRadius(80), // Image radius
+                    child: Image.asset('assets/img/logo-capstone.png',
+                        fit: BoxFit.cover),
+                  ),
+                ),
                 const SizedBox(
                   height: 20,
                 ),
@@ -59,8 +59,10 @@ class LandingPage extends StatelessWidget {
                     bottom: 10,
                   ),
                   onPressed: () {
-                     Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (context) => const LoginScreen()));
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const LoginScreen()));
                   },
                 ),
                 const SizedBox(

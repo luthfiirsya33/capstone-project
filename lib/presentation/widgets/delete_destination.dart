@@ -6,10 +6,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 
-
 class DeleteDestination extends StatefulWidget {
   final DestinationDetail destinationDetail;
-  const DeleteDestination({Key? key, required this.destinationDetail}) : super(key: key);
+  const DeleteDestination({Key? key, required this.destinationDetail})
+      : super(key: key);
 
   @override
   State<DeleteDestination> createState() => _DeleteDestinationState();
@@ -23,8 +23,14 @@ class _DeleteDestinationState extends State<DeleteDestination> {
     CollectionReference destinations =
         FirebaseFirestore.instance.collection("destinations");
     FirebaseStorage storage = FirebaseStorage.instance;
-    return await storage.ref(widget.destinationDetail.imgPath).delete().then((value) {
-      destinations.doc(widget.destinationDetail.idDoc).delete().whenComplete(() {
+    return await storage
+        .ref(widget.destinationDetail.imgPath)
+        .delete()
+        .then((value) {
+      destinations
+          .doc(widget.destinationDetail.idDoc)
+          .delete()
+          .whenComplete(() {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text('Successfully Deleted the Destination'),
           duration: Duration(seconds: 1),
@@ -107,17 +113,17 @@ class _DeleteDestinationState extends State<DeleteDestination> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 IconButton(
-                    icon: const Icon(Icons.delete),
-                    
-                    onPressed: () async {
-            final action = await AlertDialogs.confirmCancelDialog(context, 'Delete this Destination', 'are you sure ?');
-            if(action == DialogAction.confirm) {
-              deleteDestination();
-            } else {
-              setState(() => tapConfirm = false);
-            }
-          },
-                    ),
+                  icon: const Icon(Icons.delete),
+                  onPressed: () async {
+                    final action = await AlertDialogs.confirmCancelDialog(
+                        context, 'Delete this Destination', 'are you sure ?');
+                    if (action == DialogAction.confirm) {
+                      deleteDestination();
+                    } else {
+                      setState(() => tapConfirm = false);
+                    }
+                  },
+                ),
               ],
             ),
           ],
@@ -125,5 +131,4 @@ class _DeleteDestinationState extends State<DeleteDestination> {
       ),
     );
   }
-    
-  }
+}

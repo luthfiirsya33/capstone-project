@@ -1,4 +1,5 @@
 import 'package:capstone_project_sib_kwi/data/models/destination_detail.dart';
+import 'package:capstone_project_sib_kwi/presentation/pages/category/category_page.dart';
 import 'package:capstone_project_sib_kwi/presentation/pages/home/about_page.dart';
 import 'package:capstone_project_sib_kwi/presentation/pages/admin/delete_page.dart';
 import 'package:capstone_project_sib_kwi/presentation/pages/admin/request_page.dart';
@@ -37,6 +38,9 @@ class MyApp extends StatelessWidget {
         RequestPage.routeName: (context) => const RequestPage(),
         UpdatePage.routeName: (context) => const UpdatePage(),
         DeletePage.routeName: (context) => const DeletePage(),
+        CategoryPage.routeName: (context) => CategoryPage(
+              initial: ModalRoute.of(context)?.settings.arguments as int,
+            ),
       },
     );
   }

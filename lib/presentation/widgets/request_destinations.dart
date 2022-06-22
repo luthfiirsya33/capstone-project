@@ -5,10 +5,10 @@ import 'package:capstone_project_sib_kwi/presentation/widgets/alert_dialog.dart'
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-
 class RequestDestination extends StatefulWidget {
   final DestinationDetail destinationDetail;
-  const RequestDestination({Key? key, required this.destinationDetail}) : super(key: key);
+  const RequestDestination({Key? key, required this.destinationDetail})
+      : super(key: key);
 
   @override
   State<RequestDestination> createState() => _RequestDestinationState();
@@ -19,7 +19,6 @@ class _RequestDestinationState extends State<RequestDestination> {
   bool tapConfirm = false;
 
   Future<void> approveDestination() async {
-
     Map<String, dynamic> toDes = {
       "idDoc": widget.destinationDetail.idDoc,
       "name": widget.destinationDetail.name,
@@ -33,12 +32,20 @@ class _RequestDestinationState extends State<RequestDestination> {
       "imgPath": widget.destinationDetail.imgPath
     };
     FirebaseFirestore destinations = FirebaseFirestore.instance;
-    return await destinations.collection('destinations').doc().set(toDes).then((value) {
-      return destinations.collection('request-destinations').doc(widget.destinationDetail.idDoc).delete().whenComplete(() {
+    return await destinations
+        .collection('destinations')
+        .doc()
+        .set(toDes)
+        .then((value) {
+      return destinations
+          .collection('request-destinations')
+          .doc(widget.destinationDetail.idDoc)
+          .delete()
+          .whenComplete(() {
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                  content: Text('Successfully Approved the Destination'),
-                  duration: Duration(seconds: 1),
-                ));
+          content: Text('Successfully Approved the Destination'),
+          duration: Duration(seconds: 1),
+        ));
       });
     });
   }
@@ -117,16 +124,17 @@ class _RequestDestinationState extends State<RequestDestination> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 IconButton(
-                    icon: const Icon(Icons.check),
-                    onPressed: () async {
-            final action = await AlertDialogs.confirmCancelDialog(context, 'Approve this Destination', 'are you sure ?');
-            if(action == DialogAction.confirm) {
-              approveDestination();
-            } else {
-              setState(() => tapConfirm = false);
-            }
-          },
-                    ),
+                  icon: const Icon(Icons.check),
+                  onPressed: () async {
+                    final action = await AlertDialogs.confirmCancelDialog(
+                        context, 'Approve this Destination', 'are you sure ?');
+                    if (action == DialogAction.confirm) {
+                      approveDestination();
+                    } else {
+                      setState(() => tapConfirm = false);
+                    }
+                  },
+                ),
               ],
             ),
           ],
@@ -134,5 +142,4 @@ class _RequestDestinationState extends State<RequestDestination> {
       ),
     );
   }
-    
-  }
+}

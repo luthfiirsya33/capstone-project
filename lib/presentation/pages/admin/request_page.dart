@@ -36,7 +36,8 @@ class _RequestState extends State<RequestPage> {
                   var destinationDetail = toDestination(documentSnapshot);
                   return Card(
                       margin: const EdgeInsets.all(10),
-                      child: RequestDestination(destinationDetail: destinationDetail,
+                      child: RequestDestination(
+                        destinationDetail: destinationDetail,
                       ));
                 },
               );

@@ -122,7 +122,7 @@ Future<void> createDestinationUser(BuildContext context) async {
                         "location": location,
                         "description": description,
                         "urlImage": getDownloadUrl,
-                        "urlWeb":'',
+                        "urlWeb": '',
                         "urlMap": '',
                         "city": '',
                         "imgPath": imgPath

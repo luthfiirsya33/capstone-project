@@ -109,14 +109,15 @@ class _DrawwerScreenState extends State<DrawerScreen> {
           iconData: Icons.logout,
           title: "Logout",
           onTilePressed: () async {
-            final action = await AlertDialogs.confirmCancelDialog(context, 'Logout', 'are you sure ?');
-            if(action == DialogAction.confirm) {
+            final action = await AlertDialogs.confirmCancelDialog(
+                context, 'Logout', 'are you sure ?');
+            if (action == DialogAction.confirm) {
               _signOut().then((value) => Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => const LoginScreen())));
+                  MaterialPageRoute(
+                      builder: (context) => const LoginScreen())));
             } else {
               setState(() => tapConfirm = false);
             }
-            
           },
         ),
       ],

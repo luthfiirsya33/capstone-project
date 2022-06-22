@@ -21,8 +21,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   loginSubmit() async {
     try {
-      await
-      _firebaseAuth
+      await _firebaseAuth
           .signInWithEmailAndPassword(
               email: _emailController.text, password: _passwordController.text)
           .then((value) => {
@@ -31,7 +30,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     MaterialPageRoute(builder: (context) => const BottomBar()))
               });
     } on FirebaseAuthException catch (e) {
-      Fluttertoast.showToast(msg: e.message.toString(), gravity: ToastGravity.TOP);
+      Fluttertoast.showToast(
+          msg: e.message.toString(), gravity: ToastGravity.TOP);
     }
   }
 
@@ -96,7 +96,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-
                           builder: (context) => const RegisterScreen()));
                 },
                 child: const Text(

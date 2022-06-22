@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:capstone_project_sib_kwi/common/constants.dart';
 import 'package:capstone_project_sib_kwi/data/models/destination_detail.dart';
 import 'package:capstone_project_sib_kwi/data/models/user.dart';
+import 'package:capstone_project_sib_kwi/presentation/pages/category/category_page.dart';
 import 'package:capstone_project_sib_kwi/presentation/widgets/category_card.dart';
 import 'package:capstone_project_sib_kwi/presentation/widgets/destination_card.dart';
 import 'package:capstone_project_sib_kwi/presentation/widgets/destination_tile.dart';
@@ -108,21 +109,27 @@ class _HomePageState extends State<HomePage> {
                     Row(
                       children: [
                         CategoryCard(
-                          press: () {},
-                          title: "Semarang",
+                          press: () {
+                            Navigator.pushNamed(context, CategoryPage.routeName,
+                                arguments: 0);
+                          },
+                          title: "Taman Nasional",
                         ),
                         CategoryCard(
-                          press: () {},
-                          title: "Yogyakarta",
+                          press: () {
+                            Navigator.pushNamed(context, CategoryPage.routeName,
+                                arguments: 1);
+                          },
+                          title: "Pantai",
                         ),
-                        CategoryCard(
-                          press: () {},
-                          title: "Lombok",
-                        ),
-                        CategoryCard(
-                          press: () {},
-                          title: "Denpasar",
-                        ),
+                        // CategoryCard(
+                        //   press: () {},
+                        //   title: "Lombok",
+                        // ),
+                        // CategoryCard(
+                        //   press: () {},
+                        //   title: "Denpasar",
+                        // ),
                       ],
                     ),
                   ],

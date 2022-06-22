@@ -149,17 +149,17 @@ class _UpdatePageState extends State<UpdatePage> {
                       final String urlWeb = _urlWebController.text;
                       final String urlMap = _urlMapController.text;
 
-                        await _destinations.doc(documentSnapshot!.id).update({
-                          "name": name,
-                          "rating": rating,
-                          "location": location,
-                          "description": description,
-                          "city": city,
-                          "urlWeb": urlWeb,
-                          "urlMap": urlMap,
-                          "imgPath": imgPath,
-                          "urlImage": getDownloadUrl
-                        });
+                      await _destinations.doc(documentSnapshot!.id).update({
+                        "name": name,
+                        "rating": rating,
+                        "location": location,
+                        "description": description,
+                        "city": city,
+                        "urlWeb": urlWeb,
+                        "urlMap": urlMap,
+                        "imgPath": imgPath,
+                        "urlImage": getDownloadUrl
+                      });
 
                       _nameController.text = '';
                       _ratingController.text = '';

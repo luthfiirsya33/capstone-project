@@ -36,7 +36,8 @@ class _DeleteState extends State<DeletePage> {
                   var destinationDetail = toDestination(documentSnapshot);
                   return Card(
                       margin: const EdgeInsets.all(10),
-                      child: DeleteDestination(destinationDetail: destinationDetail,
+                      child: DeleteDestination(
+                        destinationDetail: destinationDetail,
                       ));
                 },
               );
