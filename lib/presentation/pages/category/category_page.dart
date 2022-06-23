@@ -1,4 +1,5 @@
-import 'package:capstone_project_sib_kwi/common/constants.dart';
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:capstone_project_sib_kwi/data/models/destination_detail.dart';
 import 'package:capstone_project_sib_kwi/presentation/widgets/destination_tile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -23,7 +24,7 @@ class _CategoryPageState extends State<CategoryPage>
   @override
   void initState() {
     _tabController =
-        TabController(length: 2, vsync: this, initialIndex: widget.initial);
+        TabController(length: 4, vsync: this, initialIndex: widget.initial);
     super.initState();
   }
 
@@ -31,7 +32,7 @@ class _CategoryPageState extends State<CategoryPage>
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Category'),
+          title: const Text('Category'),
         ),
         body: SafeArea(
           child: Column(
@@ -41,15 +42,35 @@ class _CategoryPageState extends State<CategoryPage>
                   controller: _tabController,
                   indicatorSize: TabBarIndicatorSize.tab,
                   labelColor: Colors.black,
-                  indicator: BoxDecoration(
-                      color: primaryColor,
-                      borderRadius: BorderRadius.circular(20)),
-                  tabs: [
-                    Text('Taman Nasional'),
-                    Text('Pantai'),
+                  indicatorWeight: 3,
+                  tabs: const [
+                    SizedBox(
+                        width: 120,
+                        child: Tab(
+                          text: 'Taman Nasional',
+                          height: 32,
+                        )),
+                    SizedBox(
+                        width: 120,
+                        child: Tab(
+                          text: 'Pantai',
+                          height: 32,
+                        )),
+                    SizedBox(
+                        width: 120,
+                        child: Tab(
+                          text: 'Kuliner',
+                          height: 32,
+                        )),
+                    SizedBox(
+                        width: 120,
+                        child: Tab(
+                          text: 'Gunung',
+                          height: 32,
+                        )),
                   ]),
               SizedBox(
-                height: MediaQuery.of(context).size.height - 120,
+                height: MediaQuery.of(context).size.height - 160,
                 child: TabBarView(
                   controller: _tabController,
                   children: [
@@ -86,6 +107,64 @@ class _CategoryPageState extends State<CategoryPage>
                       child: StreamBuilder(
                         stream: _destinations
                             .where('category', isEqualTo: 'Pantai')
+                            .snapshots(),
+                        builder: (context,
+                            AsyncSnapshot<QuerySnapshot> streamSnapshot) {
+                          if (streamSnapshot.hasData) {
+                            return ListView.builder(
+                              itemCount: streamSnapshot.data!.docs.length,
+                              physics: const NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              itemBuilder: (context, index) {
+                                final DocumentSnapshot documentSnapshot =
+                                    streamSnapshot.data!.docs[index];
+                                var destinationDetail =
+                                    toDestination(documentSnapshot);
+                                return Card(
+                                    margin: const EdgeInsets.all(10),
+                                    child: DestinationTile(destinationDetail));
+                              },
+                            );
+                          }
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        },
+                      ),
+                    ),
+                    SingleChildScrollView(
+                      child: StreamBuilder(
+                        stream: _destinations
+                            .where('category', isEqualTo: 'Kuliner')
+                            .snapshots(),
+                        builder: (context,
+                            AsyncSnapshot<QuerySnapshot> streamSnapshot) {
+                          if (streamSnapshot.hasData) {
+                            return ListView.builder(
+                              itemCount: streamSnapshot.data!.docs.length,
+                              physics: const NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              itemBuilder: (context, index) {
+                                final DocumentSnapshot documentSnapshot =
+                                    streamSnapshot.data!.docs[index];
+                                var destinationDetail =
+                                    toDestination(documentSnapshot);
+                                return Card(
+                                    margin: const EdgeInsets.all(10),
+                                    child: DestinationTile(destinationDetail));
+                              },
+                            );
+                          }
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        },
+                      ),
+                    ),
+                    SingleChildScrollView(
+                      child: StreamBuilder(
+                        stream: _destinations
+                            .where('category', isEqualTo: 'Gunung')
                             .snapshots(),
                         builder: (context,
                             AsyncSnapshot<QuerySnapshot> streamSnapshot) {

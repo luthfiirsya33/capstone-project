@@ -122,14 +122,20 @@ class _HomePageState extends State<HomePage> {
                           },
                           title: "Pantai",
                         ),
-                        // CategoryCard(
-                        //   press: () {},
-                        //   title: "Lombok",
-                        // ),
-                        // CategoryCard(
-                        //   press: () {},
-                        //   title: "Denpasar",
-                        // ),
+                        CategoryCard(
+                          press: () {
+                            Navigator.pushNamed(context, CategoryPage.routeName,
+                                arguments: 2);
+                          },
+                          title: "Kuliner",
+                        ),
+                        CategoryCard(
+                          press: () {
+                            Navigator.pushNamed(context, CategoryPage.routeName,
+                                arguments: 3);
+                          },
+                          title: "Gunung",
+                        ),
                       ],
                     ),
                   ],
