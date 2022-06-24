@@ -30,6 +30,7 @@ class AddRemoveBookmark extends StatelessWidget {
       "location": destinationDetail.location,
       "urlWeb": destinationDetail.urlWeb,
       "urlMap": destinationDetail.urlMap,
+      "category": destinationDetail.category,
     }).then((value) {
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text('Added to Bookmarks'),

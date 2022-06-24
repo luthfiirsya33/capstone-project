@@ -11,6 +11,7 @@ class DestinationDetail {
   final String? city;
   final String? urlMap;
   final String? imgPath;
+  final String? category;
 
   DestinationDetail(
       {this.idDoc,
@@ -22,7 +23,8 @@ class DestinationDetail {
       this.urlWeb,
       this.city,
       this.urlMap,
-      this.imgPath});
+      this.imgPath,
+      this.category});
 
   factory DestinationDetail.fromMap(map) {
     return DestinationDetail(
@@ -35,7 +37,8 @@ class DestinationDetail {
         urlWeb: map["urlWeb"],
         city: map["city"],
         urlMap: map["urlMap"],
-        imgPath: map["imgPath"]);
+        imgPath: map["imgPath"],
+        category: map["category"]);
   }
 }
 

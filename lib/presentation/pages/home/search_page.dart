@@ -74,7 +74,8 @@ class SearchPage extends SearchDelegate {
                               urlImage: data['urlImage'],
                               urlWeb: data['urlWeb'],
                               city: data["city"],
-                              urlMap: data["urlMap"]));
+                              urlMap: data["urlMap"],
+                              category: data["category"]));
                     },
                     leading: CircleAvatar(
                         backgroundImage: NetworkImage(data['urlImage'])),

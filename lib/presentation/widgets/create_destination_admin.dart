@@ -13,6 +13,7 @@ Future<void> createDestinationAdmin(BuildContext context) async {
   late String description;
   late String urlWeb;
   late String urlMap;
+  late String category;
 
   String urlImage =
       "https://firebasestorage.googleapis.com/v0/b/capstone-project-kwi.appspot.com/o/photo-upload%2Flogo-capstone.png?alt=media&token=fa92a44f-6e38-42bd-af57-fa29991f6e33";
@@ -109,6 +110,12 @@ Future<void> createDestinationAdmin(BuildContext context) async {
                 ),
                 TextField(
                   onChanged: (value) {
+                    category = value;
+                  },
+                  decoration: const InputDecoration(labelText: 'Kategori'),
+                ),
+                TextField(
+                  onChanged: (value) {
                     urlWeb = value;
                   },
                   decoration: const InputDecoration(labelText: 'Website Resmi'),
@@ -147,7 +154,8 @@ Future<void> createDestinationAdmin(BuildContext context) async {
                         "urlImage": getDownloadUrl,
                         "urlWeb": urlWeb,
                         "urlMap": urlMap,
-                        "imgPath": imgPath
+                        "imgPath": imgPath,
+                        "category": category,
                       }).then((value) {
                         destinations.doc(value.id).update({
                           "idDoc": value.id,

@@ -125,7 +125,8 @@ Future<void> createDestinationUser(BuildContext context) async {
                         "urlWeb": '',
                         "urlMap": '',
                         "city": '',
-                        "imgPath": imgPath
+                        "imgPath": imgPath,
+                        "category": '',
                       }).then((value) {
                         destinations.doc(value.id).update({
                           "idDoc": value.id,

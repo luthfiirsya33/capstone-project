@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:capstone_project_sib_kwi/common/constants.dart';
 import 'package:capstone_project_sib_kwi/data/models/destination_detail.dart';
 import 'package:capstone_project_sib_kwi/data/models/user.dart';
-import 'package:capstone_project_sib_kwi/presentation/pages/category/category_page.dart';
+import 'package:capstone_project_sib_kwi/presentation/pages/home/category_page.dart';
 import 'package:capstone_project_sib_kwi/presentation/widgets/category_card.dart';
 import 'package:capstone_project_sib_kwi/presentation/widgets/destination_card.dart';
 import 'package:capstone_project_sib_kwi/presentation/widgets/destination_tile.dart';
@@ -141,8 +141,13 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 10,
+              Container(
+                margin: const EdgeInsets.only(top: 10, left: 14.0),
+                child: Text("Recently Added",
+                    style: darkPurpleTextStyle.copyWith(
+                      fontSize: 18,
+                      fontWeight: bold,
+                    )),
               ),
               SizedBox(
                   height: 200,
@@ -177,7 +182,7 @@ class _HomePageState extends State<HomePage> {
               ),
               Flexible(
                 child: StreamBuilder(
-                  stream: _destinations.snapshots(),
+                  stream: _destinations.where('rating', isGreaterThanOrEqualTo: '4.5').snapshots(),
                   builder:
                       (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
                     if (streamSnapshot.hasData) {

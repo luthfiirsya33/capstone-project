@@ -1,5 +1,5 @@
 import 'package:capstone_project_sib_kwi/data/models/destination_detail.dart';
-import 'package:capstone_project_sib_kwi/presentation/pages/category/category_page.dart';
+import 'package:capstone_project_sib_kwi/presentation/pages/home/category_page.dart';
 import 'package:capstone_project_sib_kwi/presentation/pages/home/about_page.dart';
 import 'package:capstone_project_sib_kwi/presentation/pages/admin/delete_page.dart';
 import 'package:capstone_project_sib_kwi/presentation/pages/admin/request_page.dart';

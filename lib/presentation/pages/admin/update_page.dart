@@ -22,6 +22,7 @@ class _UpdatePageState extends State<UpdatePage> {
   final TextEditingController _ratingController = TextEditingController();
   final TextEditingController _locationController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
+  final TextEditingController _categoryController = TextEditingController();
   final TextEditingController _cityController = TextEditingController();
   final TextEditingController _urlWebController = TextEditingController();
   final TextEditingController _urlMapController = TextEditingController();
@@ -50,6 +51,7 @@ class _UpdatePageState extends State<UpdatePage> {
       _ratingController.text = documentSnapshot['rating'];
       _locationController.text = documentSnapshot['location'];
       _descriptionController.text = documentSnapshot['description'];
+      _categoryController.text = documentSnapshot['category'];
       _cityController.text = documentSnapshot['city'];
       _urlWebController.text = documentSnapshot['urlWeb'];
       _urlMapController.text = documentSnapshot['urlMap'];
@@ -118,6 +120,12 @@ class _UpdatePageState extends State<UpdatePage> {
                   ),
                 ),
                 TextField(
+                  controller: _categoryController,
+                  decoration: const InputDecoration(
+                    labelText: 'Kategori',
+                  ),
+                ),
+                TextField(
                   controller: _urlWebController,
                   decoration: const InputDecoration(labelText: 'Web Resmi'),
                 ),
@@ -148,6 +156,7 @@ class _UpdatePageState extends State<UpdatePage> {
                       final String city = _cityController.text;
                       final String urlWeb = _urlWebController.text;
                       final String urlMap = _urlMapController.text;
+                      final String category = _categoryController.text;
 
                       await _destinations.doc(documentSnapshot!.id).update({
                         "name": name,
@@ -158,7 +167,8 @@ class _UpdatePageState extends State<UpdatePage> {
                         "urlWeb": urlWeb,
                         "urlMap": urlMap,
                         "imgPath": imgPath,
-                        "urlImage": getDownloadUrl
+                        "urlImage": getDownloadUrl,
+                        "category": category,
                       });
 
                       _nameController.text = '';
@@ -166,6 +176,7 @@ class _UpdatePageState extends State<UpdatePage> {
                       _locationController.text = '';
                       _descriptionController.text = '';
                       _cityController.text = '';
+                      _categoryController.text = '';
                       _urlWebController.text = '';
                       _urlMapController.text = '';
 

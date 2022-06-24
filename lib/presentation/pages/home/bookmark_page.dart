@@ -57,7 +57,8 @@ class _BookmarkPageState extends State<BookmarkPage> {
                                     urlImage: data['urlImage'],
                                     urlWeb: data['urlWeb'],
                                     city: data["city"],
-                                    urlMap: data["urlMap"]));
+                                    urlMap: data["urlMap"],
+                                    category: data["category"]));
                           },
                           child: Column(children: <Widget>[
                             Container(

@@ -29,7 +29,8 @@ class _RequestDestinationState extends State<RequestDestination> {
       "urlImage": widget.destinationDetail.urlImage,
       "urlWeb": '',
       "urlMap": '',
-      "imgPath": widget.destinationDetail.imgPath
+      "imgPath": widget.destinationDetail.imgPath,
+      "category": '',
     };
     FirebaseFirestore destinations = FirebaseFirestore.instance;
     return await destinations
