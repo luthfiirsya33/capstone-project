@@ -35,7 +35,7 @@ class _RequestDestinationState extends State<RequestDestination> {
     FirebaseFirestore destinations = FirebaseFirestore.instance;
     return await destinations
         .collection('destinations')
-        .doc()
+        .doc(widget.destinationDetail.idDoc)
         .set(toDes)
         .then((value) {
       return destinations
