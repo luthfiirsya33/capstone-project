@@ -172,6 +172,7 @@ class Profil extends StatelessWidget {
               CircleAvatar(
                 backgroundImage: NetworkImage(loggedUser.imageUrl ?? urlImage),
                 radius: 70,
+                backgroundColor: greenColor,
               ),
               IconButton(
                 onPressed: () {

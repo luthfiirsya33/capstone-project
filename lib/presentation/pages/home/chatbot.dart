@@ -44,7 +44,7 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
           ),
         ),
         elevation: 10,
-        title: const Text("Chatbot Keanekaragaman Wisata Indonesia"),
+        title: const Text("Chatbot KWI"),
       ),
       body: Column(
         children: <Widget>[

@@ -1,5 +1,6 @@
 import 'package:capstone_project_sib_kwi/common/constants.dart';
 import 'package:capstone_project_sib_kwi/data/models/destination_detail.dart';
+import 'package:capstone_project_sib_kwi/presentation/pages/home/bottom_bar.dart';
 import 'package:capstone_project_sib_kwi/presentation/pages/home/detail_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -19,6 +20,13 @@ class _BookmarkPageState extends State<BookmarkPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+    icon: const Icon(Icons.arrow_back, color: darkPurpleColor),
+    onPressed: () {Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const BottomBar()));}
+  ), 
         title: Text('Bookmarks', style: darkPurpleTextStyle),
         backgroundColor: Colors.transparent,
       ),

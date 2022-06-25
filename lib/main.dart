@@ -1,3 +1,4 @@
+import 'package:capstone_project_sib_kwi/common/constants.dart';
 import 'package:capstone_project_sib_kwi/data/models/destination_detail.dart';
 import 'package:capstone_project_sib_kwi/presentation/pages/home/category_page.dart';
 import 'package:capstone_project_sib_kwi/presentation/pages/home/about_page.dart';
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
       title: 'KWI App',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.green,
+        primarySwatch: MaterialColor(0xFF086972, color),
         appBarTheme: const AppBarTheme(elevation: 0),
       ),
       home: const SplashScreen(),

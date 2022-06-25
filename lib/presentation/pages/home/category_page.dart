@@ -1,6 +1,8 @@
 // ignore_for_file: library_private_types_in_public_api
 
+import 'package:capstone_project_sib_kwi/common/constants.dart';
 import 'package:capstone_project_sib_kwi/data/models/destination_detail.dart';
+import 'package:capstone_project_sib_kwi/presentation/pages/home/bottom_bar.dart';
 import 'package:capstone_project_sib_kwi/presentation/widgets/destination_tile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +34,15 @@ class _CategoryPageState extends State<CategoryPage>
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Category'),
+        leading: IconButton(
+    icon: const Icon(Icons.arrow_back, color: darkPurpleColor),
+    onPressed: () {Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const BottomBar()));}
+  ), 
+        title: Text('Category', style: darkPurpleTextStyle),
+        backgroundColor: Colors.transparent,
         ),
         body: SafeArea(
           child: Column(
@@ -43,6 +53,7 @@ class _CategoryPageState extends State<CategoryPage>
                   indicatorSize: TabBarIndicatorSize.tab,
                   labelColor: Colors.black,
                   indicatorWeight: 3,
+                  indicatorColor: primaryColor,
                   tabs: const [
                     SizedBox(
                         width: 120,

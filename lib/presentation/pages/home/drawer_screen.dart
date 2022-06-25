@@ -85,6 +85,7 @@ class _DrawwerScreenState extends State<DrawerScreen> {
         UserAccountsDrawerHeader(
           decoration: const BoxDecoration(color: primaryColor),
           currentAccountPicture: CircleAvatar(
+            backgroundColor: greenColor,
             radius: 50,
             backgroundImage: (loggedInUser.imageUrl != null
                     ? NetworkImage(loggedInUser.imageUrl!)

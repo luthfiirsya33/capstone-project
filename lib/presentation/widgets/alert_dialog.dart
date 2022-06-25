@@ -24,7 +24,7 @@ class AlertDialogs {
               child: const Text(
                 'Cancel',
                 style:
-                    TextStyle(color: primaryColor, fontWeight: FontWeight.bold),
+                    TextStyle(color: whiteColor, fontWeight: FontWeight.bold),
               ),
             ),
             ElevatedButton(
@@ -32,7 +32,7 @@ class AlertDialogs {
               child: const Text(
                 'Confirm',
                 style:
-                    TextStyle(color: primaryColor, fontWeight: FontWeight.w700),
+                    TextStyle(color: whiteColor, fontWeight: FontWeight.w700),
               ),
             ),
           ],
