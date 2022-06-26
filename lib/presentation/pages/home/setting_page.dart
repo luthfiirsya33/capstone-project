@@ -1,4 +1,6 @@
+import 'package:capstone_project_sib_kwi/common/constants.dart';
 import 'package:capstone_project_sib_kwi/data/models/user.dart';
+import 'package:capstone_project_sib_kwi/presentation/widgets/custom_dialog.dart';
 import 'package:capstone_project_sib_kwi/presentation/widgets/profil.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -37,6 +39,28 @@ class _SettingPageState extends State<SettingPage> {
       children: [
         // ignore: prefer_const_constructors
         Profil(loggedUser: loggedUser),
+        const SizedBox(height: 150),
+        Padding(
+          padding: const EdgeInsets.all(10.0),
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Material(
+              color: darkGreenColor,
+              child: ListTile(
+                title: const Text('Dark Theme'),
+                textColor: whiteColor,
+                trailing: Switch.adaptive(
+                    value: false,
+                    onChanged: (value) {
+                      // ignore: void_checks
+                      return customDialog(context);
+                    }),
+              ),
+            ),
+          ),
+        ),
       ],
     );
   }

@@ -20,13 +20,6 @@ class _BookmarkPageState extends State<BookmarkPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-    icon: const Icon(Icons.arrow_back, color: darkPurpleColor),
-    onPressed: () {Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const BottomBar()));}
-  ), 
         title: Text('Bookmarks', style: darkPurpleTextStyle),
         backgroundColor: Colors.transparent,
       ),

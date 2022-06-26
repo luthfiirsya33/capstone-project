@@ -94,8 +94,8 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     Text(
                       "Category",
-                      style: blackTextStyle.copyWith(
-                          fontSize: 20, fontWeight: bold),
+                      style: darkPurpleTextStyle.copyWith(
+                      fontSize: 20, fontWeight: semiBold),
                     ),
                   ],
                 ),
