@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.capstone_project_sib_kwi">
+    <uses-permission android:name="android.permission.INTERNET" />
 
    <application
         android:label="KWI App"

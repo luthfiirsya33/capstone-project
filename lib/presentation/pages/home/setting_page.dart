@@ -40,13 +40,15 @@ class _SettingPageState extends State<SettingPage> {
         // ignore: prefer_const_constructors
         Profil(loggedUser: loggedUser),
         const SizedBox(height: 150),
-        Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Container(
+        Column(
+          children:<Widget>[
+            Padding(padding: const EdgeInsets.all(10.0),
+            child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
             ),
             child: Material(
+              borderRadius: BorderRadius.circular(20),
               color: darkGreenColor,
               child: ListTile(
                 title: const Text('Dark Theme'),
@@ -60,6 +62,29 @@ class _SettingPageState extends State<SettingPage> {
               ),
             ),
           ),
+          ),
+          Padding(padding: const EdgeInsets.all(10.0),
+            child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Material(
+              borderRadius: BorderRadius.circular(20),
+              color: darkGreenColor,
+              child: ListTile(
+                title: const Text('Scheduling Destination'),
+                textColor: whiteColor,
+                trailing: Switch.adaptive(
+                    value: false,
+                    onChanged: (value) {
+                      // ignore: void_checks
+                      return customDialog(context);
+                    }),
+              ),
+            ),
+          ),
+          ),
+          ],
         ),
       ],
     );
