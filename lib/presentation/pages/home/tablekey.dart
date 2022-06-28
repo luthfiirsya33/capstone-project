@@ -51,7 +51,7 @@ class TableChatBotKey extends StatelessWidget {
                           style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold)
                         )
                       ),
-                      DataCell(Text('Chatbot KWI')
+                      DataCell(Text('apa itu chatbot kwi?')
                       ),
                       DataCell(Text('Informasi Chatbot KWI')
                       ),
@@ -60,9 +60,51 @@ class TableChatBotKey extends StatelessWidget {
                       DataCell(
                         Text('', style: TextStyle(fontSize: 15,))
                       ),
-                      DataCell(Text('apa itu chatbot KWI?')
+                      DataCell(Text('info chatbot kwi')
                       ),
                       DataCell(Text('Informasi Chatbot KWI')
+                      ),
+                    ]),
+                    DataRow(cells: [
+                      DataCell(
+                        Text(
+                          '2. INFO WISATA POPULER',
+                          style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold)
+                        )
+                      ),
+                      DataCell(Text('wisata terpopuler')
+                      ),
+                      DataCell(Text('Informasi Wisata Populer')
+                      ),
+                    ]),
+                    DataRow(cells: [
+                      DataCell(
+                        Text('', style: TextStyle(fontSize: 15,))
+                      ),
+                      DataCell(Text('rating tertinggi')
+                      ),
+                      DataCell(Text('Informasi Wisata Populer')
+                      ),
+                    ]),
+                    DataRow(cells: [
+                      DataCell(
+                        Text(
+                          '3. INFO WISATA RATING TERENDAH',
+                          style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold)
+                        )
+                      ),
+                      DataCell(Text('wisata terburuknya?')
+                      ),
+                      DataCell(Text('Informasi Wisata Rating Terendah')
+                      ),
+                    ]),
+                    DataRow(cells: [
+                      DataCell(
+                        Text('', style: TextStyle(fontSize: 15,))
+                      ),
+                      DataCell(Text('rating terburuknya?')
+                      ),
+                      DataCell(Text('Informasi Wisata Rating Terendah')
                       ),
                     ]),
                   ]),
