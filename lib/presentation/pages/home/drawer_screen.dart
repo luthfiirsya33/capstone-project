@@ -8,6 +8,7 @@ import 'package:capstone_project_sib_kwi/presentation/pages/auth/login_screen.da
 import 'package:capstone_project_sib_kwi/presentation/widgets/alert_dialog.dart';
 import 'package:capstone_project_sib_kwi/presentation/widgets/drawer_list_tile.dart';
 import 'package:flutter/material.dart';
+import 'package:capstone_project_sib_kwi/presentation/pages/home/tablekey.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -104,6 +105,13 @@ class _DrawwerScreenState extends State<DrawerScreen> {
           title: 'About',
           onTilePressed: () {
             Navigator.pushNamed(context, AboutPage.routeName);
+          },
+        ),
+         DrawerListTile(
+          iconData: Icons.key_sharp,
+          title: 'Chatbot Keywords',
+          onTilePressed: () {
+            Navigator.pushNamed(context, TableChatBotKey.routeName);
           },
         ),
         DrawerListTile(

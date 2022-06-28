@@ -7,6 +7,7 @@ import 'package:capstone_project_sib_kwi/presentation/pages/admin/request_page.d
 import 'package:capstone_project_sib_kwi/presentation/pages/admin/update_page.dart';
 import 'package:capstone_project_sib_kwi/presentation/pages/home/detail_page.dart';
 import 'package:capstone_project_sib_kwi/presentation/pages/home/splash_screen.dart';
+import 'package:capstone_project_sib_kwi/presentation/pages/home/tablekey.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
               destinationDetail: ModalRoute.of(context)?.settings.arguments
                   as DestinationDetail,
             ),
+        TableChatBotKey.routeName :(context) =>  const TableChatBotKey(),
         AboutPage.routeName: (context) => const AboutPage(),
         RequestPage.routeName: (context) => const RequestPage(),
         UpdatePage.routeName: (context) => const UpdatePage(),
