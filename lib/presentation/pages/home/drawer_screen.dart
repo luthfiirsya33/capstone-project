@@ -11,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:capstone_project_sib_kwi/presentation/pages/home/tablekey.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class DrawerScreen extends StatefulWidget {
   const DrawerScreen({Key? key}) : super(key: key);
@@ -107,7 +108,7 @@ class _DrawwerScreenState extends State<DrawerScreen> {
             Navigator.pushNamed(context, AboutPage.routeName);
           },
         ),
-         DrawerListTile(
+        DrawerListTile(
           iconData: Icons.key_sharp,
           title: 'Chatbot Keywords',
           onTilePressed: () {
@@ -121,9 +122,12 @@ class _DrawwerScreenState extends State<DrawerScreen> {
             final action = await AlertDialogs.confirmCancelDialog(
                 context, 'Logout', 'are you sure ?');
             if (action == DialogAction.confirm) {
-              _signOut().then((value) => Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(
-                      builder: (context) => const LoginScreen())));
+              _signOut().then((value) {
+                GoogleSignIn().signOut().then((value) {
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: (context) => const LoginScreen()));
+                });
+              });
             } else {
               setState(() => tapConfirm = false);
             }

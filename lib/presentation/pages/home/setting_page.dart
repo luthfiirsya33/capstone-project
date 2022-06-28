@@ -41,49 +41,51 @@ class _SettingPageState extends State<SettingPage> {
         Profil(loggedUser: loggedUser),
         const SizedBox(height: 150),
         Column(
-          children:<Widget>[
-            Padding(padding: const EdgeInsets.all(10.0),
-            child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Material(
-              borderRadius: BorderRadius.circular(15),
-              color: darkGreenColor,
-              child: ListTile(
-                title: const Text('Dark Theme'),
-                textColor: whiteColor,
-                trailing: Switch.adaptive(
-                    value: false,
-                    onChanged: (value) {
-                      // ignore: void_checks
-                      return customDialog(context);
-                    }),
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Material(
+                  borderRadius: BorderRadius.circular(15),
+                  color: darkGreenColor,
+                  child: ListTile(
+                    title: const Text('Dark Theme'),
+                    textColor: whiteColor,
+                    trailing: Switch.adaptive(
+                        value: false,
+                        onChanged: (value) {
+                          // ignore: void_checks
+                          return customDialog(context);
+                        }),
+                  ),
+                ),
               ),
             ),
-          ),
-          ),
-          Padding(padding: const EdgeInsets.all(10.0),
-            child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Material(
-              borderRadius: BorderRadius.circular(15),
-              color: darkGreenColor,
-              child: ListTile(
-                title: const Text('Scheduling Destination'),
-                textColor: whiteColor,
-                trailing: Switch.adaptive(
-                    value: false,
-                    onChanged: (value) {
-                      // ignore: void_checks
-                      return customDialog(context);
-                    }),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Material(
+                  borderRadius: BorderRadius.circular(15),
+                  color: darkGreenColor,
+                  child: ListTile(
+                    title: const Text('Scheduling Destination'),
+                    textColor: whiteColor,
+                    trailing: Switch.adaptive(
+                        value: false,
+                        onChanged: (value) {
+                          // ignore: void_checks
+                          return customDialog(context);
+                        }),
+                  ),
+                ),
               ),
             ),
-          ),
-          ),
           ],
         ),
       ],

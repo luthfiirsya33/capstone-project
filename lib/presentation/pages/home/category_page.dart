@@ -34,15 +34,14 @@ class _CategoryPageState extends State<CategoryPage>
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-        leading: IconButton(
-    icon: const Icon(Icons.arrow_back, color: darkPurpleColor),
-    onPressed: () {Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const BottomBar()));}
-  ), 
-        title: Text('Category', style: darkPurpleTextStyle),
-        backgroundColor: Colors.transparent,
+          leading: IconButton(
+              icon: const Icon(Icons.arrow_back, color: darkPurpleColor),
+              onPressed: () {
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => const BottomBar()));
+              }),
+          title: Text('Category', style: darkPurpleTextStyle),
+          backgroundColor: Colors.transparent,
         ),
         body: SafeArea(
           child: Column(

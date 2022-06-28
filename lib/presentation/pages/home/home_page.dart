@@ -95,7 +95,7 @@ class _HomePageState extends State<HomePage> {
                     Text(
                       "Category",
                       style: darkPurpleTextStyle.copyWith(
-                      fontSize: 20, fontWeight: semiBold),
+                          fontSize: 20, fontWeight: semiBold),
                     ),
                   ],
                 ),
@@ -182,7 +182,14 @@ class _HomePageState extends State<HomePage> {
               ),
               Flexible(
                 child: StreamBuilder(
-                  stream: _destinations.where('rating', whereIn: ['4.5','4.6','4.7','4.8','4.9','5.0']).snapshots(),
+                  stream: _destinations.where('rating', whereIn: [
+                    '4.5',
+                    '4.6',
+                    '4.7',
+                    '4.8',
+                    '4.9',
+                    '5.0'
+                  ]).snapshots(),
                   builder:
                       (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
                     if (streamSnapshot.hasData) {

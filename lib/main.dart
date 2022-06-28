@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
               destinationDetail: ModalRoute.of(context)?.settings.arguments
                   as DestinationDetail,
             ),
-        TableChatBotKey.routeName :(context) =>  const TableChatBotKey(),
+        TableChatBotKey.routeName: (context) => const TableChatBotKey(),
         AboutPage.routeName: (context) => const AboutPage(),
         RequestPage.routeName: (context) => const RequestPage(),
         UpdatePage.routeName: (context) => const UpdatePage(),

@@ -1,9 +1,12 @@
 import 'package:capstone_project_sib_kwi/common/constants.dart';
 import 'package:capstone_project_sib_kwi/presentation/pages/home/bottom_bar.dart';
 import 'package:capstone_project_sib_kwi/presentation/pages/auth/register_screen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -19,6 +22,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _passwordController = TextEditingController();
 
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+
   loginSubmit() async {
     try {
       await _firebaseAuth
@@ -35,6 +39,53 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
+  Future<UserCredential> signInWithGoogle() async {
+    // Trigger the authentication flow
+    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+    // Obtain the auth details from the request
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser?.authentication;
+
+    // Create a new credential
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+
+    // Once signed in, return the UserCredential
+    return await FirebaseAuth.instance
+        .signInWithCredential(credential)
+        .whenComplete(() {
+      Map<String, dynamic> toMap = {
+        'uid': _firebaseAuth.currentUser?.uid,
+        'email': _firebaseAuth.currentUser?.email,
+        'nickname': 'nickname',
+      };
+
+      FirebaseFirestore.instance
+          .collection('users')
+          .doc(_firebaseAuth.currentUser?.uid)
+          .get()
+          .then((value) {
+        var data = value.data();
+        if (data == null) {
+          FirebaseFirestore.instance
+              .collection('users')
+              .doc(_firebaseAuth.currentUser?.uid)
+              .set(toMap);
+        }
+      });
+
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text('Berhasil Masuk'),
+        duration: Duration(seconds: 1),
+      ));
+      Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) => const BottomBar()));
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,7 +97,7 @@ class _LoginScreenState extends State<LoginScreen> {
             Container(
               alignment: Alignment.center,
               padding: const EdgeInsets.all(10),
-              margin: const EdgeInsets.only(top: 40),
+              margin: const EdgeInsets.only(top: 25),
               child: const Text(
                 "KWI App",
                 style: TextStyle(
@@ -88,7 +139,28 @@ class _LoginScreenState extends State<LoginScreen> {
                             Icons.visibility,
                           ))),
                 )),
-            const SizedBox(height: 20),
+            const SizedBox(height: 10),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                Text('Or'),
+              ],
+            ),
+            const SizedBox(height: 10),
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(color: primaryColor, width: 2),
+                shape: BoxShape.circle,
+              ),
+              child: IconButton(
+                iconSize: 30,
+                icon: const Icon(FontAwesomeIcons.google),
+                onPressed: () {
+                  signInWithGoogle();
+                },
+              ),
+            ),
+            const SizedBox(height: 10),
             Row(mainAxisAlignment: MainAxisAlignment.center, children: <Widget>[
               const Text("Don't have an account ? "),
               GestureDetector(
