@@ -23,7 +23,7 @@ class TableChatBotKey extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w800,
-                        color: Colors.purple
+                        color: darkPurpleColor,
                       ),),),
                     ),
                     DataColumn(
@@ -31,7 +31,7 @@ class TableChatBotKey extends StatelessWidget {
                           style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.w800,
-                              color: Colors.purple
+                              color: darkPurpleColor,
                           ),)
                     ),
                     DataColumn(
@@ -39,7 +39,7 @@ class TableChatBotKey extends StatelessWidget {
                           style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.w800,
-                              color: Colors.purple
+                              color: darkPurpleColor,
                           ),)
                     ),
                   ],
@@ -53,7 +53,7 @@ class TableChatBotKey extends StatelessWidget {
                       ),
                       DataCell(Text('apa itu chatbot kwi?')
                       ),
-                      DataCell(Text('Informasi Chatbot KWI')
+                      DataCell(Text('Informasi Chatbot')
                       ),
                     ]),
                     DataRow(cells: [
@@ -62,19 +62,19 @@ class TableChatBotKey extends StatelessWidget {
                       ),
                       DataCell(Text('info chatbot kwi')
                       ),
-                      DataCell(Text('Informasi Chatbot KWI')
+                      DataCell(Text('Informasi Chatbot')
                       ),
                     ]),
                     DataRow(cells: [
                       DataCell(
                         Text(
-                          '2. INFO WISATA POPULER',
+                          '2. WISATA POPULER',
                           style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold)
                         )
                       ),
                       DataCell(Text('wisata terpopuler')
                       ),
-                      DataCell(Text('Informasi Wisata Populer')
+                      DataCell(Text('Wisata Populer')
                       ),
                     ]),
                     DataRow(cells: [
@@ -83,19 +83,19 @@ class TableChatBotKey extends StatelessWidget {
                       ),
                       DataCell(Text('rating tertinggi')
                       ),
-                      DataCell(Text('Informasi Wisata Populer')
+                      DataCell(Text('Wisata Populer')
                       ),
                     ]),
                     DataRow(cells: [
                       DataCell(
                         Text(
-                          '3. INFO WISATA RATING TERENDAH',
+                          '3. WISATA TERENDAH',
                           style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold)
                         )
                       ),
                       DataCell(Text('wisata terburuknya?')
                       ),
-                      DataCell(Text('Informasi Wisata Rating Terendah')
+                      DataCell(Text('Wisata Terendah')
                       ),
                     ]),
                     DataRow(cells: [
@@ -104,7 +104,7 @@ class TableChatBotKey extends StatelessWidget {
                       ),
                       DataCell(Text('rating terburuknya?')
                       ),
-                      DataCell(Text('Informasi Wisata Rating Terendah')
+                      DataCell(Text('Wisata Terendah')
                       ),
                     ]),
                   ]),

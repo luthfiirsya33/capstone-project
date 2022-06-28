@@ -48,7 +48,7 @@ class _SettingPageState extends State<SettingPage> {
               borderRadius: BorderRadius.circular(10),
             ),
             child: Material(
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(15),
               color: darkGreenColor,
               child: ListTile(
                 title: const Text('Dark Theme'),
@@ -69,7 +69,7 @@ class _SettingPageState extends State<SettingPage> {
               borderRadius: BorderRadius.circular(10),
             ),
             child: Material(
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(15),
               color: darkGreenColor,
               child: ListTile(
                 title: const Text('Scheduling Destination'),
