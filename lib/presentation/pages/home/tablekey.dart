@@ -91,6 +91,35 @@ class TableChatBotKey extends StatelessWidget {
               DataCell(Text('rating terburuknya?')),
               DataCell(Text('Wisata Terendah')),
             ]),
+            DataRow(cells: [
+              DataCell(Text('4. Kuliner Terbaik',
+                  style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold))),
+              DataCell(Text('kuliner favorit?')),
+              DataCell(Text('Kuliner Terbaik')),
+            ]),
+            DataRow(cells: [
+              DataCell(Text('',
+                  style: TextStyle(
+                    fontSize: 15,
+                  ))),
+              DataCell(Text('kuliner terpopuler?')),
+              DataCell(Text('Kuliner Terbaik')),
+            ]),
+             DataRow(cells: [
+              DataCell(Text('5. Kuliner Terburuk',
+                  style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold))),
+              DataCell(Text('kuliner terburuk?')),
+              DataCell(Text('Kuliner Terburuk')),
+            ]),
+            DataRow(cells: [
+              DataCell(Text('',
+                  style: TextStyle(
+                    fontSize: 15,
+                  ))),
+              DataCell(Text('kuliner rating terendah?')),
+              DataCell(Text('Kuliner Terburuk')),
+            ]),
+
           ]),
         ],
       )),
