@@ -32,7 +32,7 @@ class TableChatBotKey extends StatelessWidget {
             ),
             DataColumn(
                 label: Text(
-              'Keywords',
+              'Question',
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w800,
@@ -60,13 +60,13 @@ class TableChatBotKey extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 15,
                   ))),
-              DataCell(Text('info chatbot kwi')),
+              DataCell(Text('info chatbot kwi?')),
               DataCell(Text('Informasi Chatbot')),
             ]),
             DataRow(cells: [
               DataCell(Text('2. WISATA POPULER',
                   style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold))),
-              DataCell(Text('wisata terpopuler')),
+              DataCell(Text('wisata terpopuler?')),
               DataCell(Text('Wisata Populer')),
             ]),
             DataRow(cells: [
@@ -74,7 +74,7 @@ class TableChatBotKey extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 15,
                   ))),
-              DataCell(Text('rating tertinggi')),
+              DataCell(Text('rating tertinggi?')),
               DataCell(Text('Wisata Populer')),
             ]),
             DataRow(cells: [
