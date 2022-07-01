@@ -92,7 +92,7 @@ class TableChatBotKey extends StatelessWidget {
               DataCell(Text('Wisata Terendah')),
             ]),
             DataRow(cells: [
-              DataCell(Text('4. Kuliner Terbaik',
+              DataCell(Text('4. KULINER TERBAIK',
                   style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold))),
               DataCell(Text('kuliner favorit?')),
               DataCell(Text('Kuliner Terbaik')),
@@ -106,7 +106,7 @@ class TableChatBotKey extends StatelessWidget {
               DataCell(Text('Kuliner Terbaik')),
             ]),
              DataRow(cells: [
-              DataCell(Text('5. Kuliner Terburuk',
+              DataCell(Text('5. KULINER TERBURUK',
                   style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold))),
               DataCell(Text('kuliner terburuk?')),
               DataCell(Text('Kuliner Terburuk')),
