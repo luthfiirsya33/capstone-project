@@ -40,6 +40,7 @@ class _BottomBarState extends State<BottomBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: PageStorage(
         bucket: bucket,
         child: currentScreen,
