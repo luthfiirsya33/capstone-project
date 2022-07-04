@@ -1,9 +1,11 @@
+
 import 'package:capstone_project_sib_kwi/data/models/destination_detail.dart';
 import 'package:capstone_project_sib_kwi/presentation/widgets/add_remove_bookmark.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:capstone_project_sib_kwi/common/constants.dart';
 import 'package:url_launcher/link.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 // ignore: must_be_immutable
 class DetailPage extends StatefulWidget {
@@ -191,36 +193,33 @@ class _DetailPageState extends State<DetailPage> {
                                   child: SizedBox(
                                       width: 260,
                                       height: 50,
-                                      child: Link(
-                                        target: LinkTarget.blank,
-                                        uri: Uri.parse(
-                                            widget.destinationDetail.urlWeb!),
-                                        builder: (context, followLink) {
-                                          return ElevatedButton(
-                                              onPressed: followLink,
-                                              style: ButtonStyle(
-                                                  backgroundColor:
-                                                      MaterialStateProperty.all(
-                                                          primaryColor),
-                                                  shape: MaterialStateProperty.all<
-                                                          RoundedRectangleBorder>(
-                                                      RoundedRectangleBorder(
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      18.0),
-                                                          side: const BorderSide(
-                                                              color: Colors
-                                                                  .green)))),
-                                              child: Text(
-                                                'Detail lebih lanjut',
-                                                style: interText2.copyWith(
-                                                    fontSize: 17,
-                                                    color: Colors.white),
-                                              ));
-                                        },
-                                      )),
-                                ),
+                                      child: ElevatedButton(
+                                      onPressed: () async {
+                                        var url = Uri.parse(
+                                            widget.destinationDetail.urlWeb!);
+                                        if (await canLaunchUrl(url)) {
+                                          await launchUrl(url);
+                                        } else {
+                                          // can't launch url
+                                        }
+                                      },
+                              style: ButtonStyle(backgroundColor:
+                                MaterialStateProperty.all(primaryColor),
+                                 shape: MaterialStateProperty.all<
+                                     RoundedRectangleBorder>(
+                                        RoundedRectangleBorder(
+                                             borderRadius: BorderRadius.circular(18.0),
+                                               side: const BorderSide(
+                                                color: Colors.green)))),
+                                     child: Text(
+                                           'Detail lebih lanjut',
+                                             style: interText2.copyWith(
+                                              fontSize: 17,
+                                              color: Colors.white),
+                                           ),
+                                        )
+                                     )
+                                  ),
                               ],
                             ),
                           ),
